@@ -1,5 +1,13 @@
+import Editor from './Editor';
+import Display from './Display';
+
 function Main() {
-  return <main>Hello, world!</main>;
+  return (
+    <main>
+      <Editor />
+      <Display />
+    </main>
+  );
 }
 
 export default Main;
