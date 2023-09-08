@@ -1,11 +1,11 @@
 const blankJob = {
-  title,
-  company,
-  location,
-  startDate,
-  endDate,
+  title: '',
+  company: '',
+  location: '',
+  startDate: new Date(),
+  endDate: new Date(),
   ongoing: false,
-  description,
+  description: '',
 };
 
 export default blankJob;
