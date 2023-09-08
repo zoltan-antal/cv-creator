@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import blankCv from './dataStructures/blankCv';
+import blankCv from '../dataStructures/blankCv';
 import Editor from './Editor';
 import Display from './Display';
 
