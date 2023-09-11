@@ -18,6 +18,9 @@ function EditorSection({
 }) {
   const [mode, setMode] = useState('view');
 
+  const ongoingIndex = Object.keys(data).indexOf('ongoing');
+  const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
+
   let content = <></>;
   switch (mode) {
     case 'view':
@@ -42,6 +45,9 @@ function EditorSection({
             }
             if (typeof value === 'object' && value instanceof Date) {
               if (Date.parse(value) === 0) {
+                return null;
+              }
+              if (ongoing && key === 'endDate') {
                 return null;
               }
               return <p key={key}>{format(value, 'MMM yyyy')}</p>;

@@ -2,8 +2,14 @@ import EditorField from '../components/EditorField';
 import parseCamelCaseString from './parseCamelCaseString';
 
 function mapEditorFields({ data, sectionName, index, onChange }) {
+  const ongoingIndex = Object.keys(data).indexOf('ongoing');
+  const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
+
   return Object.entries(data).map(([key, value]) => {
     if (key === 'id') {
+      return null;
+    }
+    if (ongoing && key === 'endDate') {
       return null;
     }
 
