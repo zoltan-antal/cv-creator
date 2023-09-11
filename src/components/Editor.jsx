@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import EditorSection from './EditorSection';
-import EditorField from './EditorField';
 import EditorList from './EditorList';
 import blankSchool from '../dataStructures/blankSchool';
+import mapEditorFields from '../utils/mapEditorFields';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
@@ -55,7 +55,12 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onDiscardSection={discardSection}
         onSaveSection={saveSection}
       >
-        <>
+        {mapEditorFields({
+          data: tempCvData.personalDetails,
+          sectionName: 'personalDetails',
+          onChange: updateField,
+        })}
+        {/* <>
           {Object.entries(tempCvData.personalDetails).map(([key, value]) => {
             if (key === 'id') {
               return null;
@@ -88,7 +93,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
             }
             return <div key={key}></div>;
           })}
-        </>
+        </> */}
       </EditorSection>
       <EditorList
         title={'Education'}

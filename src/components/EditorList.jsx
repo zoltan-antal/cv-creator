@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import Button from './Button';
-import EditorField from './EditorField';
+import mapEditorFields from '../utils/mapEditorFields';
 
 function EditorList({
   title,
@@ -28,56 +28,30 @@ function EditorList({
           return (
             <>
               <Button name={'▲'} onClick={onHide} />
-              {data.map((item, index) => {
+              {data.map((element, index) => {
                 return (
-                  <div key={item.id}>
+                  <div key={element.id}>
                     <EditorSection
                       title={
-                        item.school || item.title
-                          ? item.school || item.title
+                        element.school || element.title
+                          ? element.school || element.title
                           : `Unnamed ${elementName}`
                       }
                       name={sectionName}
                       index={index}
-                      data={item}
-                      isActive={activeEditorSection === item.id}
-                      onShow={() => setActiveEditorSection(item.id)}
+                      data={element}
+                      isActive={activeEditorSection === element.id}
+                      onShow={() => setActiveEditorSection(element.id)}
                       onHide={() => setActiveEditorSection(false)}
                       onDiscardSection={onDiscardSection}
                       onSaveSection={onSaveSection}
                     >
-                      <>
-                        {Object.entries(item).map(([key, value]) => {
-                          if (key === 'id') {
-                            return null;
-                          }
-                          return (
-                            <EditorField
-                              key={key}
-                              title={key}
-                              name={key}
-                              type={(() => {
-                                if (typeof value === 'string') {
-                                  return 'text';
-                                }
-                                if (typeof value === 'boolean') {
-                                  return 'checkbox';
-                                }
-                                if (
-                                  typeof value === 'object' &&
-                                  value instanceof Date
-                                ) {
-                                  return 'month';
-                                }
-                              })()}
-                              value={value}
-                              sectionName={sectionName}
-                              index={index}
-                              onChange={onChange}
-                            />
-                          );
-                        })}
-                      </>
+                      {mapEditorFields({
+                        data: element,
+                        sectionName: sectionName,
+                        index: index,
+                        onChange: onChange,
+                      })}
                     </EditorSection>
                     <Button
                       name={'╳'}
