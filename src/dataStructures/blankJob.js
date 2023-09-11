@@ -1,4 +1,5 @@
 const blankJob = {
+  id: '',
   title: '',
   company: '',
   location: '',

@@ -1,4 +1,5 @@
 const blankSchool = {
+  id: '',
   school: '',
   location: '',
   qualification: '',

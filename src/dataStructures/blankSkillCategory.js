@@ -1,4 +1,5 @@
 const blankSkillCategory = {
+  id: '',
   title: '',
   skills: [],
 };
