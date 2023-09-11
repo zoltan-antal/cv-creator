@@ -35,28 +35,50 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onDiscardSection={discardSection}
         onSaveSection={saveSection}
       >
-        <EditorField
-          title={'Full name'}
-          name={'fullName'}
-          type={'text'}
-          value={tempCvData.personalDetails.fullName}
-          onChange={updatePersonalDetails}
-        />
-        <EditorField
-          title={'Title'}
-          name={'title'}
-          type={'text'}
-          value={tempCvData.personalDetails.title}
-          onChange={updatePersonalDetails}
-        />
-        <EditorField title={'Email'} name={'email'} type={'email'} />
-        <EditorField title={'Phone'} name={'phone'} type={'text'} />
-        <EditorField title={'Address'} name={'address'} type={'text'} />
-        <EditorField
-          title={'Personal introduction'}
-          name={'introduction'}
-          type={'text'}
-        />
+        <>
+          <EditorField
+            title={'Full name'}
+            name={'fullName'}
+            type={'text'}
+            value={tempCvData.personalDetails.fullName}
+            onChange={updatePersonalDetails}
+          />
+          <EditorField
+            title={'Title'}
+            name={'title'}
+            type={'text'}
+            value={tempCvData.personalDetails.title}
+            onChange={updatePersonalDetails}
+          />
+          <EditorField
+            title={'Email'}
+            name={'email'}
+            type={'email'}
+            value={tempCvData.personalDetails.email}
+            onChange={updatePersonalDetails}
+          />
+          <EditorField
+            title={'Phone'}
+            name={'phone'}
+            type={'text'}
+            value={tempCvData.personalDetails.phone}
+            onChange={updatePersonalDetails}
+          />
+          <EditorField
+            title={'Address'}
+            name={'address'}
+            type={'text'}
+            value={tempCvData.personalDetails.address}
+            onChange={updatePersonalDetails}
+          />
+          <EditorField
+            title={'Personal introduction'}
+            name={'introduction'}
+            type={'text'}
+            value={tempCvData.personalDetails.introduction}
+            onChange={updatePersonalDetails}
+          />
+        </>
       </EditorSection>
     </section>
   );
