@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorField from './EditorField';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
+  const [activeEditorSection, setActiveEditorSection] = useState(undefined);
+
   function updatePersonalDetails(fieldName, value) {
     setTempCvData((cvData) => {
       cvData.personalDetails[fieldName] = value;
@@ -26,6 +29,9 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         title={'Personal Details'}
         name={'personalDetails'}
         data={tempCvData.personalDetails}
+        isActive={activeEditorSection === 'personalDetails'}
+        onShow={() => setActiveEditorSection('personalDetails')}
+        onHide={() => setActiveEditorSection(false)}
         onDiscardSection={discardSection}
         onSaveSection={saveSection}
       >

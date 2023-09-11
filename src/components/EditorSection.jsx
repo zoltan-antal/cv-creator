@@ -6,6 +6,9 @@ function EditorSection({
   title,
   name,
   data,
+  isActive,
+  onShow,
+  onHide,
   onDiscardSection,
   onSaveSection,
 }) {
@@ -56,8 +59,22 @@ function EditorSection({
   return (
     <div className="editor-section">
       <h2>{title}</h2>
-      {content}
-      {mode}
+      {(() => {
+        if (isActive) {
+          return (
+            <>
+              <Button name={'▲'} onClick={onHide} />
+              {content}
+            </>
+          );
+        } else {
+          return (
+            <>
+              <Button name={'▼'} onClick={onShow} />
+            </>
+          );
+        }
+      })()}
     </div>
   );
 }
