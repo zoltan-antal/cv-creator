@@ -40,7 +40,7 @@ function mapFieldsView({ data }) {
       if (ongoing && key === 'endDate') {
         return null;
       }
-      content = format(value, 'MMM yyyy');
+      content = format(value, 'MMMM yyyy');
     }
     if (typeof value === 'string') {
       content = value;
