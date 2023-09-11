@@ -1,4 +1,12 @@
-function EditorField({ title, name, type, value, onChange }) {
+function EditorField({
+  title,
+  name,
+  type,
+  value,
+  sectionName,
+  index,
+  onChange,
+}) {
   return (
     <label>
       {title}
@@ -6,7 +14,11 @@ function EditorField({ title, name, type, value, onChange }) {
         type={type}
         name={name}
         value={value}
-        onChange={(e) => onChange(name, e.target.value)}
+        onChange={
+          sectionName
+            ? (e) => onChange(sectionName, index, name, e.target.value)
+            : (e) => onChange(name, e.target.value)
+        }
       ></input>
     </label>
   );

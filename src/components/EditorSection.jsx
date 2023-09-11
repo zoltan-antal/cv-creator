@@ -6,6 +6,7 @@ function EditorSection({
   children,
   title,
   name,
+  index,
   data,
   isActive,
   onShow,
@@ -21,10 +22,24 @@ function EditorSection({
       content = (
         <div className="view-field-list">
           {Object.entries(data).map(([key, value]) => {
+            if (typeof value === 'boolean') {
+              return (
+                <p key={key}>
+                  {key.charAt(0).toUpperCase() + key.toLowerCase().slice(1)}:{' '}
+                  {value ? 'yes' : 'no'}
+                </p>
+              );
+            }
             if (!value) {
               return null;
             }
+            if (key === 'id') {
+              return null;
+            }
             if (Array.isArray(value)) {
+              return null;
+            }
+            if (typeof value !== 'string') {
               return null;
             }
             return <p key={key}>{value}</p>;
@@ -41,14 +56,14 @@ function EditorSection({
           <Button
             type={'discard'}
             onClick={() => {
-              onDiscardSection(name);
+              onDiscardSection(name, index);
               setMode('view');
             }}
           />
           <Button
             type={'save'}
             onClick={() => {
-              onSaveSection(name);
+              onSaveSection(name, index);
               setMode('view');
             }}
           />
