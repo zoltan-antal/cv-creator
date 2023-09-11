@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from './Button';
 import { format } from 'date-fns';
 import parseCamelCaseString from '../utils/parseCamelCaseString';
-import mapEditorFields from '../utils/mapEditorFields';
+import mapFieldsEdit from '../utils/mapFieldsEdit';
 
 function EditorSection({
   title,
@@ -70,7 +70,7 @@ function EditorSection({
     case 'edit':
       content = (
         <div className="edit-field-list">
-          {mapEditorFields({
+          {mapFieldsEdit({
             data: data,
             sectionName: name,
             index: index,

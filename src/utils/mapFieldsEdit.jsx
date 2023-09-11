@@ -1,7 +1,7 @@
 import EditorField from '../components/EditorField';
 import parseCamelCaseString from './parseCamelCaseString';
 
-function mapEditorFields({ data, sectionName, index, onChange }) {
+function mapFieldsEdit({ data, sectionName, index, onChange }) {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');
   const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
 
@@ -40,4 +40,4 @@ function mapEditorFields({ data, sectionName, index, onChange }) {
   });
 }
 
-export default mapEditorFields;
+export default mapFieldsEdit;
