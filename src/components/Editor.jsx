@@ -56,54 +56,38 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onSaveSection={saveSection}
       >
         <>
-          <EditorField
-            title={'Full name'}
-            name={'fullName'}
-            type={'text'}
-            value={tempCvData.personalDetails.fullName}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
-          <EditorField
-            title={'Title'}
-            name={'title'}
-            type={'text'}
-            value={tempCvData.personalDetails.title}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
-          <EditorField
-            title={'Email'}
-            name={'email'}
-            type={'email'}
-            value={tempCvData.personalDetails.email}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
-          <EditorField
-            title={'Phone'}
-            name={'phone'}
-            type={'text'}
-            value={tempCvData.personalDetails.phone}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
-          <EditorField
-            title={'Address'}
-            name={'address'}
-            type={'text'}
-            value={tempCvData.personalDetails.address}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
-          <EditorField
-            title={'Personal introduction'}
-            name={'introduction'}
-            type={'text'}
-            value={tempCvData.personalDetails.introduction}
-            sectionName={'personalDetails'}
-            onChange={updateField}
-          />
+          {Object.entries(tempCvData.personalDetails).map(([key, value]) => {
+            if (key === 'id') {
+              return null;
+            }
+            if (typeof value === 'string') {
+              return (
+                <EditorField
+                  key={key}
+                  title={key}
+                  name={key}
+                  type={'text'}
+                  value={value}
+                  sectionName={'personalDetails'}
+                  onChange={updateField}
+                />
+              );
+            }
+            if (typeof value === 'boolean') {
+              return (
+                <EditorField
+                  key={key}
+                  title={key}
+                  name={key}
+                  type={'checkbox'}
+                  value={value}
+                  sectionName={'personalDetails'}
+                  onChange={updateField}
+                />
+              );
+            }
+            return <div key={key}></div>;
+          })}
         </>
       </EditorSection>
       <EditorList
