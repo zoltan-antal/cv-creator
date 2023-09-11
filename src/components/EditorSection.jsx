@@ -1,6 +1,7 @@
 import '../styles/EditorSection.css';
 import { useState } from 'react';
 import Button from './Button';
+import { format } from 'date-fns';
 
 function EditorSection({
   children,
@@ -39,8 +40,11 @@ function EditorSection({
             if (Array.isArray(value)) {
               return null;
             }
-            if (typeof value !== 'string') {
-              return null;
+            if (typeof value === 'object' && value instanceof Date) {
+              if (Date.parse(value) === 0) {
+                return null;
+              }
+              return <p key={key}>{format(value, 'MMM yyyy')}</p>;
             }
             return <p key={key}>{value}</p>;
           })}

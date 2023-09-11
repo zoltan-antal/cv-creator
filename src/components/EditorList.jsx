@@ -51,35 +51,31 @@ function EditorList({
                           if (key === 'id') {
                             return null;
                           }
-                          if (typeof value === 'string') {
-                            return (
-                              <EditorField
-                                key={key}
-                                title={key}
-                                name={key}
-                                type={'text'}
-                                value={value}
-                                sectionName={sectionName}
-                                index={index}
-                                onChange={onChange}
-                              />
-                            );
-                          }
-                          if (typeof value === 'boolean') {
-                            return (
-                              <EditorField
-                                key={key}
-                                title={key}
-                                name={key}
-                                type={'checkbox'}
-                                value={value}
-                                sectionName={sectionName}
-                                index={index}
-                                onChange={onChange}
-                              />
-                            );
-                          }
-                          return <div key={key}></div>;
+                          return (
+                            <EditorField
+                              key={key}
+                              title={key}
+                              name={key}
+                              type={(() => {
+                                if (typeof value === 'string') {
+                                  return 'text';
+                                }
+                                if (typeof value === 'boolean') {
+                                  return 'checkbox';
+                                }
+                                if (
+                                  typeof value === 'object' &&
+                                  value instanceof Date
+                                ) {
+                                  return 'month';
+                                }
+                              })()}
+                              value={value}
+                              sectionName={sectionName}
+                              index={index}
+                              onChange={onChange}
+                            />
+                          );
                         })}
                       </>
                     </EditorSection>
