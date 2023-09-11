@@ -1,3 +1,4 @@
+import '../styles/EditorSection.css';
 import { useState } from 'react';
 import Button from './Button';
 
@@ -18,7 +19,7 @@ function EditorSection({
   switch (mode) {
     case 'view':
       content = (
-        <>
+        <div className="view-field-list">
           {Object.entries(data).map(([key, value]) => {
             if (!value) {
               return null;
@@ -29,13 +30,13 @@ function EditorSection({
             return <p key={key}>{value}</p>;
           })}
           <button onClick={() => setMode('edit')}>Edit</button>
-        </>
+        </div>
       );
       break;
 
     case 'edit':
       content = (
-        <>
+        <div className="edit-field-list">
           {children}
           <Button
             type={'discard'}
@@ -51,7 +52,7 @@ function EditorSection({
               setMode('view');
             }}
           />
-        </>
+        </div>
       );
       break;
   }
