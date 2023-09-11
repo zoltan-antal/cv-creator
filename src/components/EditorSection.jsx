@@ -27,12 +27,11 @@ function EditorSection({
       content = (
         <div className="view-field-list">
           {Object.entries(data).map(([key, value]) => {
+            const label = parseCamelCaseString(key) + ':';
+            let content;
+
             if (typeof value === 'boolean') {
-              return (
-                <p key={key}>
-                  {parseCamelCaseString(key)}: {value ? 'yes' : 'no'}
-                </p>
-              );
+              content = value ? 'yes' : 'no';
             }
             if (!value) {
               return null;
@@ -50,9 +49,17 @@ function EditorSection({
               if (ongoing && key === 'endDate') {
                 return null;
               }
-              return <p key={key}>{format(value, 'MMM yyyy')}</p>;
+              content = format(value, 'MMM yyyy');
             }
-            return <p key={key}>{value}</p>;
+            if (typeof value === 'string') {
+              content = value;
+            }
+            return (
+              <div key={key}>
+                <p>{label}</p>
+                <p>{content}</p>
+              </div>
+            );
           })}
           <button onClick={() => setMode('edit')}>Edit</button>
         </div>
