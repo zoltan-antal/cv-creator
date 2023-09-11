@@ -2,6 +2,7 @@ import '../styles/EditorSection.css';
 import { useState } from 'react';
 import Button from './Button';
 import { format } from 'date-fns';
+import parseCamelCaseString from '../utils/parseCamelCaseString';
 
 function EditorSection({
   children,
@@ -26,8 +27,7 @@ function EditorSection({
             if (typeof value === 'boolean') {
               return (
                 <p key={key}>
-                  {key.charAt(0).toUpperCase() + key.toLowerCase().slice(1)}:{' '}
-                  {value ? 'yes' : 'no'}
+                  {parseCamelCaseString(key)}: {value ? 'yes' : 'no'}
                 </p>
               );
             }

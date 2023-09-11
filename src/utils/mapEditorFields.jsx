@@ -1,14 +1,18 @@
 import EditorField from '../components/EditorField';
+import parseCamelCaseString from './parseCamelCaseString';
 
 function mapEditorFields({ data, sectionName, index, onChange }) {
   return Object.entries(data).map(([key, value]) => {
     if (key === 'id') {
       return null;
     }
+
+    const title = parseCamelCaseString(key) + ':';
+
     return (
       <EditorField
         key={key}
-        title={key}
+        title={title}
         name={key}
         type={(() => {
           if (typeof value === 'string') {
