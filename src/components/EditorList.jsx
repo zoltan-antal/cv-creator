@@ -64,9 +64,22 @@ function EditorList({
                                 onChange={onChange}
                               />
                             );
-                          } else {
-                            return <div key={key}></div>;
                           }
+                          if (typeof value === 'boolean') {
+                            return (
+                              <EditorField
+                                key={key}
+                                title={key}
+                                name={key}
+                                type={'checkbox'}
+                                value={value}
+                                sectionName={sectionName}
+                                index={index}
+                                onChange={onChange}
+                              />
+                            );
+                          }
+                          return <div key={key}></div>;
                         })}
                       </>
                     </EditorSection>

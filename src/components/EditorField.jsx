@@ -10,16 +10,37 @@ function EditorField({
   return (
     <label>
       {title}
-      <input
-        type={type}
-        name={name}
-        value={value}
-        onChange={
-          sectionName
-            ? (e) => onChange(sectionName, index, name, e.target.value)
-            : (e) => onChange(name, e.target.value)
+
+      {(() => {
+        if (type === 'text') {
+          return (
+            <input
+              type={type}
+              name={name}
+              value={value}
+              onChange={
+                sectionName
+                  ? (e) => onChange(sectionName, index, name, e.target.value)
+                  : (e) => onChange(name, e.target.value)
+              }
+            ></input>
+          );
         }
-      ></input>
+        if (type === 'checkbox') {
+          return (
+            <input
+              type={type}
+              name={name}
+              checked={value}
+              onChange={
+                sectionName
+                  ? (e) => onChange(sectionName, index, name, e.target.checked)
+                  : (e) => onChange(name, e.target.value)
+              }
+            ></input>
+          );
+        }
+      })()}
     </label>
   );
 }
