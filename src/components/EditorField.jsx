@@ -10,7 +10,6 @@ function EditorField({
   return (
     <label>
       {title}
-
       {(() => {
         if (type === 'text') {
           return (
@@ -18,10 +17,8 @@ function EditorField({
               type={type}
               name={name}
               value={value}
-              onChange={
-                sectionName
-                  ? (e) => onChange(sectionName, index, name, e.target.value)
-                  : (e) => onChange(name, e.target.value)
+              onChange={(e) =>
+                onChange(sectionName, index, name, e.target.value)
               }
             ></input>
           );
@@ -32,10 +29,8 @@ function EditorField({
               type={type}
               name={name}
               checked={value}
-              onChange={
-                sectionName
-                  ? (e) => onChange(sectionName, index, name, e.target.checked)
-                  : (e) => onChange(name, e.target.value)
+              onChange={(e) =>
+                onChange(sectionName, index, name, e.target.checked)
               }
             ></input>
           );

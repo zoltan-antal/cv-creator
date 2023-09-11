@@ -7,16 +7,16 @@ import blankSchool from '../dataStructures/blankSchool';
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
-  function updatePersonalDetailField(fieldName, value) {
-    setTempCvData((cvData) => {
-      cvData.personalDetails[fieldName] = value;
-    });
-  }
-
-  function updateListField(sectionName, index, fieldName, value) {
-    setTempCvData((cvData) => {
-      cvData[sectionName][index][fieldName] = value;
-    });
+  function updateField(sectionName, index, fieldName, value) {
+    if (index !== undefined) {
+      setTempCvData((cvData) => {
+        cvData[sectionName][index][fieldName] = value;
+      });
+    } else {
+      setTempCvData((cvData) => {
+        cvData[sectionName][fieldName] = value;
+      });
+    }
   }
 
   function discardSection(sectionName, index) {
@@ -61,42 +61,48 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
             name={'fullName'}
             type={'text'}
             value={tempCvData.personalDetails.fullName}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
           <EditorField
             title={'Title'}
             name={'title'}
             type={'text'}
             value={tempCvData.personalDetails.title}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
           <EditorField
             title={'Email'}
             name={'email'}
             type={'email'}
             value={tempCvData.personalDetails.email}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
           <EditorField
             title={'Phone'}
             name={'phone'}
             type={'text'}
             value={tempCvData.personalDetails.phone}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
           <EditorField
             title={'Address'}
             name={'address'}
             type={'text'}
             value={tempCvData.personalDetails.address}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
           <EditorField
             title={'Personal introduction'}
             name={'introduction'}
             type={'text'}
             value={tempCvData.personalDetails.introduction}
-            onChange={updatePersonalDetailField}
+            sectionName={'personalDetails'}
+            onChange={updateField}
           />
         </>
       </EditorSection>
@@ -111,7 +117,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onHide={() => setActiveEditorSection(false)}
         onDiscardSection={discardSection}
         onSaveSection={saveSection}
-        onChange={updateListField}
+        onChange={updateField}
         setSavedCvData={setSavedCvData}
         setTempCvData={setTempCvData}
       ></EditorList>
