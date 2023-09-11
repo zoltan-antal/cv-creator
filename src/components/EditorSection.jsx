@@ -3,9 +3,9 @@ import { useState } from 'react';
 import Button from './Button';
 import { format } from 'date-fns';
 import parseCamelCaseString from '../utils/parseCamelCaseString';
+import mapEditorFields from '../utils/mapEditorFields';
 
 function EditorSection({
-  children,
   title,
   name,
   index,
@@ -15,6 +15,7 @@ function EditorSection({
   onHide,
   onDiscardSection,
   onSaveSection,
+  onChange,
 }) {
   const [mode, setMode] = useState('view');
 
@@ -69,7 +70,12 @@ function EditorSection({
     case 'edit':
       content = (
         <div className="edit-field-list">
-          {children}
+          {mapEditorFields({
+            data: data,
+            sectionName: name,
+            index: index,
+            onChange: onChange,
+          })}
           <Button
             type={'discard'}
             onClick={() => {

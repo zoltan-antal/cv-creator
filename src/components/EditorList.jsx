@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import Button from './Button';
-import mapEditorFields from '../utils/mapEditorFields';
 
 function EditorList({
   title,
@@ -45,14 +44,8 @@ function EditorList({
                       onHide={() => setActiveEditorSection(false)}
                       onDiscardSection={onDiscardSection}
                       onSaveSection={onSaveSection}
-                    >
-                      {mapEditorFields({
-                        data: element,
-                        sectionName: sectionName,
-                        index: index,
-                        onChange: onChange,
-                      })}
-                    </EditorSection>
+                      onChange={onChange}
+                    ></EditorSection>
                     <Button
                       name={'╳'}
                       onClick={() => {

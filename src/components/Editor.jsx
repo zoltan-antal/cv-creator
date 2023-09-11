@@ -2,7 +2,6 @@ import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorList from './EditorList';
 import blankSchool from '../dataStructures/blankSchool';
-import mapEditorFields from '../utils/mapEditorFields';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
@@ -54,13 +53,8 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onHide={() => setActiveEditorSection(false)}
         onDiscardSection={discardSection}
         onSaveSection={saveSection}
-      >
-        {mapEditorFields({
-          data: tempCvData.personalDetails,
-          sectionName: 'personalDetails',
-          onChange: updateField,
-        })}
-      </EditorSection>
+        onChange={updateField}
+      ></EditorSection>
       <EditorList
         title={'Education'}
         sectionName={'education'}
