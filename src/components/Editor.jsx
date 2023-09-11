@@ -60,40 +60,6 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
           sectionName: 'personalDetails',
           onChange: updateField,
         })}
-        {/* <>
-          {Object.entries(tempCvData.personalDetails).map(([key, value]) => {
-            if (key === 'id') {
-              return null;
-            }
-            if (typeof value === 'string') {
-              return (
-                <EditorField
-                  key={key}
-                  title={key}
-                  name={key}
-                  type={'text'}
-                  value={value}
-                  sectionName={'personalDetails'}
-                  onChange={updateField}
-                />
-              );
-            }
-            if (typeof value === 'boolean') {
-              return (
-                <EditorField
-                  key={key}
-                  title={key}
-                  name={key}
-                  type={'checkbox'}
-                  value={value}
-                  sectionName={'personalDetails'}
-                  onChange={updateField}
-                />
-              );
-            }
-            return <div key={key}></div>;
-          })}
-        </> */}
       </EditorSection>
       <EditorList
         title={'Education'}
