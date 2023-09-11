@@ -1,9 +1,21 @@
 import { format } from 'date-fns';
 import parseCamelCaseString from './parseCamelCaseString';
+import isFieldEmpty from './isFieldEmpty';
 
 function mapFieldsView({ data }) {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');
   const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
+
+  let isAllEmpty = true;
+  for (const entry of Object.entries(data)) {
+    if (!isFieldEmpty(entry)) {
+      isAllEmpty = false;
+      break;
+    }
+  }
+  if (isAllEmpty) {
+    return <p>No data</p>;
+  }
 
   return Object.entries(data).map(([key, value]) => {
     const label = parseCamelCaseString(key) + ':';
