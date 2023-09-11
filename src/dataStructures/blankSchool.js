@@ -6,7 +6,7 @@ const blankSchool = {
   grade: '',
   startDate: new Date(0),
   endDate: new Date(0),
-  onGoing: false,
+  ongoing: false,
 };
 
 export default blankSchool;
