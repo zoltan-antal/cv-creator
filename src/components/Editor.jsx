@@ -5,7 +5,7 @@ import EditorField from './EditorField';
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
-  function updatePersonalDetails(fieldName, value) {
+  function updatePersonalDetailField(fieldName, value) {
     setTempCvData((cvData) => {
       cvData.personalDetails[fieldName] = value;
     });
@@ -41,42 +41,42 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
             name={'fullName'}
             type={'text'}
             value={tempCvData.personalDetails.fullName}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
           <EditorField
             title={'Title'}
             name={'title'}
             type={'text'}
             value={tempCvData.personalDetails.title}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
           <EditorField
             title={'Email'}
             name={'email'}
             type={'email'}
             value={tempCvData.personalDetails.email}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
           <EditorField
             title={'Phone'}
             name={'phone'}
             type={'text'}
             value={tempCvData.personalDetails.phone}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
           <EditorField
             title={'Address'}
             name={'address'}
             type={'text'}
             value={tempCvData.personalDetails.address}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
           <EditorField
             title={'Personal introduction'}
             name={'introduction'}
             type={'text'}
             value={tempCvData.personalDetails.introduction}
-            onChange={updatePersonalDetails}
+            onChange={updatePersonalDetailField}
           />
         </>
       </EditorSection>
