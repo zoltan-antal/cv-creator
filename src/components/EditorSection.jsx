@@ -1,9 +1,8 @@
 import '../styles/EditorSection.css';
 import { useState } from 'react';
 import Button from './Button';
-import { format } from 'date-fns';
-import parseCamelCaseString from '../utils/parseCamelCaseString';
 import mapFieldsEdit from '../utils/mapFieldsEdit';
+import mapFieldsView from '../utils/mapFieldsView';
 
 function EditorSection({
   title,
@@ -19,48 +18,13 @@ function EditorSection({
 }) {
   const [mode, setMode] = useState('view');
 
-  const ongoingIndex = Object.keys(data).indexOf('ongoing');
-  const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
-
   let content = <></>;
   switch (mode) {
     case 'view':
       content = (
         <div className="view-field-list">
-          {Object.entries(data).map(([key, value]) => {
-            const label = parseCamelCaseString(key) + ':';
-            let content;
-
-            if (typeof value === 'boolean') {
-              content = value ? 'yes' : 'no';
-            }
-            if (!value) {
-              return null;
-            }
-            if (key === 'id') {
-              return null;
-            }
-            if (Array.isArray(value)) {
-              return null;
-            }
-            if (typeof value === 'object' && value instanceof Date) {
-              if (Date.parse(value) === 0) {
-                return null;
-              }
-              if (ongoing && key === 'endDate') {
-                return null;
-              }
-              content = format(value, 'MMM yyyy');
-            }
-            if (typeof value === 'string') {
-              content = value;
-            }
-            return (
-              <div key={key}>
-                <p>{label}</p>
-                <p>{content}</p>
-              </div>
-            );
+          {mapFieldsView({
+            data: data,
           })}
           <button onClick={() => setMode('edit')}>Edit</button>
         </div>
