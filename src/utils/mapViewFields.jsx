@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import parseCamelCaseString from './parseCamelCaseString';
 import isFieldEmpty from './isFieldEmpty';
 
-function mapFieldsView({ data }) {
+function mapViewFields({ data }) {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');
   const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
 
@@ -54,4 +54,4 @@ function mapFieldsView({ data }) {
   });
 }
 
-export default mapFieldsView;
+export default mapViewFields;

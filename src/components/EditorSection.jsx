@@ -1,8 +1,8 @@
 import '../styles/EditorSection.css';
 import { useState } from 'react';
 import Button from './Button';
-import mapFieldsEdit from '../utils/mapFieldsEdit';
-import mapFieldsView from '../utils/mapFieldsView';
+import mapEditFields from '../utils/mapEditFields';
+import mapViewFields from '../utils/mapViewFields';
 
 function EditorSection({
   title,
@@ -23,7 +23,7 @@ function EditorSection({
     case 'view':
       content = (
         <div className="view-field-list">
-          {mapFieldsView({
+          {mapViewFields({
             data: data,
           })}
           <button onClick={() => setMode('edit')}>Edit</button>
@@ -34,7 +34,7 @@ function EditorSection({
     case 'edit':
       content = (
         <div className="edit-field-list">
-          {mapFieldsEdit({
+          {mapEditFields({
             data: data,
             sectionName: name,
             index: index,
