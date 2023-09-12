@@ -70,7 +70,6 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
       ></EditorSection>
       <EditorList
         title={'Education'}
-        sectionName={'education'}
         elementName={'school'}
         path={['education']}
         data={tempCvData.education}
