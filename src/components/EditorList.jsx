@@ -4,18 +4,16 @@ import Button from './Button';
 
 function EditorList({
   title,
-  sectionName,
   elementName,
   path,
   data,
-  blankDataElement,
   isActive,
   onShow,
   onHide,
   manageSection,
   updateField,
-  setSavedCvData,
-  setTempCvData,
+  blankDataElement,
+  modifyList,
 }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
@@ -36,7 +34,6 @@ function EditorList({
                           ? element.school || element.title
                           : `Unnamed ${elementName}`
                       }
-                      name={sectionName}
                       index={index}
                       path={[...path, index]}
                       data={element}
@@ -48,31 +45,22 @@ function EditorList({
                     ></EditorSection>
                     <Button
                       name={'╳'}
-                      onClick={() => {
-                        setSavedCvData((cvData) => {
-                          cvData[sectionName].splice(index, 1);
-                        });
-                        setTempCvData((cvData) => {
-                          cvData[sectionName].splice(index, 1);
-                        });
-                      }}
+                      onClick={() =>
+                        modifyList({ path: path, mode: 'remove', index: index })
+                      }
                     />
                   </div>
                 );
               })}
               <Button
                 name={'+'}
-                onClick={() => {
-                  let id = self.crypto.randomUUID();
-                  setSavedCvData((cvData) => {
-                    cvData[sectionName].push({ ...blankDataElement });
-                    cvData[sectionName].slice(-1)[0].id = id;
-                  });
-                  setTempCvData((cvData) => {
-                    cvData[sectionName].push({ ...blankDataElement });
-                    cvData[sectionName].slice(-1)[0].id = id;
-                  });
-                }}
+                onClick={() =>
+                  modifyList({
+                    path: path,
+                    mode: 'add',
+                    blankDataElement: blankDataElement,
+                  })
+                }
               />
             </>
           );
