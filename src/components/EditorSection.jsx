@@ -8,6 +8,7 @@ function EditorSection({
   title,
   name,
   index,
+  path,
   data,
   isActive,
   onShow,
@@ -36,8 +37,7 @@ function EditorSection({
         <div className="edit-field-list">
           {mapEditFields({
             data: data,
-            sectionName: name,
-            index: index,
+            path: path,
             onChange: onChange,
           })}
           <Button

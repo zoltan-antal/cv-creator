@@ -6,6 +6,7 @@ function EditorList({
   title,
   sectionName,
   elementName,
+  path,
   data,
   blankDataElement,
   isActive,
@@ -38,6 +39,7 @@ function EditorList({
                       }
                       name={sectionName}
                       index={index}
+                      path={[...path, index]}
                       data={element}
                       isActive={activeEditorSection === element.id}
                       onShow={() => setActiveEditorSection(element.id)}

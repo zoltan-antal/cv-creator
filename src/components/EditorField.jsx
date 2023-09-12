@@ -1,14 +1,6 @@
 import { format } from 'date-fns';
 
-function EditorField({
-  title,
-  name,
-  type,
-  value,
-  sectionName,
-  index,
-  onChange,
-}) {
+function EditorField({ title, name, type, value, path, onChange }) {
   return (
     <label>
       {title}
@@ -19,9 +11,7 @@ function EditorField({
               type={type}
               name={name}
               value={value}
-              onChange={(e) =>
-                onChange(sectionName, index, name, e.target.value)
-              }
+              onChange={(e) => onChange(path, e.target.value)}
             ></input>
           );
         }
@@ -31,9 +21,7 @@ function EditorField({
               type={type}
               name={name}
               checked={value}
-              onChange={(e) =>
-                onChange(sectionName, index, name, e.target.checked)
-              }
+              onChange={(e) => onChange(path, e.target.checked)}
             ></input>
           );
         }
@@ -43,9 +31,7 @@ function EditorField({
               type={type}
               name={name}
               value={Date.parse(value) !== 0 ? format(value, 'yyyy-MM') : ''}
-              onChange={(e) =>
-                onChange(sectionName, index, name, new Date(e.target.value))
-              }
+              onChange={(e) => onChange(path, new Date(e.target.value))}
             ></input>
           );
         }

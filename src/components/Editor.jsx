@@ -2,20 +2,15 @@ import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorList from './EditorList';
 import blankSchool from '../dataStructures/blankSchool';
+import _ from 'lodash';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
-  function updateField(sectionName, index, fieldName, value) {
-    if (index !== undefined) {
-      setTempCvData((cvData) => {
-        cvData[sectionName][index][fieldName] = value;
-      });
-    } else {
-      setTempCvData((cvData) => {
-        cvData[sectionName][fieldName] = value;
-      });
-    }
+  function updateField(path, value) {
+    setTempCvData((cvData) => {
+      _.set(cvData, path, value);
+    });
   }
 
   function discardSection(sectionName, index) {
@@ -47,6 +42,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
       <EditorSection
         title={'Personal Details'}
         name={'personalDetails'}
+        path={['personalDetails']}
         data={tempCvData.personalDetails}
         isActive={activeEditorSection === 'personalDetails'}
         onShow={() => setActiveEditorSection('personalDetails')}
@@ -59,6 +55,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         title={'Education'}
         sectionName={'education'}
         elementName={'school'}
+        path={['education']}
         data={tempCvData.education}
         blankDataElement={blankSchool}
         isActive={activeEditorSection === 'education'}
