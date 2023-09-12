@@ -40,7 +40,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onShow={() => setActiveEditorSection('personalDetails')}
         onHide={() => setActiveEditorSection(false)}
         manageSection={manageSection}
-        onChange={updateField}
+        updateField={updateField}
       ></EditorSection>
       <EditorList
         title={'Education'}
@@ -53,7 +53,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onShow={() => setActiveEditorSection('education')}
         onHide={() => setActiveEditorSection(false)}
         manageSection={manageSection}
-        onChange={updateField}
+        updateField={updateField}
         setSavedCvData={setSavedCvData}
         setTempCvData={setTempCvData}
       ></EditorList>

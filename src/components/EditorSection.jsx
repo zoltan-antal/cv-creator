@@ -12,7 +12,7 @@ function EditorSection({
   onShow,
   onHide,
   manageSection,
-  onChange,
+  updateField,
 }) {
   const [mode, setMode] = useState('view');
 
@@ -35,7 +35,7 @@ function EditorSection({
           {mapEditFields({
             data: data,
             path: path,
-            onChange: onChange,
+            updateField: updateField,
           })}
           <Button
             type={'discard'}

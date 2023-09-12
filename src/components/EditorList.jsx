@@ -13,7 +13,7 @@ function EditorList({
   onShow,
   onHide,
   manageSection,
-  onChange,
+  updateField,
   setSavedCvData,
   setTempCvData,
 }) {
@@ -44,7 +44,7 @@ function EditorList({
                       onShow={() => setActiveEditorSection(element.id)}
                       onHide={() => setActiveEditorSection(false)}
                       manageSection={manageSection}
-                      onChange={onChange}
+                      updateField={updateField}
                     ></EditorSection>
                     <Button
                       name={'╳'}
