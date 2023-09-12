@@ -6,15 +6,12 @@ import mapViewFields from '../utils/mapViewFields';
 
 function EditorSection({
   title,
-  name,
-  index,
   path,
   data,
   isActive,
   onShow,
   onHide,
-  onDiscardSection,
-  onSaveSection,
+  manageSection,
   onChange,
 }) {
   const [mode, setMode] = useState('view');
@@ -43,14 +40,14 @@ function EditorSection({
           <Button
             type={'discard'}
             onClick={() => {
-              onDiscardSection(name, index);
+              manageSection(path, 'discard');
               setMode('view');
             }}
           />
           <Button
             type={'save'}
             onClick={() => {
-              onSaveSection(name, index);
+              manageSection(path, 'save');
               setMode('view');
             }}
           />

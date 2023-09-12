@@ -12,8 +12,7 @@ function EditorList({
   isActive,
   onShow,
   onHide,
-  onDiscardSection,
-  onSaveSection,
+  manageSection,
   onChange,
   setSavedCvData,
   setTempCvData,
@@ -44,8 +43,7 @@ function EditorList({
                       isActive={activeEditorSection === element.id}
                       onShow={() => setActiveEditorSection(element.id)}
                       onHide={() => setActiveEditorSection(false)}
-                      onDiscardSection={onDiscardSection}
-                      onSaveSection={onSaveSection}
+                      manageSection={manageSection}
                       onChange={onChange}
                     ></EditorSection>
                     <Button

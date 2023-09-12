@@ -13,27 +13,19 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
     });
   }
 
-  function discardSection(sectionName, index) {
-    if (index) {
-      setTempCvData((cvData) => {
-        cvData[sectionName][index] = savedCvData[sectionName][index];
-      });
-    } else {
-      setTempCvData((cvData) => {
-        cvData[sectionName] = savedCvData[sectionName];
-      });
-    }
-  }
+  function manageSection(path, mode) {
+    switch (mode) {
+      case 'discard':
+        setTempCvData((cvData) =>
+          _.set(cvData, path, _.get(savedCvData, path))
+        );
+        break;
 
-  function saveSection(sectionName, index) {
-    if (index) {
-      setSavedCvData((cvData) => {
-        cvData[sectionName][index] = tempCvData[sectionName][index];
-      });
-    } else {
-      setSavedCvData((cvData) => {
-        cvData[sectionName] = tempCvData[sectionName];
-      });
+      case 'save':
+        setSavedCvData((cvData) => {
+          _.set(cvData, path, _.get(tempCvData, path));
+        });
+        break;
     }
   }
 
@@ -47,8 +39,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         isActive={activeEditorSection === 'personalDetails'}
         onShow={() => setActiveEditorSection('personalDetails')}
         onHide={() => setActiveEditorSection(false)}
-        onDiscardSection={discardSection}
-        onSaveSection={saveSection}
+        manageSection={manageSection}
         onChange={updateField}
       ></EditorSection>
       <EditorList
@@ -61,8 +52,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         isActive={activeEditorSection === 'education'}
         onShow={() => setActiveEditorSection('education')}
         onHide={() => setActiveEditorSection(false)}
-        onDiscardSection={discardSection}
-        onSaveSection={saveSection}
+        manageSection={manageSection}
         onChange={updateField}
         setSavedCvData={setSavedCvData}
         setTempCvData={setTempCvData}
