@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import '../styles/EditorField.css';
 
 function EditorField({ title, name, type, value, path, onChange }) {
   return (

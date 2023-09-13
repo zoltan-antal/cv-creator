@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 8px;
+  gap: 10px;
 }
 
 .editor-field,
@@ -25,5 +25,29 @@
     resize: vertical;
     overflow-y: hidden;
     min-height: 60px;
+  }
+}
+
+.editor-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 5px;
+
+  &:has(input[type='checkbox']) {
+    flex-direction: row;
+  }
+}
+
+.view-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+
+  & pre {
+    white-space: pre-wrap;
   }
 }

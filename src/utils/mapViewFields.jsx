@@ -55,13 +55,13 @@ function mapViewFields({ data }) {
       content = <p>{format(value, 'MMMM yyyy')}</p>;
     }
     if (typeof value === 'string') {
-      content = <p>{value}</p>;
+      content = <pre>{value}</pre>;
     }
     return (
-      <div className="view-field" key={key}>
-        <p>{label}</p>
+      <label className="view-field" key={key}>
+        {label}
         {content}
-      </div>
+      </label>
     );
   });
 }
