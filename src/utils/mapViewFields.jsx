@@ -34,8 +34,14 @@ function mapViewFields({ data }) {
       if (value.length === 0) {
         return null;
       }
+      if (value.length === 1 && value[0] === '') {
+        return null;
+      }
 
       content = value.map((value) => {
+        if (value === '') {
+          return null;
+        }
         return <p key={value}>{value}</p>;
       });
     }
