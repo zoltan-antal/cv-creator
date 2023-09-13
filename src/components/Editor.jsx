@@ -1,8 +1,10 @@
+import _ from 'lodash';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorList from './EditorList';
 import blankSchool from '../dataStructures/blankSchool';
-import _ from 'lodash';
+import blankJob from '../dataStructures/blankJob';
+import blankSkillCategory from '../dataStructures/blankSkillCategory';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const setDataFunctions = [setSavedCvData, setTempCvData];
@@ -79,6 +81,32 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         manageSection={manageSection}
         updateField={updateField}
         blankDataElement={blankSchool}
+        modifyList={modifyList}
+      ></EditorList>
+      <EditorList
+        title={'Work experience'}
+        elementName={'job'}
+        path={['workExperience']}
+        data={tempCvData.workExperience}
+        isActive={activeEditorSection === 'workExperience'}
+        onShow={() => setActiveEditorSection('workExperience')}
+        onHide={() => setActiveEditorSection(false)}
+        manageSection={manageSection}
+        updateField={updateField}
+        blankDataElement={blankJob}
+        modifyList={modifyList}
+      ></EditorList>
+      <EditorList
+        title={'Skills'}
+        elementName={'skill category'}
+        path={['skills']}
+        data={tempCvData.skills}
+        isActive={activeEditorSection === 'skills'}
+        onShow={() => setActiveEditorSection('skills')}
+        onHide={() => setActiveEditorSection(false)}
+        manageSection={manageSection}
+        updateField={updateField}
+        blankDataElement={blankSkillCategory}
         modifyList={modifyList}
       ></EditorList>
     </section>
