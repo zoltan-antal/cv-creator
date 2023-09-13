@@ -32,9 +32,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
     }
   }
 
-  function modifyList({ path, mode, index, blankDataElement, tempOnly }) {
-    let id = self.crypto.randomUUID();
-
+  function modifyList({ path, mode, index, blankDataElement, id, tempOnly }) {
     switch (mode) {
       case 'add':
         setDataFunctions.forEach((setData) => {

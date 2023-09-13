@@ -15,7 +15,7 @@ function EditorSection({
   updateField,
   modifyList,
 }) {
-  const [mode, setMode] = useState('view');
+  const [mode, setMode] = useState('edit');
 
   let content = <></>;
   switch (mode) {

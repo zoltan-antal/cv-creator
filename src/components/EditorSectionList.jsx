@@ -55,13 +55,16 @@ function EditorSectionList({
               })}
               <Button
                 type={'add'}
-                onClick={() =>
+                onClick={() => {
+                  const id = self.crypto.randomUUID();
                   modifyList({
                     path: path,
                     mode: 'add',
                     blankDataElement: blankDataElement,
-                  })
-                }
+                    id: id,
+                  });
+                  setActiveEditorSection(id);
+                }}
               />
             </>
           );
