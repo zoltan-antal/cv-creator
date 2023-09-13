@@ -2,7 +2,7 @@ import { useState } from 'react';
 import EditorSection from './EditorSection';
 import Button from './Button';
 
-function EditorList({
+function EditorSectionList({
   title,
   elementName,
   path,
@@ -76,4 +76,4 @@ function EditorList({
   );
 }
 
-export default EditorList;
+export default EditorSectionList;

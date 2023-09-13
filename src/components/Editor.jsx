@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
-import EditorList from './EditorList';
+import EditorSectionList from './EditorSectionList';
 import blankSchool from '../dataStructures/blankSchool';
 import blankJob from '../dataStructures/blankJob';
 import blankSkillCategory from '../dataStructures/blankSkillCategory';
@@ -70,7 +70,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         manageSection={manageSection}
         updateField={updateField}
       ></EditorSection>
-      <EditorList
+      <EditorSectionList
         title={'Education'}
         elementName={'school'}
         path={['education']}
@@ -82,8 +82,8 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         updateField={updateField}
         blankDataElement={blankSchool}
         modifyList={modifyList}
-      ></EditorList>
-      <EditorList
+      ></EditorSectionList>
+      <EditorSectionList
         title={'Work experience'}
         elementName={'job'}
         path={['workExperience']}
@@ -95,8 +95,8 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         updateField={updateField}
         blankDataElement={blankJob}
         modifyList={modifyList}
-      ></EditorList>
-      <EditorList
+      ></EditorSectionList>
+      <EditorSectionList
         title={'Skills'}
         elementName={'skill category'}
         path={['skills']}
@@ -108,7 +108,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         updateField={updateField}
         blankDataElement={blankSkillCategory}
         modifyList={modifyList}
-      ></EditorList>
+      ></EditorSectionList>
     </section>
   );
 }
