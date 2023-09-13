@@ -1,0 +1,27 @@
+.editor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 20px;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.editor-section,
+.editor-section-list {
+  background-color: var(--dark-background);
+  border-radius: 10px;
+  padding: 10px;
+
+  & .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    & .title {
+      color: var(--light-text);
+    }
+  }
+}

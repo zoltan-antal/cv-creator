@@ -21,7 +21,7 @@ function EditorSection({
   switch (mode) {
     case 'view':
       content = (
-        <div className="view-field-list">
+        <div className="content">
           {mapViewFields({
             data: data,
           })}
@@ -32,7 +32,7 @@ function EditorSection({
 
     case 'edit':
       content = (
-        <div className="edit-field-list">
+        <div className="content">
           {mapEditFields({
             data: data,
             path: path,
@@ -60,21 +60,27 @@ function EditorSection({
 
   return (
     <div className="editor-section">
-      <h2>{title}</h2>
+      <div className="header">
+        <h2 className="title">{title}</h2>
+        {(() => {
+          if (isActive) {
+            return (
+              <>
+                <Button name={'▲'} onClick={onHide} />
+              </>
+            );
+          } else {
+            return (
+              <>
+                <Button name={'▼'} onClick={onShow} />
+              </>
+            );
+          }
+        })()}
+      </div>
       {(() => {
         if (isActive) {
-          return (
-            <>
-              <Button name={'▲'} onClick={onHide} />
-              {content}
-            </>
-          );
-        } else {
-          return (
-            <>
-              <Button name={'▼'} onClick={onShow} />
-            </>
-          );
+          return <>{content}</>;
         }
       })()}
     </div>

@@ -1,7 +1,29 @@
-.edit-field-list,
-.view-field-list {
+.content {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.editor-field,
+.editor-list,
+.view-field {
+  color: var(--light-text);
+  font-size: 1em;
+
+  & input,
+  & textarea {
+    background-color: var(--light-background);
+    color: var(--light-text);
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+  }
+
+  & textarea {
+    resize: vertical;
+    overflow-y: hidden;
+    min-height: 60px;
+  }
 }

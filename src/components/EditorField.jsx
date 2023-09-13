@@ -1,8 +1,9 @@
 import { format } from 'date-fns';
+import '../styles/EditorField.css';
 
 function EditorField({ title, name, type, value, path, onChange }) {
   return (
-    <label>
+    <label className="editor-field">
       {title}
       {(() => {
         if (type === 'text') {
@@ -20,7 +21,11 @@ function EditorField({ title, name, type, value, path, onChange }) {
             <textarea
               name={name}
               value={value}
-              onChange={(e) => onChange(path, e.target.value)}
+              onChange={(e) => {
+                onChange(path, e.target.value);
+                e.target.style.height = 'auto';
+                e.target.style.height = e.target.scrollHeight + 'px';
+              }}
             ></textarea>
           );
         }

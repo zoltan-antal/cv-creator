@@ -1,12 +1,13 @@
 import Button from './Button';
+import '../styles/EditorList.css';
 
 function EditorList({ title, path, data, onChange, modifyList }) {
   return (
-    <div>
+    <label className="editor-list">
       {title}
       {data.map((value, index) => {
         return (
-          <div key={index}>
+          <div className="list-item" key={index}>
             <input
               type="text"
               value={value}
@@ -37,7 +38,7 @@ function EditorList({ title, path, data, onChange, modifyList }) {
           })
         }
       ></Button>
-    </div>
+    </label>
   );
 }
 

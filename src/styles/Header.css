@@ -1,0 +1,7 @@
+header {
+  background-color: var(--dark-background);
+  padding: 10px;
+  & a {
+    color: white;
+  }
+}

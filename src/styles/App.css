@@ -1,0 +1,10 @@
+@import url(customProperties.css);
+
+#root {
+  height: 100vh;
+  background-color: var(--light-background);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}

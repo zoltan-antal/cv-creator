@@ -5,6 +5,7 @@ import EditorSectionList from './EditorSectionList';
 import blankSchool from '../dataStructures/blankSchool';
 import blankJob from '../dataStructures/blankJob';
 import blankSkillCategory from '../dataStructures/blankSkillCategory';
+import '../styles/Editor.css';
 
 function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   const setDataFunctions = [setSavedCvData, setTempCvData];
