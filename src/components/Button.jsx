@@ -16,6 +16,10 @@ function Button({ type, name, onClick }) {
       case 'remove':
         name = '╳';
         break;
+
+      case 'delete':
+        name = 'Delete';
+        break;
     }
   }
 

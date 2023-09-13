@@ -5,6 +5,7 @@ import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
 
 function EditorSection({
+  children,
   title,
   path,
   data,
@@ -33,6 +34,7 @@ function EditorSection({
     case 'edit':
       content = (
         <div className="content">
+          {children}
           {mapEditFields({
             data: data,
             path: path,

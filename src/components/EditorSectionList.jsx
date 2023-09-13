@@ -52,17 +52,18 @@ function EditorSectionList({
                         manageSection={manageSection}
                         updateField={updateField}
                         modifyList={modifyList}
-                      ></EditorSection>
-                      <Button
-                        type={'remove'}
-                        onClick={() =>
-                          modifyList({
-                            path: path,
-                            mode: 'remove',
-                            index: index,
-                          })
-                        }
-                      />
+                      >
+                        <Button
+                          type={'delete'}
+                          onClick={() =>
+                            modifyList({
+                              path: path,
+                              mode: 'remove',
+                              index: index,
+                            })
+                          }
+                        />
+                      </EditorSection>
                     </div>
                   );
                 })}
