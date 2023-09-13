@@ -18,7 +18,7 @@ function mapViewFields({ data }) {
   }
 
   return Object.entries(data).map(([key, value]) => {
-    const label = parseCamelCaseString(key) + ':';
+    const label = parseCamelCaseString(key).replace('_long', '') + ':';
     let content;
 
     if (typeof value === 'boolean') {

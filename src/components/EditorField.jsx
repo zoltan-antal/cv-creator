@@ -15,6 +15,15 @@ function EditorField({ title, name, type, value, path, onChange }) {
             ></input>
           );
         }
+        if (type === 'textarea') {
+          return (
+            <textarea
+              name={name}
+              value={value}
+              onChange={(e) => onChange(path, e.target.value)}
+            ></textarea>
+          );
+        }
         if (type === 'checkbox') {
           return (
             <input

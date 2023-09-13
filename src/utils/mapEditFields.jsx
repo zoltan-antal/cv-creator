@@ -18,9 +18,12 @@ function mapEditFields({ data, path, updateField }) {
     return (
       <EditorField
         key={key}
-        title={title}
-        name={key}
+        title={title.replace('_long', '')}
+        name={key.replace('_long', '')}
         type={(() => {
+          if (key.includes('_long')) {
+            return 'textarea';
+          }
           if (typeof value === 'string') {
             return 'text';
           }

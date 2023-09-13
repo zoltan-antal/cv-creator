@@ -6,7 +6,7 @@ const blankJob = {
   ongoing: false,
   startDate: new Date(0),
   endDate: new Date(0),
-  description: '',
+  description_long: '',
 };
 
 export default blankJob;
