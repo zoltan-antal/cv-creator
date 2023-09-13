@@ -31,3 +31,7 @@
     }
   }
 }
+
+.editor-section-list .editor-section {
+  border: 1px solid var(--light-text);
+}
