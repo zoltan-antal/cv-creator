@@ -4,8 +4,6 @@ import Editor from './Editor';
 import Display from './Display';
 
 function Main() {
-  // const savedCvDataInit = { ...blankCv };
-  // const tempCvDataInit = { ...blankCv };
   const [savedCvData, setSavedCvData] = useImmer(blankCv);
   const [tempCvData, setTempCvData] = useImmer(blankCv);
 
