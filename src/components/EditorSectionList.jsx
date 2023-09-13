@@ -36,35 +36,34 @@ function EditorSectionList({
               <>
                 {data.map((element, index) => {
                   return (
-                    <div key={element.id}>
-                      <EditorSection
-                        title={
-                          Object.values(element)[1]
-                            ? Object.values(element)[1]
-                            : `Unnamed ${elementName}`
+                    <EditorSection
+                      key={element.id}
+                      title={
+                        Object.values(element)[1]
+                          ? Object.values(element)[1]
+                          : `Unnamed ${elementName}`
+                      }
+                      index={index}
+                      path={[...path, index]}
+                      data={element}
+                      isActive={activeEditorSection === element.id}
+                      onShow={() => setActiveEditorSection(element.id)}
+                      onHide={() => setActiveEditorSection(false)}
+                      manageSection={manageSection}
+                      updateField={updateField}
+                      modifyList={modifyList}
+                    >
+                      <Button
+                        type={'delete'}
+                        onClick={() =>
+                          modifyList({
+                            path: path,
+                            mode: 'remove',
+                            index: index,
+                          })
                         }
-                        index={index}
-                        path={[...path, index]}
-                        data={element}
-                        isActive={activeEditorSection === element.id}
-                        onShow={() => setActiveEditorSection(element.id)}
-                        onHide={() => setActiveEditorSection(false)}
-                        manageSection={manageSection}
-                        updateField={updateField}
-                        modifyList={modifyList}
-                      >
-                        <Button
-                          type={'delete'}
-                          onClick={() =>
-                            modifyList({
-                              path: path,
-                              mode: 'remove',
-                              index: index,
-                            })
-                          }
-                        />
-                      </EditorSection>
-                    </div>
+                      />
+                    </EditorSection>
                   );
                 })}
                 <Button
