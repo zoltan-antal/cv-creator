@@ -1,7 +1,8 @@
 import EditorField from '../components/EditorField';
+import EditorList from '../components/EditorList';
 import parseCamelCaseString from './parseCamelCaseString';
 
-function mapEditFields({ data, path, updateField }) {
+function mapEditFields({ data, path, updateField, modifyList }) {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');
   const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
 
@@ -14,6 +15,19 @@ function mapEditFields({ data, path, updateField }) {
     }
 
     const title = parseCamelCaseString(key) + ':';
+
+    if (Array.isArray(value)) {
+      return (
+        <EditorList
+          key={key}
+          title={title}
+          path={[...path, key]}
+          data={value}
+          onChange={updateField}
+          modifyList={modifyList}
+        />
+      );
+    }
 
     return (
       <EditorField

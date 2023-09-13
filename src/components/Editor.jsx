@@ -32,12 +32,23 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
     }
   }
 
-  function modifyList({ path, mode, index, blankDataElement }) {
+  function modifyList({ path, mode, index, blankDataElement, tempOnly }) {
     let id = self.crypto.randomUUID();
 
     switch (mode) {
       case 'add':
         setDataFunctions.forEach((setData) => {
+          if (tempOnly && setData === setSavedCvData) {
+            return;
+          }
+
+          if (typeof blankDataElement === 'string') {
+            setData((data) => {
+              _.set(data, path, [..._.get(data, path), blankDataElement]);
+            });
+            return;
+          }
+
           setData((data) => {
             _.set(data, path, [..._.get(data, path), { ...blankDataElement }]);
             _.set(data, [...path, _.get(data, path).length - 1, 'id'], id);
@@ -47,6 +58,10 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
 
       case 'remove':
         setDataFunctions.forEach((setData) => {
+          if (tempOnly && setData === setSavedCvData) {
+            return;
+          }
+
           setData((data) => {
             _.set(data, path, [
               ..._.get(data, path).slice(0, index),
@@ -69,6 +84,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         onHide={() => setActiveEditorSection(false)}
         manageSection={manageSection}
         updateField={updateField}
+        modifyList={modifyList}
       ></EditorSection>
       <EditorSectionList
         title={'Education'}

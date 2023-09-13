@@ -8,6 +8,14 @@ function Button({ type, name, onClick }) {
       case 'save':
         name = 'Done';
         break;
+
+      case 'add':
+        name = '+';
+        break;
+
+      case 'remove':
+        name = '╳';
+        break;
     }
   }
 

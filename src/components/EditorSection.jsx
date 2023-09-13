@@ -13,6 +13,7 @@ function EditorSection({
   onHide,
   manageSection,
   updateField,
+  modifyList,
 }) {
   const [mode, setMode] = useState('view');
 
@@ -36,6 +37,7 @@ function EditorSection({
             data: data,
             path: path,
             updateField: updateField,
+            modifyList: modifyList,
           })}
           <Button
             type={'discard'}

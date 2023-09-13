@@ -31,7 +31,14 @@ function mapViewFields({ data }) {
       return null;
     }
     if (Array.isArray(value)) {
-      return null;
+      return (
+        <div key={key}>
+          <p>{label}</p>
+          {value.map((element) => {
+            return <p key={element}>{element}</p>;
+          })}
+        </div>
+      );
     }
     if (typeof value === 'object' && value instanceof Date) {
       if (Date.parse(value) === 0) {

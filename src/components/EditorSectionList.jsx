@@ -42,9 +42,10 @@ function EditorSectionList({
                       onHide={() => setActiveEditorSection(false)}
                       manageSection={manageSection}
                       updateField={updateField}
+                      modifyList={modifyList}
                     ></EditorSection>
                     <Button
-                      name={'╳'}
+                      type={'remove'}
                       onClick={() =>
                         modifyList({ path: path, mode: 'remove', index: index })
                       }
@@ -53,7 +54,7 @@ function EditorSectionList({
                 );
               })}
               <Button
-                name={'+'}
+                type={'add'}
                 onClick={() =>
                   modifyList({
                     path: path,
