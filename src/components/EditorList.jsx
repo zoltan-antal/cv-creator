@@ -30,8 +30,8 @@ function EditorList({
                   <div key={element.id}>
                     <EditorSection
                       title={
-                        element.school || element.title
-                          ? element.school || element.title
+                        Object.values(element)[1]
+                          ? Object.values(element)[1]
                           : `Unnamed ${elementName}`
                       }
                       index={index}
