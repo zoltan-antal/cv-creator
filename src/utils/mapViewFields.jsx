@@ -14,7 +14,7 @@ function mapViewFields({ data }) {
     }
   }
   if (isAllEmpty) {
-    return <p>No data</p>;
+    return <pre className="view-field">No data</pre>;
   }
 
   return Object.entries(data).map(([key, value]) => {
@@ -38,12 +38,7 @@ function mapViewFields({ data }) {
         return null;
       }
 
-      content = value.map((value) => {
-        if (value === '') {
-          return null;
-        }
-        return <p key={value}>{value}</p>;
-      });
+      content = <pre>{value.join(', ')}</pre>;
     }
     if (typeof value === 'object' && value instanceof Date) {
       if (Date.parse(value) === 0) {
