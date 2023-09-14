@@ -3,6 +3,11 @@ import chevronUp from '../assets/icons/chevron-up.svg';
 
 function Button({ type, name, icon, onClick }) {
   if (!name && !icon) {
+import chevronDown from '../assets/icons/chevron-down.svg';
+import chevronUp from '../assets/icons/chevron-up.svg';
+
+function Button({ type, name, icon, onClick }) {
+  if (!name && !icon) {
     switch (type) {
       case 'discard':
         name = 'Discard';
