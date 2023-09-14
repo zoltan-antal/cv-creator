@@ -18,48 +18,6 @@ function EditorSection({
 }) {
   const [mode, setMode] = useState('edit');
 
-  let content = <></>;
-  switch (mode) {
-    case 'view':
-      content = (
-        <div className="content" style={!isActive ? { display: 'none' } : {}}>
-          {mapViewFields({
-            data: data,
-          })}
-          <button onClick={() => setMode('edit')}>Edit</button>
-        </div>
-      );
-      break;
-
-    case 'edit':
-      content = (
-        <div className="content" style={!isActive ? { display: 'none' } : {}}>
-          {children}
-          {mapEditFields({
-            data: data,
-            path: path,
-            updateField: updateField,
-            modifyList: modifyList,
-          })}
-          <Button
-            type={'discard'}
-            onClick={() => {
-              manageSection(path, 'discard');
-              setMode('view');
-            }}
-          />
-          <Button
-            type={'save'}
-            onClick={() => {
-              manageSection(path, 'save');
-              setMode('view');
-            }}
-          />
-        </div>
-      );
-      break;
-  }
-
   return (
     <div className="editor-section">
       <div className="header">
@@ -80,7 +38,48 @@ function EditorSection({
           }
         })()}
       </div>
-      {content}
+      <div className="content" style={!isActive ? { display: 'none' } : {}}>
+        {(() => {
+          switch (mode) {
+            case 'view':
+              return (
+                <>
+                  {mapViewFields({
+                    data: data,
+                  })}
+                  <button onClick={() => setMode('edit')}>Edit</button>
+                </>
+              );
+
+            case 'edit':
+              return (
+                <>
+                  {children}
+                  {mapEditFields({
+                    data: data,
+                    path: path,
+                    updateField: updateField,
+                    modifyList: modifyList,
+                  })}
+                  <Button
+                    type={'discard'}
+                    onClick={() => {
+                      manageSection(path, 'discard');
+                      setMode('view');
+                    }}
+                  />
+                  <Button
+                    type={'save'}
+                    onClick={() => {
+                      manageSection(path, 'save');
+                      setMode('view');
+                    }}
+                  />
+                </>
+              );
+          }
+        })()}
+      </div>
     </div>
   );
 }
