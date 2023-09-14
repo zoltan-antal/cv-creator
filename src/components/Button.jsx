@@ -1,9 +1,16 @@
-import chevronDown from '../assets/icons/chevron-down.svg';
-import chevronUp from '../assets/icons/chevron-up.svg';
+import expandIcon from '../assets/icons/chevron-down.svg';
+import collapseIcon from '../assets/icons/chevron-up.svg';
+import addIcon from '../assets/icons/plus-circle.svg';
+import deleteIcon from '../assets/icons/trash-can.svg';
+import '../styles/Button.css';
 
 function Button({ type, name, icon, onClick }) {
   if (!name && !icon) {
     switch (type) {
+      case 'edit':
+        name = 'Edit';
+        break;
+
       case 'discard':
         name = 'Discard';
         break;
@@ -13,11 +20,11 @@ function Button({ type, name, icon, onClick }) {
         break;
 
       case 'add':
-        name = '+';
+        icon = <img src={addIcon} alt={'Add'} />;
         break;
 
       case 'remove':
-        name = '╳';
+        icon = <img src={deleteIcon} alt={'Remove'} />;
         break;
 
       case 'delete':
@@ -25,17 +32,17 @@ function Button({ type, name, icon, onClick }) {
         break;
 
       case 'expand':
-        icon = <img src={chevronDown} alt={type} />;
+        icon = <img src={expandIcon} alt={'Expand'} />;
         break;
 
       case 'collapse':
-        icon = <img src={chevronUp} alt={type} />;
+        icon = <img src={collapseIcon} alt={'Collapse'} />;
         break;
     }
   }
 
   return (
-    <button className={type} onClick={() => onClick()}>
+    <button className={type} onClick={onClick}>
       {icon || name}
     </button>
   );

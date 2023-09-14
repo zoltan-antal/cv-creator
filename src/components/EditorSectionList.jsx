@@ -19,13 +19,13 @@ function EditorSectionList({
 
   return (
     <div className="editor-section-list">
-      <div className="header">
+      <div className="header" onClick={isActive ? onHide : onShow}>
         <h2 className="title">{title}</h2>
         {(() => {
           if (isActive) {
-            return <Button type={'collapse'} onClick={onHide} />;
+            return <Button type={'collapse'} />;
           } else {
-            return <Button type={'expand'} onClick={onShow} />;
+            return <Button type={'expand'} />;
           }
         })()}
       </div>
@@ -51,6 +51,7 @@ function EditorSectionList({
             >
               <Button
                 type={'delete'}
+                name={`Delete ${elementName}`}
                 onClick={() =>
                   modifyList({
                     path: path,

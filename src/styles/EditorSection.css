@@ -26,6 +26,16 @@
     overflow-y: hidden;
     min-height: 60px;
   }
+
+  & button.remove {
+    background-color: inherit;
+    border: none;
+    height: 20px;
+
+    &:hover {
+      filter: invert(80%) sepia(85%) saturate(5827%) hue-rotate(358deg) brightness(97%) contrast(110%);
+    }
+  }
 }
 
 .editor-field {

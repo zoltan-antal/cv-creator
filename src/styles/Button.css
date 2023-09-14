@@ -1,0 +1,19 @@
+button {
+  user-select: none;
+
+  &:has(img) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & img {
+    height: 100%;
+    filter: invert(1);
+  }
+}

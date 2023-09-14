@@ -20,13 +20,13 @@ function EditorSection({
 
   return (
     <div className="editor-section">
-      <div className="header">
+      <div className="header" onClick={isActive ? onHide : onShow}>
         <h2 className="title">{title}</h2>
         {(() => {
           if (isActive) {
-            return <Button type={'collapse'} onClick={onHide} />;
+            return <Button type={'collapse'} />;
           } else {
-            return <Button type={'expand'} onClick={onShow} />;
+            return <Button type={'expand'} />;
           }
         })()}
       </div>
@@ -39,7 +39,7 @@ function EditorSection({
                   {mapViewFields({
                     data: data,
                   })}
-                  <button onClick={() => setMode('edit')}>Edit</button>
+                  <Button type={'edit'} onClick={() => setMode('edit')} />
                 </>
               );
 
@@ -53,20 +53,22 @@ function EditorSection({
                     updateField: updateField,
                     modifyList: modifyList,
                   })}
-                  <Button
-                    type={'discard'}
-                    onClick={() => {
-                      manageSection(path, 'discard');
-                      setMode('view');
-                    }}
-                  />
-                  <Button
-                    type={'save'}
-                    onClick={() => {
-                      manageSection(path, 'save');
-                      setMode('view');
-                    }}
-                  />
+                  <div className="manage-section">
+                    <Button
+                      type={'discard'}
+                      onClick={() => {
+                        manageSection(path, 'discard');
+                        setMode('view');
+                      }}
+                    />
+                    <Button
+                      type={'save'}
+                      onClick={() => {
+                        manageSection(path, 'save');
+                        setMode('view');
+                      }}
+                    />
+                  </div>
                 </>
               );
           }
