@@ -69,11 +69,11 @@
       border: 2px solid var(--light-text);
 
       &.discard:hover {
-        border-color: transparent;
+        border-color: var(--dark-text);
       }
 
       &.save:hover {
-        border-color: #00c34a;
+        border-color: var(--green);
       }
     }
   }
@@ -89,7 +89,7 @@
     border-radius: 10px;
 
     &:hover {
-      border-color: #ff1100;
+      border-color: var(--red);
     }
   }
 
