@@ -47,6 +47,14 @@
 
   &:has(input[type='checkbox']) {
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+
+  & input[type="checkbox"] {
+    transform: scale(1.1);
+    accent-color: white;
   }
 }
 
