@@ -24,17 +24,9 @@ function EditorSection({
         <h2 className="title">{title}</h2>
         {(() => {
           if (isActive) {
-            return (
-              <>
-                <Button name={'▲'} onClick={onHide} />
-              </>
-            );
+            return <Button type={'collapse'} onClick={onHide} />;
           } else {
-            return (
-              <>
-                <Button name={'▼'} onClick={onShow} />
-              </>
-            );
+            return <Button type={'expand'} onClick={onShow} />;
           }
         })()}
       </div>
