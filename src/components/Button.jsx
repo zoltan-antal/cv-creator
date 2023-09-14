@@ -1,5 +1,8 @@
-function Button({ type, name, onClick }) {
-  if (!name) {
+import chevronDown from '../assets/icons/chevron-down.svg';
+import chevronUp from '../assets/icons/chevron-up.svg';
+
+function Button({ type, name, icon, onClick }) {
+  if (!name && !icon) {
     switch (type) {
       case 'discard':
         name = 'Discard';
@@ -20,12 +23,21 @@ function Button({ type, name, onClick }) {
       case 'delete':
         name = 'Delete';
         break;
+
+      case 'expand':
+        icon = <img src={chevronDown} alt={type} />;
+        break;
+
+      case 'collapse':
+        name = '▲';
+        icon = <img src={chevronUp} alt={type} />;
+        break;
     }
   }
 
   return (
     <button className={type} onClick={() => onClick()}>
-      {name}
+      {icon || name}
     </button>
   );
 }
