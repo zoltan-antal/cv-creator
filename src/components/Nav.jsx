@@ -1,4 +1,5 @@
 import Button from './Button';
+import '../styles/Nav.css';
 
 function Nav({
   savedCvData,
