@@ -5,7 +5,7 @@ const blankCv = {
     email: '',
     phone: '',
     address: '',
-    links: [],
+    links: [''],
     introduction_long: '',
   },
   education: [],

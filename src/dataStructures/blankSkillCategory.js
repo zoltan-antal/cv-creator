@@ -1,7 +1,7 @@
 const blankSkillCategory = {
   id: '',
   title: '',
-  skills: [],
+  skills: [''],
 };
 
 export default blankSkillCategory;
