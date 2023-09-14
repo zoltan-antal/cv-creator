@@ -1,15 +1,8 @@
-import { useImmer } from 'use-immer';
-import blankCv from '../dataStructures/blankCv';
 import Editor from './Editor';
 import Display from './Display';
 import '../styles/MainComponent.css';
 
-function Main() {
-  const localCvData = JSON.parse(localStorage.getItem('cvData'));
-
-  const [savedCvData, setSavedCvData] = useImmer(localCvData || blankCv);
-  const [tempCvData, setTempCvData] = useImmer(localCvData || blankCv);
-
+function Main({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
   return (
     <main>
       <Editor
