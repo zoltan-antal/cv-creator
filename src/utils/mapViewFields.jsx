@@ -14,7 +14,7 @@ function mapViewFields({ data }) {
     }
   }
   if (isAllEmpty) {
-    return <pre className="view-field">No data</pre>;
+    return null;
   }
 
   return Object.entries(data).map(([key, value]) => {
