@@ -22,7 +22,7 @@ function mapViewFields({ data }) {
     let content;
 
     if (typeof value === 'boolean') {
-      content = <p>{value ? 'yes' : 'no'}</p>;
+      content = <>{value ? 'yes' : 'no'}</>;
     }
     if (!value) {
       return null;
@@ -38,7 +38,7 @@ function mapViewFields({ data }) {
         return null;
       }
 
-      content = <pre>{value.join(', ')}</pre>;
+      content = <>{value.join('\n')}</>;
     }
     if (typeof value === 'object' && value instanceof Date) {
       if (Date.parse(value) === 0) {
@@ -47,15 +47,15 @@ function mapViewFields({ data }) {
       if (ongoing && key === 'endDate') {
         return null;
       }
-      content = <p>{format(value, 'MMMM yyyy')}</p>;
+      content = <>{format(value, 'MMMM yyyy')}</>;
     }
     if (typeof value === 'string') {
-      content = <pre>{value}</pre>;
+      content = <>{value}</>;
     }
     return (
       <label className="view-field" key={key}>
         {label}
-        {content}
+        <pre>{content}</pre>
       </label>
     );
   });
