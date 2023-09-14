@@ -16,13 +16,13 @@ function EditorSection({
   updateField,
   modifyList,
 }) {
-  const [mode, setMode] = useState('view');
+  const [mode, setMode] = useState('edit');
 
   let content = <></>;
   switch (mode) {
     case 'view':
       content = (
-        <div className="content">
+        <div className="content" style={!isActive ? { display: 'none' } : {}}>
           {mapViewFields({
             data: data,
           })}
@@ -33,7 +33,7 @@ function EditorSection({
 
     case 'edit':
       content = (
-        <div className="content">
+        <div className="content" style={!isActive ? { display: 'none' } : {}}>
           {children}
           {mapEditFields({
             data: data,
@@ -80,11 +80,7 @@ function EditorSection({
           }
         })()}
       </div>
-      {(() => {
-        if (isActive) {
-          return <>{content}</>;
-        }
-      })()}
+      {content}
     </div>
   );
 }

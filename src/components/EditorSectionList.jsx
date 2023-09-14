@@ -29,59 +29,53 @@ function EditorSectionList({
           }
         })()}
       </div>
-      {(() => {
-        if (isActive) {
+      <div className="content" style={!isActive ? { display: 'none' } : {}}>
+        {data.map((element, index) => {
           return (
-            <div className="content">
-              {data.map((element, index) => {
-                return (
-                  <EditorSection
-                    key={element.id}
-                    title={
-                      Object.values(element)[1]
-                        ? Object.values(element)[1]
-                        : `Unnamed ${elementName}`
-                    }
-                    index={index}
-                    path={[...path, index]}
-                    data={element}
-                    isActive={activeEditorSection === element.id}
-                    onShow={() => setActiveEditorSection(element.id)}
-                    onHide={() => setActiveEditorSection(false)}
-                    manageSection={manageSection}
-                    updateField={updateField}
-                    modifyList={modifyList}
-                  >
-                    <Button
-                      type={'delete'}
-                      onClick={() =>
-                        modifyList({
-                          path: path,
-                          mode: 'remove',
-                          index: index,
-                        })
-                      }
-                    />
-                  </EditorSection>
-                );
-              })}
+            <EditorSection
+              key={element.id}
+              title={
+                Object.values(element)[1]
+                  ? Object.values(element)[1]
+                  : `Unnamed ${elementName}`
+              }
+              index={index}
+              path={[...path, index]}
+              data={element}
+              isActive={activeEditorSection === element.id}
+              onShow={() => setActiveEditorSection(element.id)}
+              onHide={() => setActiveEditorSection(false)}
+              manageSection={manageSection}
+              updateField={updateField}
+              modifyList={modifyList}
+            >
               <Button
-                type={'add'}
-                onClick={() => {
-                  const id = self.crypto.randomUUID();
+                type={'delete'}
+                onClick={() =>
                   modifyList({
                     path: path,
-                    mode: 'add',
-                    blankDataElement: blankDataElement,
-                    id: id,
-                  });
-                  setActiveEditorSection(id);
-                }}
+                    mode: 'remove',
+                    index: index,
+                  })
+                }
               />
-            </div>
+            </EditorSection>
           );
-        }
-      })()}
+        })}
+        <Button
+          type={'add'}
+          onClick={() => {
+            const id = self.crypto.randomUUID();
+            modifyList({
+              path: path,
+              mode: 'add',
+              blankDataElement: blankDataElement,
+              id: id,
+            });
+            setActiveEditorSection(id);
+          }}
+        />
+      </div>
     </div>
   );
 }
