@@ -10,7 +10,7 @@
 .editor-list,
 .view-field {
   color: var(--light-text);
-  font-size: 1em;
+  font-size: 1rem;
 
   & input,
   & textarea {
@@ -18,7 +18,8 @@
     color: var(--light-text);
     border-radius: 5px;
     border: none;
-    padding: 5px;
+    padding: 6px;
+    font-size: 0.9rem;
   }
 
   & textarea {
@@ -55,6 +56,18 @@
   & input[type="checkbox"] {
     transform: scale(1.1);
     accent-color: white;
+  }
+
+  & input[type="month"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    color: var(--light-text);
+    background-color: var(--light-text);
+    border-radius: 5px;
+    padding: 3px;
+  }
+
+  & input[type="month"]::-webkit-datetime-edit {
+    color: var(--light-text);
   }
 }
 

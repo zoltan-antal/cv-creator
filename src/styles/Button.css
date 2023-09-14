@@ -1,4 +1,5 @@
 button {
+  font-size: 0.95rem;
   user-select: none;
 
   &:has(img) {
@@ -15,6 +16,7 @@ button {
   & img {
     height: 100%;
     filter: invert(1);
+    pointer-events: none;
   }
 
   &.add {
