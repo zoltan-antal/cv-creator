@@ -16,4 +16,8 @@ button {
     height: 100%;
     filter: invert(1);
   }
+
+  &.add {
+    padding: 0px 5px;
+  }
 }
