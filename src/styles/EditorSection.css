@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 10px;
+  gap: 12px;
 }
 
 .editor-field,
@@ -53,11 +53,25 @@
 .view-field {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
-  gap: 5px;
+  gap: 10%;
+
+  font-weight: bold;
+  padding-bottom: 2px;
+  border-bottom: 1px solid grey;
+
+  &:last-of-type {
+    border: none;
+  }
+
+  white-space: nowrap;
 
   & pre {
+    font-weight: normal;
+    text-align: justify;
+    text-align-last: right;
+
     white-space: pre-wrap;
   }
 }
