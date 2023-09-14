@@ -13,7 +13,6 @@ function Nav({
       <Button
         name={'Clear CV'}
         onClick={() => {
-          console.log(blankCv);
           setTempCvData((cvData) => (cvData = blankCv));
           setSavedCvData((cvData) => (cvData = blankCv));
         }}
