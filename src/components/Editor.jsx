@@ -29,6 +29,7 @@ function Editor({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
         setSavedCvData((cvData) => {
           _.set(cvData, path, _.get(tempCvData, path));
         });
+        localStorage.setItem('cvData', JSON.stringify(tempCvData));
         break;
     }
   }

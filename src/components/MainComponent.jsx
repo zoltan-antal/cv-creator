@@ -5,8 +5,10 @@ import Display from './Display';
 import '../styles/MainComponent.css';
 
 function Main() {
-  const [savedCvData, setSavedCvData] = useImmer(blankCv);
-  const [tempCvData, setTempCvData] = useImmer(blankCv);
+  const localCvData = JSON.parse(localStorage.getItem('cvData'));
+
+  const [savedCvData, setSavedCvData] = useImmer(localCvData || blankCv);
+  const [tempCvData, setTempCvData] = useImmer(localCvData || blankCv);
 
   return (
     <main>
