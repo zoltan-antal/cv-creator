@@ -1,21 +1,14 @@
 import '../styles/EditorSection.css';
-import { useState } from 'react';
+import _ from 'lodash';
+import { useContext, useState } from 'react';
+import { CvDataContext, CvDataDispatchContext } from '../utils/CvDataContext';
 import Button from './Button';
 import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
 
-function EditorSection({
-  children,
-  title,
-  path,
-  data,
-  isActive,
-  onShow,
-  onHide,
-  manageSection,
-  updateField,
-  modifyList,
-}) {
+function EditorSection({ children, title, path, isActive, onShow, onHide }) {
+  const cvData = useContext(CvDataContext);
+  const dispatch = useContext(CvDataDispatchContext);
   const [mode, setMode] = useState('view');
 
   return (
@@ -37,7 +30,7 @@ function EditorSection({
               return (
                 <>
                   {mapViewFields({
-                    data: data,
+                    data: _.get(cvData, ['tempCvData', ...path]),
                   })}
                   <Button type={'edit'} onClick={() => setMode('edit')} />
                 </>
@@ -48,23 +41,27 @@ function EditorSection({
                 <>
                   {children}
                   {mapEditFields({
-                    data: data,
+                    data: _.get(cvData, ['tempCvData', ...path]),
                     path: path,
-                    updateField: updateField,
-                    modifyList: modifyList,
                   })}
                   <div className="manage-section">
                     <Button
                       type={'discard'}
                       onClick={() => {
-                        manageSection(path, 'discard');
+                        dispatch({
+                          type: 'discard',
+                          path: path,
+                        });
                         setMode('view');
                       }}
                     />
                     <Button
                       type={'save'}
                       onClick={() => {
-                        manageSection(path, 'save');
+                        dispatch({
+                          type: 'save',
+                          path: path,
+                        });
                         setMode('view');
                       }}
                     />

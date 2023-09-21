@@ -1,6 +1,10 @@
 import { format } from 'date-fns';
+import { useContext } from 'react';
+import { CvDataDispatchContext } from '../utils/CvDataContext';
 
-function EditorField({ title, name, type, value, path, onChange }) {
+function EditorField({ title, name, type, value, path }) {
+  const dispatch = useContext(CvDataDispatchContext);
+
   return (
     <label className="editor-field">
       {title}
@@ -11,7 +15,9 @@ function EditorField({ title, name, type, value, path, onChange }) {
               type={type}
               name={name}
               value={value}
-              onChange={(e) => onChange(path, e.target.value)}
+              onChange={(e) =>
+                dispatch({ type: 'update', path: path, value: e.target.value })
+              }
             ></input>
           );
         }
@@ -21,7 +27,7 @@ function EditorField({ title, name, type, value, path, onChange }) {
               name={name}
               value={value}
               onChange={(e) => {
-                onChange(path, e.target.value);
+                dispatch({ type: 'update', path: path, value: e.target.value });
                 e.target.style.height = 'auto';
                 e.target.style.height = e.target.scrollHeight + 'px';
               }}
@@ -34,7 +40,13 @@ function EditorField({ title, name, type, value, path, onChange }) {
               type={type}
               name={name}
               checked={value}
-              onChange={(e) => onChange(path, e.target.checked)}
+              onChange={(e) =>
+                dispatch({
+                  type: 'update',
+                  path: path,
+                  value: e.target.checked,
+                })
+              }
             ></input>
           );
         }
@@ -44,7 +56,13 @@ function EditorField({ title, name, type, value, path, onChange }) {
               type={type}
               name={name}
               value={Date.parse(value) !== 0 ? format(value, 'yyyy-MM') : ''}
-              onChange={(e) => onChange(path, new Date(e.target.value))}
+              onChange={(e) =>
+                dispatch({
+                  type: 'update',
+                  path: path,
+                  value: new Date(e.target.value),
+                })
+              }
             ></input>
           );
         }

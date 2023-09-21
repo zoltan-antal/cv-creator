@@ -1,21 +1,16 @@
-import Button from './Button';
 import '../styles/Nav.css';
+import { useContext } from 'react';
+import { CvDataDispatchContext } from '../utils/CvDataContext';
+import Button from './Button';
 
-function Nav({
-  savedCvData,
-  setSavedCvData,
-  tempCvData,
-  setTempCvData,
-  blankCv,
-}) {
+function Nav() {
+  const dispatch = useContext(CvDataDispatchContext);
+
   return (
     <nav>
       <Button
         name={'Clear CV'}
-        onClick={() => {
-          setTempCvData((cvData) => (cvData = blankCv));
-          setSavedCvData((cvData) => (cvData = blankCv));
-        }}
+        onClick={() => dispatch({ type: 'clearAllData' })}
       />
     </nav>
   );

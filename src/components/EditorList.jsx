@@ -1,7 +1,11 @@
-import Button from './Button';
 import '../styles/EditorList.css';
+import { useContext } from 'react';
+import { CvDataDispatchContext } from '../utils/CvDataContext';
+import Button from './Button';
 
-function EditorList({ title, path, data, onChange, modifyList }) {
+function EditorList({ title, path, data }) {
+  const dispatch = useContext(CvDataDispatchContext);
+
   return (
     <label className="editor-list">
       {title}
@@ -11,14 +15,20 @@ function EditorList({ title, path, data, onChange, modifyList }) {
             <input
               type="text"
               value={value}
-              onChange={(e) => onChange([...path, index], e.target.value)}
+              onChange={(e) =>
+                dispatch({
+                  type: 'update',
+                  path: [...path, index],
+                  value: e.target.value,
+                })
+              }
             ></input>
             <Button
               type={'remove'}
               onClick={() => {
-                modifyList({
+                dispatch({
+                  type: 'removeListElement',
                   path: path,
-                  mode: 'remove',
                   index: index,
                   tempOnly: true,
                 });
@@ -30,9 +40,9 @@ function EditorList({ title, path, data, onChange, modifyList }) {
       <Button
         type={'add'}
         onClick={() =>
-          modifyList({
+          dispatch({
+            type: 'addListElement',
             path: path,
-            mode: 'add',
             blankDataElement: '',
             tempOnly: true,
           })

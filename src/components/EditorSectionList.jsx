@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import _ from 'lodash';
+import { useContext, useState } from 'react';
+import { CvDataContext, CvDataDispatchContext } from '../utils/CvDataContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
 
@@ -6,15 +8,13 @@ function EditorSectionList({
   title,
   elementName,
   path,
-  data,
   isActive,
   onShow,
   onHide,
-  manageSection,
-  updateField,
   blankDataElement,
-  modifyList,
 }) {
+  const cvData = useContext(CvDataContext);
+  const dispatch = useContext(CvDataDispatchContext);
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
   return (
@@ -30,7 +30,7 @@ function EditorSectionList({
         })()}
       </div>
       <div className="content" style={!isActive ? { display: 'none' } : {}}>
-        {data.map((element, index) => {
+        {_.get(cvData, ['tempCvData', ...path]).map((element, index) => {
           return (
             <EditorSection
               key={element.id}
@@ -41,21 +41,17 @@ function EditorSectionList({
               }
               index={index}
               path={[...path, index]}
-              data={element}
               isActive={activeEditorSection === element.id}
               onShow={() => setActiveEditorSection(element.id)}
               onHide={() => setActiveEditorSection(false)}
-              manageSection={manageSection}
-              updateField={updateField}
-              modifyList={modifyList}
             >
               <Button
                 type={'delete'}
                 name={`Delete ${elementName}`}
                 onClick={() =>
-                  modifyList({
+                  dispatch({
+                    type: 'removeListElement',
                     path: path,
-                    mode: 'remove',
                     index: index,
                   })
                 }
@@ -67,9 +63,9 @@ function EditorSectionList({
           type={'add'}
           onClick={() => {
             const id = self.crypto.randomUUID();
-            modifyList({
+            dispatch({
+              type: 'addListElement',
               path: path,
-              mode: 'add',
               blankDataElement: blankDataElement,
               id: id,
             });

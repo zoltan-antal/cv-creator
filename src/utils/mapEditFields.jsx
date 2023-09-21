@@ -2,7 +2,7 @@ import EditorField from '../components/EditorField';
 import EditorList from '../components/EditorList';
 import parseCamelCaseString from './parseCamelCaseString';
 
-function mapEditFields({ data, path, updateField, modifyList }) {
+function mapEditFields({ data, path }) {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');
   const ongoing = ongoingIndex ? Object.values(data)[ongoingIndex] : false;
 
@@ -23,8 +23,6 @@ function mapEditFields({ data, path, updateField, modifyList }) {
           title={title}
           path={[...path, key]}
           data={value}
-          onChange={updateField}
-          modifyList={modifyList}
         />
       );
     }
@@ -50,7 +48,6 @@ function mapEditFields({ data, path, updateField, modifyList }) {
         })()}
         value={value}
         path={[...path, key]}
-        onChange={updateField}
       />
     );
   });

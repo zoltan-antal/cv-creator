@@ -1,25 +1,13 @@
-import Nav from './Nav';
 import '../styles/Header.css';
+import Nav from './Nav';
 
-function Header({
-  savedCvData,
-  setSavedCvData,
-  tempCvData,
-  setTempCvData,
-  blankCv,
-}) {
+function Header() {
   return (
     <header>
       <h1>
         <a href="">CV Generator</a>
       </h1>
-      <Nav
-        savedCvData={savedCvData}
-        setSavedCvData={setSavedCvData}
-        tempCvData={tempCvData}
-        setTempCvData={setTempCvData}
-        blankCv={blankCv}
-      />
+      <Nav />
     </header>
   );
 }

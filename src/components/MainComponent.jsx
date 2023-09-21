@@ -1,17 +1,12 @@
+import '../styles/MainComponent.css';
 import Editor from './Editor';
 import Display from './Display';
-import '../styles/MainComponent.css';
 
-function Main({ savedCvData, setSavedCvData, tempCvData, setTempCvData }) {
+function Main() {
   return (
     <main>
-      <Editor
-        savedCvData={savedCvData}
-        setSavedCvData={setSavedCvData}
-        tempCvData={tempCvData}
-        setTempCvData={setTempCvData}
-      />
-      <Display cvData={tempCvData} />
+      <Editor />
+      <Display />
     </main>
   );
 }
