@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import { useContext, useState } from 'react';
-import { CvDataContext, CvDataDispatchContext } from '../utils/CvDataContext';
+import { useState } from 'react';
+import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
 
@@ -13,8 +13,8 @@ function EditorSectionList({
   onHide,
   blankDataElement,
 }) {
-  const cvData = useContext(CvDataContext);
-  const dispatch = useContext(CvDataDispatchContext);
+  const cvData = useCvData();
+  const dispatch = useCvDataDispatch();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
   return (

@@ -1,10 +1,9 @@
 import '../styles/EditorList.css';
-import { useContext } from 'react';
-import { CvDataDispatchContext } from '../utils/CvDataContext';
+import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
 function EditorList({ title, path, data }) {
-  const dispatch = useContext(CvDataDispatchContext);
+  const dispatch = useCvDataDispatch();
 
   return (
     <label className="editor-list">

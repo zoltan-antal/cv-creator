@@ -1,10 +1,9 @@
 import '../styles/Nav.css';
-import { useContext } from 'react';
-import { CvDataDispatchContext } from '../utils/CvDataContext';
+import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
 function Nav() {
-  const dispatch = useContext(CvDataDispatchContext);
+  const dispatch = useCvDataDispatch();
 
   return (
     <nav>

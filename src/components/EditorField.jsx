@@ -1,9 +1,8 @@
 import { format } from 'date-fns';
-import { useContext } from 'react';
-import { CvDataDispatchContext } from '../utils/CvDataContext';
+import { useCvDataDispatch } from '../utils/CvDataContext';
 
 function EditorField({ title, name, type, value, path }) {
-  const dispatch = useContext(CvDataDispatchContext);
+  const dispatch = useCvDataDispatch();
 
   return (
     <label className="editor-field">

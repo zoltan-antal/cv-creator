@@ -1,14 +1,14 @@
 import '../styles/EditorSection.css';
 import _ from 'lodash';
-import { useContext, useState } from 'react';
-import { CvDataContext, CvDataDispatchContext } from '../utils/CvDataContext';
+import { useState } from 'react';
+import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
 
 function EditorSection({ children, title, path, isActive, onShow, onHide }) {
-  const cvData = useContext(CvDataContext);
-  const dispatch = useContext(CvDataDispatchContext);
+  const cvData = useCvData();
+  const dispatch = useCvDataDispatch();
   const [mode, setMode] = useState('view');
 
   return (
