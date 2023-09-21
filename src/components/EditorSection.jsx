@@ -8,7 +8,7 @@ import mapViewFields from '../utils/mapViewFields';
 
 function EditorSection({ children, title, path, isActive, onShow, onHide }) {
   const cvData = useCvData();
-  const dispatch = useCvDataDispatch();
+  const dispatchCvData = useCvDataDispatch();
   const [mode, setMode] = useState('view');
 
   return (
@@ -48,7 +48,7 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                     <Button
                       type={'discard'}
                       onClick={() => {
-                        dispatch({
+                        dispatchCvData({
                           type: 'discard',
                           path: path,
                         });
@@ -58,7 +58,7 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                     <Button
                       type={'save'}
                       onClick={() => {
-                        dispatch({
+                        dispatchCvData({
                           type: 'save',
                           path: path,
                         });

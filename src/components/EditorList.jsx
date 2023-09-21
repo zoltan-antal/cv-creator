@@ -3,7 +3,7 @@ import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
 function EditorList({ title, path, data }) {
-  const dispatch = useCvDataDispatch();
+  const dispatchCvData = useCvDataDispatch();
 
   return (
     <label className="editor-list">
@@ -15,7 +15,7 @@ function EditorList({ title, path, data }) {
               type="text"
               value={value}
               onChange={(e) =>
-                dispatch({
+                dispatchCvData({
                   type: 'update',
                   path: [...path, index],
                   value: e.target.value,
@@ -25,7 +25,7 @@ function EditorList({ title, path, data }) {
             <Button
               type={'remove'}
               onClick={() => {
-                dispatch({
+                dispatchCvData({
                   type: 'removeListElement',
                   path: path,
                   index: index,
@@ -39,7 +39,7 @@ function EditorList({ title, path, data }) {
       <Button
         type={'add'}
         onClick={() =>
-          dispatch({
+          dispatchCvData({
             type: 'addListElement',
             path: path,
             blankDataElement: '',

@@ -3,13 +3,13 @@ import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
 function Nav() {
-  const dispatch = useCvDataDispatch();
+  const dispatchCvData = useCvDataDispatch();
 
   return (
     <nav>
       <Button
         name={'Clear CV'}
-        onClick={() => dispatch({ type: 'clearAllData' })}
+        onClick={() => dispatchCvData({ type: 'clearAllData' })}
       />
     </nav>
   );

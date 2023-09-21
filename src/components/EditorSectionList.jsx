@@ -14,7 +14,7 @@ function EditorSectionList({
   blankDataElement,
 }) {
   const cvData = useCvData();
-  const dispatch = useCvDataDispatch();
+  const dispatchCvData = useCvDataDispatch();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
   return (
@@ -49,7 +49,7 @@ function EditorSectionList({
                 type={'delete'}
                 name={`Delete ${elementName}`}
                 onClick={() =>
-                  dispatch({
+                  dispatchCvData({
                     type: 'removeListElement',
                     path: path,
                     index: index,
@@ -63,7 +63,7 @@ function EditorSectionList({
           type={'add'}
           onClick={() => {
             const id = self.crypto.randomUUID();
-            dispatch({
+            dispatchCvData({
               type: 'addListElement',
               path: path,
               blankDataElement: blankDataElement,

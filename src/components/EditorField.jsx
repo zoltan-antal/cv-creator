@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { useCvDataDispatch } from '../utils/CvDataContext';
 
 function EditorField({ title, name, type, value, path }) {
-  const dispatch = useCvDataDispatch();
+  const dispatchCvData = useCvDataDispatch();
 
   return (
     <label className="editor-field">
@@ -15,7 +15,11 @@ function EditorField({ title, name, type, value, path }) {
               name={name}
               value={value}
               onChange={(e) =>
-                dispatch({ type: 'update', path: path, value: e.target.value })
+                dispatchCvData({
+                  type: 'update',
+                  path: path,
+                  value: e.target.value,
+                })
               }
             ></input>
           );
@@ -26,7 +30,11 @@ function EditorField({ title, name, type, value, path }) {
               name={name}
               value={value}
               onChange={(e) => {
-                dispatch({ type: 'update', path: path, value: e.target.value });
+                dispatchCvData({
+                  type: 'update',
+                  path: path,
+                  value: e.target.value,
+                });
                 e.target.style.height = 'auto';
                 e.target.style.height = e.target.scrollHeight + 'px';
               }}
@@ -40,7 +48,7 @@ function EditorField({ title, name, type, value, path }) {
               name={name}
               checked={value}
               onChange={(e) =>
-                dispatch({
+                dispatchCvData({
                   type: 'update',
                   path: path,
                   value: e.target.checked,
@@ -56,7 +64,7 @@ function EditorField({ title, name, type, value, path }) {
               name={name}
               value={Date.parse(value) !== 0 ? format(value, 'yyyy-MM') : ''}
               onChange={(e) =>
-                dispatch({
+                dispatchCvData({
                   type: 'update',
                   path: path,
                   value: new Date(e.target.value),
