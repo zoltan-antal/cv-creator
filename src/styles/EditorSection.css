@@ -95,4 +95,15 @@
 
     white-space: pre-wrap;
   }
+
+  &.long {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 6px;
+
+    & pre {
+      text-align-last: auto;
+    }
+  }
 }

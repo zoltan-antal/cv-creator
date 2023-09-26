@@ -18,6 +18,7 @@ function mapViewFields({ data }) {
   }
 
   return Object.entries(data).map(([key, value]) => {
+    const isLong = key.includes('_long');
     const label = parseCamelCaseString(key).replace('_long', '') + ':';
     let content;
 
@@ -53,7 +54,7 @@ function mapViewFields({ data }) {
       content = <>{value}</>;
     }
     return (
-      <label className="view-field" key={key}>
+      <label className={`view-field${isLong ? ' long' : ''}`} key={key}>
         {label}
         <pre>{content}</pre>
       </label>
