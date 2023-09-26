@@ -8,4 +8,63 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  padding: 15px 15px;
+
+  & .personal-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+
+    & * {
+      font-weight: normal;
+      font-size: 0.75rem;
+
+      & pre {
+        white-space: pre-wrap;
+        text-align: justify;
+      }
+
+      & img {
+        filter: invert(1);
+        height: 0.9rem;
+      }
+    }
+
+    & h1 {
+      font-weight: bold;
+      font-size: 1.7rem;
+    }
+
+    & h2 {
+      font-size: 1.2rem;
+    }
+
+    & .personal-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 5px;
+    }
+
+    & .personal-data {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: flex-start;
+      gap: 5px;
+
+      & .entry {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 5px;
+      }
+    }
+  }
 }
