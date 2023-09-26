@@ -90,8 +90,7 @@
 
   & pre {
     font-weight: normal;
-    text-align: justify;
-    text-align-last: right;
+    text-align: right;
 
     white-space: pre-wrap;
   }
@@ -103,6 +102,7 @@
     gap: 6px;
 
     & pre {
+      text-align: justify;
       text-align-last: auto;
     }
   }
