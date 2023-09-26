@@ -1,12 +1,12 @@
 const blankCv = {
   personalDetails: {
     fullName: '',
-    title: '',
+    professionalTitle: '',
     email: '',
     phone: '',
     address: '',
     links: [''],
-    introduction_long: '',
+    professionalSummary_long: '',
   },
   education: [],
   workExperience: [],
