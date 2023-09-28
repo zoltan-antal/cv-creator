@@ -1,9 +1,17 @@
+import { useEffect } from 'react';
 import '../styles/EditorList.css';
 import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
 function EditorList({ title, type, path, data }) {
   const dispatchCvData = useCvDataDispatch();
+
+  useEffect(() => {
+    const textareas = document.querySelectorAll('.editor-list textarea');
+    textareas.forEach((textarea) => {
+      textarea.style.height = textarea.scrollHeight + 'px';
+    });
+  });
 
   return (
     <label className="editor-list">
@@ -31,16 +39,15 @@ function EditorList({ title, type, path, data }) {
                 case 'textarea':
                   return (
                     <textarea
+                      rows={1}
                       value={value}
-                      onChange={(e) => {
+                      onChange={(e) =>
                         dispatchCvData({
                           type: 'update',
                           path: [...path, index],
                           value: e.target.value,
-                        });
-                        e.target.style.height = 'auto';
-                        e.target.style.height = e.target.scrollHeight + 'px';
-                      }}
+                        })
+                      }
                     ></textarea>
                   );
               }

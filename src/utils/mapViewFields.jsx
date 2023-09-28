@@ -39,16 +39,18 @@ function mapViewFields({ data }) {
         return null;
       }
 
+      const nonEmptyValues = value.filter((element) => element !== '');
+
       if (isLong) {
         content = (
           <div className="list">
-            {value.map((item, index) => {
+            {nonEmptyValues.map((item, index) => {
               return <pre key={index}>{item}</pre>;
             })}
           </div>
         );
       } else {
-        content = <pre>{value.join('\n')}</pre>;
+        content = <pre>{nonEmptyValues.join('\n')}</pre>;
       }
     }
     if (typeof value === 'object' && value instanceof Date) {
