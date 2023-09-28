@@ -20,7 +20,7 @@
   align-items: stretch;
   align-content: start;
   justify-content: stretch;
-  column-gap: 25px;
+  column-gap: 20px;
   row-gap: 15px;
 
   padding: 15px 15px;
@@ -116,6 +116,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 8px;
+    margin-bottom: 5px;
 
     & .school,
     & .job {
