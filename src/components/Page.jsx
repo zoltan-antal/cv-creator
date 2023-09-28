@@ -123,19 +123,24 @@ function Page() {
                 })()}
               </div>
               {(() => {
-                if (
-                  item.additionalInfo.length > 1 ||
-                  (item.additionalInfo.length === 1 &&
-                    item.additionalInfo[0] !== '')
-                ) {
-                  return (
-                    <div className="additional-info">
-                      {item.additionalInfo.map((value, index) => {
-                        return <pre key={index}>{value}</pre>;
-                      })}
-                    </div>
-                  );
+                if (item.additionalInfo.length === 0) {
+                  return null;
                 }
+                if (item.additionalInfo.every((content) => content === '')) {
+                  return null;
+                }
+
+                return (
+                  <div className="additional-info">
+                    {item.additionalInfo.map((value, index) => {
+                      if (value === '') {
+                        return null;
+                      }
+
+                      return <pre key={index}>{value}</pre>;
+                    })}
+                  </div>
+                );
               })()}
             </div>
           );
