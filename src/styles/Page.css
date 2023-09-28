@@ -19,6 +19,7 @@
     "work-experience skills";
   align-items: stretch;
   align-content: start;
+  justify-content: stretch;
   column-gap: 15px;
   row-gap: 15px;
 
