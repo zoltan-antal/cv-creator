@@ -36,21 +36,21 @@ function Page() {
             return (
               <div className="entry email" key={key}>
                 <img src={emailIcon} alt="" />
-                <p>{value}</p>
+                <pre>{value}</pre>
               </div>
             );
           } else if (key.includes('phone') && value) {
             return (
               <div className="entry phone" key={key}>
                 <img src={phoneIcon} alt="" />
-                <p>{value}</p>
+                <pre>{value}</pre>
               </div>
             );
           } else if (key.includes('address') && value) {
             return (
               <div className="entry address" key={key}>
                 <img src={addressIcon} alt="" />
-                <p>{value}</p>
+                <pre>{value}</pre>
               </div>
             );
           } else if (key.includes('links')) {
@@ -61,7 +61,7 @@ function Page() {
                     return (
                       <div className="entry link" key={index}>
                         <img src={linkIcon} alt="" />
-                        <p>{value}</p>
+                        <pre>{value}</pre>
                       </div>
                     );
                   }

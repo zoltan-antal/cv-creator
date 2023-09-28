@@ -50,7 +50,7 @@
     }
 
     & h5 {
-      font-size: calc(var(--page-width) / 46);
+      font-size: calc(var(--page-width) / 50);
     }
 
     & h6 {
@@ -61,6 +61,11 @@
     & pre {
       white-space: pre-wrap;
       text-align: justify;
+    }
+
+    & p {
+      font-size: calc(var(--page-width) / 54);
+      font-style: italic;
     }
 
     & img {
