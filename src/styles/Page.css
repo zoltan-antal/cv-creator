@@ -20,7 +20,7 @@
   align-items: stretch;
   align-content: start;
   justify-content: stretch;
-  column-gap: 15px;
+  column-gap: 25px;
   row-gap: 15px;
 
   padding: 15px 15px;
@@ -97,6 +97,14 @@
     }
   }
 
+  & .education {
+    grid-area: education;
+  }
+
+  & .work-experience {
+    grid-area: work-experience;
+  }
+
   & .education,
   & .work-experience {
     &:not(:has(~ .skills)) {
@@ -162,14 +170,6 @@
         }
       }
     }
-  }
-
-  & .education {
-    grid-area: education;
-  }
-
-  & .work-experience {
-    grid-area: work-experience;
   }
 
   & .skills {
