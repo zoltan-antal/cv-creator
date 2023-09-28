@@ -163,6 +163,75 @@ function Page() {
           return (
             <div className="work-experience">
               <h3>Work experience</h3>
+              {cvData.workExperience.map((item) => {
+                return (
+                  <div className="job" key={item.id}>
+                    <div className="main-info">
+                      {(() => {
+                        if (item.title) {
+                          return <h4 className="title">{item.title}</h4>;
+                        }
+                      })()}
+                      {(() => {
+                        if (item.company) {
+                          return <h5 className="company">{item.company}</h5>;
+                        }
+                      })()}
+                    </div>
+                    <div className="side-info">
+                      {(() => {
+                        if (item.location) {
+                          return <p className="location">{item.location}</p>;
+                        }
+                      })()}
+                      {(() => {
+                        if (item.ongoing) {
+                          if (Number(item.startDate)) {
+                            return (
+                              <p className="date">
+                                {format(item.startDate, 'MMM yyyy')} - present
+                              </p>
+                            );
+                          }
+                        } else {
+                          if (Number(item.startDate) && Number(item.endDate)) {
+                            return (
+                              <p className="date">
+                                {format(item.startDate, 'MMM yyyy')} -{' '}
+                                {format(item.endDate, 'MMM yyyy')}
+                              </p>
+                            );
+                          }
+                        }
+                      })()}
+                    </div>
+                    {(() => {
+                      const responsibilities = getValueByKeyFragment(
+                        item,
+                        'responsibilities'
+                      );
+                      if (responsibilities.length === 0) {
+                        return null;
+                      }
+                      if (responsibilities.every((content) => content === '')) {
+                        return null;
+                      }
+
+                      return (
+                        <div className="additional-info">
+                          {responsibilities.map((value, index) => {
+                            if (value === '') {
+                              return null;
+                            }
+
+                            return <pre key={index}>{value}</pre>;
+                          })}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                );
+              })}
             </div>
           );
         }
