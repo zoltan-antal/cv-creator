@@ -1,6 +1,7 @@
 .page {
   background-color: var(--dark-background);
-  width: 70%;
+  --page-width: 40vw;
+  width: var(--page-width);
   aspect-ratio: 1 / 1.41;
   color: var(--light-text);
 
@@ -21,7 +22,7 @@
 
     & * {
       font-weight: normal;
-      font-size: 0.75rem;
+      font-size: calc(var(--page-width) / 52);
 
       & pre {
         white-space: pre-wrap;
@@ -30,17 +31,17 @@
 
       & img {
         filter: invert(1);
-        height: 0.9rem;
+        height: calc(var(--page-width) / 42);
       }
     }
 
     & h1 {
       font-weight: bold;
-      font-size: 1.7rem;
+      font-size: calc(var(--page-width) / 22);
     }
 
     & h2 {
-      font-size: 1.2rem;
+      font-size: calc(var(--page-width) / 32);
     }
 
     & .personal-info {
@@ -48,7 +49,7 @@
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: 5px;
+      gap: 8px;
     }
 
     & .personal-data {
