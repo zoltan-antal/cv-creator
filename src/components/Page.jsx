@@ -4,6 +4,7 @@ import emailIcon from '../assets/icons/email.svg';
 import phoneIcon from '../assets/icons/phone.svg';
 import addressIcon from '../assets/icons/map-marker.svg';
 import linkIcon from '../assets/icons/link.svg';
+import { format } from 'date-fns';
 
 function Page() {
   const cvDataImport = useCvData();
@@ -12,14 +13,9 @@ function Page() {
   return (
     <div className="page">
       <div className="personal-info">
+        <h1 className="name">{cvData.personalDetails.fullName}</h1>
         {Object.entries(cvData.personalDetails).map(([key, value]) => {
-          if (key.includes('fullName') && value) {
-            return (
-              <h1 className="name" key={key}>
-                {value}
-              </h1>
-            );
-          } else if (key.includes('professionalTitle') && value) {
+          if (key.includes('professionalTitle') && value) {
             return (
               <h2 className="title" key={key}>
                 {value}
@@ -77,6 +73,32 @@ function Page() {
       </div>
       <div className="education">
         <h3>Education</h3>
+        {cvData.education.map((item) => {
+          return (
+            <div className="school" key={item.id}>
+              {(() => {
+                if (item.school) {
+                  return <h4 className="name">{item.school}</h4>;
+                }
+              })()}
+              {(() => {
+                if (item.qualification) {
+                  return <h5 className="name">{item.qualification}</h5>;
+                }
+              })()}
+              {(() => {
+                if (item.grade) {
+                  return <h5 className="name">{item.grade}</h5>;
+                }
+              })()}
+              {(() => {
+                if (item.location) {
+                  return <p className="name">{item.location}</p>;
+                }
+              })()}
+            </div>
+          );
+        })}
       </div>
       <div className="work-experience">
         <h3>Work experience</h3>

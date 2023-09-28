@@ -40,6 +40,16 @@
     & h3 {
       font-size: calc(var(--page-width) / 40);
       text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    & h4 {
+      font-size: calc(var(--page-width) / 40);
+      font-weight: bold;
+    }
+
+    & h5 {
+      font-size: calc(var(--page-width) / 44);
     }
 
     & pre {
