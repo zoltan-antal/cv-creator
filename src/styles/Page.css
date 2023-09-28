@@ -10,30 +10,23 @@
   justify-content: flex-start;
   align-items: center;
 
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "personal-info personal-data"
+    "education skills"
+    "work-experience skills";
+  align-items: stretch;
+  align-content: start;
+  column-gap: 15px;
+  row-gap: 15px;
+
   padding: 15px 15px;
 
-  & .personal-details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 20px;
-    width: 100%;
-
-    & * {
-      font-weight: normal;
-      font-size: calc(var(--page-width) / 52);
-
-      & pre {
-        white-space: pre-wrap;
-        text-align: justify;
-      }
-
-      & img {
-        filter: invert(1);
-        height: calc(var(--page-width) / 42);
-      }
-    }
+  & * {
+    font-weight: normal;
+    font-size: calc(var(--page-width) / 52);
 
     & h1 {
       font-weight: bold;
@@ -44,28 +37,59 @@
       font-size: calc(var(--page-width) / 32);
     }
 
-    & .personal-info {
+    & h3 {
+      font-size: calc(var(--page-width) / 40);
+      text-transform: uppercase;
+    }
+
+    & pre {
+      white-space: pre-wrap;
+      text-align: justify;
+    }
+
+    & img {
+      filter: invert(1);
+      height: calc(var(--page-width) / 42);
+    }
+  }
+
+  & .personal-info {
+    grid-area: personal-info;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  & .personal-data {
+    grid-area: personal-data;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 5px;
+
+    & .entry {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: flex-start;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    & .personal-data {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: flex-start;
+      align-items: center;
       gap: 5px;
-
-      & .entry {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 5px;
-      }
     }
+  }
+
+  & .education {
+    grid-area: education;
+  }
+
+  & .work-experience {
+    grid-area: work-experience;
+  }
+
+  & .skills {
+    grid-area: skills;
   }
 }
