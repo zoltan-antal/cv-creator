@@ -123,16 +123,20 @@ function Page() {
                 })()}
               </div>
               {(() => {
-                if (item.additionalInfo.length === 0) {
+                const additionalInfo = getValueByKeyFragment(
+                  item,
+                  'additionalInfo'
+                );
+                if (additionalInfo.length === 0) {
                   return null;
                 }
-                if (item.additionalInfo.every((content) => content === '')) {
+                if (additionalInfo.every((content) => content === '')) {
                   return null;
                 }
 
                 return (
                   <div className="additional-info">
-                    {item.additionalInfo.map((value, index) => {
+                    {additionalInfo.map((value, index) => {
                       if (value === '') {
                         return null;
                       }
@@ -154,6 +158,12 @@ function Page() {
       </div>
     </div>
   );
+}
+
+function getValueByKeyFragment(object, string) {
+  return object[
+    Object.keys(object).find((element) => element.includes(string))
+  ];
 }
 
 export default Page;

@@ -14,13 +14,14 @@ function mapEditFields({ data, path }) {
       return null;
     }
 
-    const title = parseCamelCaseString(key) + ':';
+    const title = parseCamelCaseString(key).replace('_long', '') + ':';
 
     if (Array.isArray(value)) {
       return (
         <EditorList
           key={key}
           title={title}
+          type={key.includes('_long') ? 'textarea' : 'text'}
           path={[...path, key]}
           data={value}
         />
@@ -30,8 +31,8 @@ function mapEditFields({ data, path }) {
     return (
       <EditorField
         key={key}
-        title={title.replace('_long', '')}
-        name={key.replace('_long', '')}
+        title={title}
+        name={title}
         type={(() => {
           if (key.includes('_long')) {
             return 'textarea';

@@ -7,7 +7,7 @@ const blankSchool = {
   ongoing: false,
   startDate: new Date(0),
   endDate: new Date(0),
-  additionalInfo: [''],
+  additionalInfo_long: [''],
 };
 
 export default blankSchool;

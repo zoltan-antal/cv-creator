@@ -23,8 +23,7 @@ function EditorField({ title, name, type, value, path }) {
               }
             ></input>
           );
-        }
-        if (type === 'textarea') {
+        } else if (type === 'textarea') {
           return (
             <textarea
               name={name}
@@ -40,8 +39,7 @@ function EditorField({ title, name, type, value, path }) {
               }}
             ></textarea>
           );
-        }
-        if (type === 'checkbox') {
+        } else if (type === 'checkbox') {
           return (
             <input
               type={type}
@@ -56,8 +54,7 @@ function EditorField({ title, name, type, value, path }) {
               }
             ></input>
           );
-        }
-        if (type === 'month') {
+        } else if (type === 'month') {
           return (
             <input
               type={type}

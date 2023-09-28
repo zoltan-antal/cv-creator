@@ -2,7 +2,7 @@ import '../styles/EditorList.css';
 import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
 
-function EditorList({ title, path, data }) {
+function EditorList({ title, type, path, data }) {
   const dispatchCvData = useCvDataDispatch();
 
   return (
@@ -11,17 +11,40 @@ function EditorList({ title, path, data }) {
       {data.map((value, index) => {
         return (
           <div className="list-item" key={index}>
-            <input
-              type="text"
-              value={value}
-              onChange={(e) =>
-                dispatchCvData({
-                  type: 'update',
-                  path: [...path, index],
-                  value: e.target.value,
-                })
+            {(() => {
+              switch (type) {
+                case 'text':
+                  return (
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={(e) =>
+                        dispatchCvData({
+                          type: 'update',
+                          path: [...path, index],
+                          value: e.target.value,
+                        })
+                      }
+                    ></input>
+                  );
+
+                case 'textarea':
+                  return (
+                    <textarea
+                      value={value}
+                      onChange={(e) => {
+                        dispatchCvData({
+                          type: 'update',
+                          path: [...path, index],
+                          value: e.target.value,
+                        });
+                        e.target.style.height = 'auto';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                      }}
+                    ></textarea>
+                  );
               }
-            ></input>
+            })()}
             <Button
               type={'remove'}
               onClick={() => {

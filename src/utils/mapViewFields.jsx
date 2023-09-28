@@ -18,7 +18,7 @@ function mapViewFields({ data }) {
   }
 
   return Object.entries(data).map(([key, value]) => {
-    let isLong = key.includes('_long');
+    const isLong = key.includes('_long');
     const label = parseCamelCaseString(key).replace('_long', '') + ':';
     let content;
 
@@ -39,14 +39,17 @@ function mapViewFields({ data }) {
         return null;
       }
 
-      isLong = true;
-      content = (
-        <div className="list">
-          {value.map((item, index) => {
-            return <pre key={index}>{item}</pre>;
-          })}
-        </div>
-      );
+      if (isLong) {
+        content = (
+          <div className="list">
+            {value.map((item, index) => {
+              return <pre key={index}>{item}</pre>;
+            })}
+          </div>
+        );
+      } else {
+        content = <pre>{value.join('\n')}</pre>;
+      }
     }
     if (typeof value === 'object' && value instanceof Date) {
       if (Date.parse(value) === 0) {
