@@ -20,10 +20,9 @@
   align-items: stretch;
   align-content: start;
   justify-content: stretch;
-  column-gap: 20px;
-  row-gap: 15px;
-
-  padding: 15px 15px;
+  column-gap: calc(var(--page-width) / 20);
+  row-gap: calc(var(--page-width) / 32);
+  padding: calc(var(--page-width) / 32) calc(var(--page-width) / 32);
 
   & * {
     font-weight: normal;
@@ -76,7 +75,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 2px;
+    gap: calc(var(--page-width) / 224);
   }
 
   & .personal-data {
@@ -86,14 +85,14 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 5px;
+    gap: calc(var(--page-width) / 96);
 
     & .entry {
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
       align-items: center;
-      gap: 5px;
+      gap: calc(var(--page-width) / 96);
     }
   }
 
@@ -115,8 +114,8 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    gap: 8px;
-    margin-bottom: 5px;
+    gap: calc(var(--page-width) / 60);
+    margin-bottom: calc(var(--page-width) / 96);
 
     & .school,
     & .job {
@@ -126,7 +125,7 @@
       grid-template-areas:
         "main-info side-info"
         "additional-info additional-info";
-      column-gap: 10px;
+      column-gap: calc(var(--page-width) / 48);
 
       & .main-info {
         grid-area: main-info;
@@ -153,15 +152,15 @@
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
-        gap: 1px;
+        gap: calc(var(--page-width) / 480);
 
-        margin-top: 3px;
+        margin-top: calc(var(--page-width) / 170);
         list-style-type: none;
 
         & pre {
           display: list-item;
           position: relative;
-          padding-left: 10px;
+          padding-left: calc(var(--page-width) / 48);
 
           &::before {
             content: "\2022";
@@ -180,22 +179,22 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 8px;
+    gap: calc(var(--page-width) / 60);
 
     & .skills {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      gap: 1px;
+      gap: calc(var(--page-width) / 480);
 
-      margin-top: 4px;
+      margin-top: calc(var(--page-width) / 120);
       list-style-type: none;
 
       & pre {
         display: list-item;
         position: relative;
-        padding-left: 10px;
+        padding-left: calc(var(--page-width) / 48);
 
         &::before {
           content: "\2022";
