@@ -23,7 +23,7 @@
   }
 
   & textarea {
-    resize: vertical;
+    resize: none;
     overflow-y: hidden;
     width: 100%;
   }
