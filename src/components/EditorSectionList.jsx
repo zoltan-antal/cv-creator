@@ -53,6 +53,7 @@ function EditorSectionList({
                     type: 'removeListElement',
                     path: path,
                     index: index,
+                    save: true,
                   })
                 }
               />
@@ -68,6 +69,7 @@ function EditorSectionList({
               path: path,
               blankDataElement: blankDataElement,
               id: id,
+              save: true,
             });
             setActiveEditorSection(id);
           }}

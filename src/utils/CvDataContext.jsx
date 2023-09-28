@@ -89,6 +89,11 @@ function cvDataReducer(cvData, action) {
           action.id
         );
       });
+
+      if (action.save) {
+        localStorage.setItem('cvData', JSON.stringify(cvData.tempCvData));
+      }
+
       break;
 
     case 'removeListElement':
@@ -106,6 +111,11 @@ function cvDataReducer(cvData, action) {
           ]
         );
       });
+
+      if (action.save) {
+        localStorage.setItem('cvData', JSON.stringify(cvData.tempCvData));
+      }
+
       break;
 
     case 'clearAllData':
