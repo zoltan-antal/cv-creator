@@ -9,6 +9,7 @@ function EditorList({ title, type, path, data }) {
   useEffect(() => {
     const textareas = document.querySelectorAll('.editor-list textarea');
     textareas.forEach((textarea) => {
+      textarea.style.height = 'auto';
       textarea.style.height = textarea.scrollHeight + 'px';
     });
   });

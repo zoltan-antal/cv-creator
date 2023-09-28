@@ -8,6 +8,7 @@ function EditorField({ title, name, type, value, path }) {
   useEffect(() => {
     const textareas = document.querySelectorAll('.editor-field textarea');
     textareas.forEach((textarea) => {
+      textarea.style.height = 'auto';
       textarea.style.height = textarea.scrollHeight + 'px';
     });
   });
