@@ -14,19 +14,19 @@ function Page() {
       <div className="personal-details">
         <div className="personal-info">
           {Object.entries(cvData.personalDetails).map(([key, value]) => {
-            if (key.includes('fullName')) {
+            if (key.includes('fullName') && value) {
               return (
                 <h1 className="name" key={key}>
                   {value}
                 </h1>
               );
-            } else if (key.includes('professionalTitle')) {
+            } else if (key.includes('professionalTitle') && value) {
               return (
                 <h2 className="title" key={key}>
                   {value}
                 </h2>
               );
-            } else if (key.includes('professionalSummary')) {
+            } else if (key.includes('professionalSummary') && value) {
               return (
                 <pre className="summary" key={key}>
                   {value}
@@ -37,21 +37,21 @@ function Page() {
         </div>
         <div className="personal-data">
           {Object.entries(cvData.personalDetails).map(([key, value]) => {
-            if (key.includes('email')) {
+            if (key.includes('email') && value) {
               return (
                 <div className="entry email" key={key}>
                   <img src={emailIcon} alt="" />
                   <p>{value}</p>
                 </div>
               );
-            } else if (key.includes('phone')) {
+            } else if (key.includes('phone') && value) {
               return (
                 <div className="entry phone" key={key}>
                   <img src={phoneIcon} alt="" />
                   <p>{value}</p>
                 </div>
               );
-            } else if (key.includes('address')) {
+            } else if (key.includes('address') && value) {
               return (
                 <div className="entry address" key={key}>
                   <img src={addressIcon} alt="" />
@@ -62,12 +62,14 @@ function Page() {
               return (
                 <>
                   {value.map((value) => {
-                    return (
-                      <div className="entry link" key={key}>
-                        <img src={linkIcon} alt="" />
-                        <p>{value}</p>
-                      </div>
-                    );
+                    if (value) {
+                      return (
+                        <div className="entry link" key={key}>
+                          <img src={linkIcon} alt="" />
+                          <p>{value}</p>
+                        </div>
+                      );
+                    }
                   })}
                 </>
               );
