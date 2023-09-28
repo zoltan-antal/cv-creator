@@ -71,103 +71,111 @@ function Page() {
           }
         })}
       </div>
-      <div className="education">
-        {(() => {
-          if (cvData.education.length > 0) {
-            return <h3>Education</h3>;
-          }
-        })()}
-        {cvData.education.map((item) => {
+      {(() => {
+        if (cvData.education.length > 0) {
           return (
-            <div className="school" key={item.id}>
-              <div className="main-info">
-                {(() => {
-                  if (item.school) {
-                    return <h4 className="name">{item.school}</h4>;
-                  }
-                })()}
-                {(() => {
-                  if (item.qualification) {
-                    return (
-                      <h5 className="qualification">{item.qualification}</h5>
-                    );
-                  }
-                })()}
-                {(() => {
-                  if (item.grade) {
-                    return <h5 className="grade">{item.grade}</h5>;
-                  }
-                })()}
-              </div>
-              <div className="side-info">
-                {(() => {
-                  if (item.location) {
-                    return <p className="location">{item.location}</p>;
-                  }
-                })()}
-                {(() => {
-                  if (item.ongoing) {
-                    if (Number(item.startDate)) {
-                      return (
-                        <p className="date">
-                          {format(item.startDate, 'MMM yyyy')} - present
-                        </p>
-                      );
-                    }
-                  } else {
-                    if (Number(item.startDate) && Number(item.endDate)) {
-                      return (
-                        <p className="date">
-                          {format(item.startDate, 'MMM yyyy')} -{' '}
-                          {format(item.endDate, 'MMM yyyy')}
-                        </p>
-                      );
-                    }
-                  }
-                })()}
-              </div>
-              {(() => {
-                const additionalInfo = getValueByKeyFragment(
-                  item,
-                  'additionalInfo'
-                );
-                if (additionalInfo.length === 0) {
-                  return null;
-                }
-                if (additionalInfo.every((content) => content === '')) {
-                  return null;
-                }
-
+            <div className="education">
+              <h3>Education</h3>
+              {cvData.education.map((item) => {
                 return (
-                  <div className="additional-info">
-                    {additionalInfo.map((value, index) => {
-                      if (value === '') {
+                  <div className="school" key={item.id}>
+                    <div className="main-info">
+                      {(() => {
+                        if (item.school) {
+                          return <h4 className="name">{item.school}</h4>;
+                        }
+                      })()}
+                      {(() => {
+                        if (item.qualification) {
+                          return (
+                            <h5 className="qualification">
+                              {item.qualification}
+                            </h5>
+                          );
+                        }
+                      })()}
+                      {(() => {
+                        if (item.grade) {
+                          return <h5 className="grade">{item.grade}</h5>;
+                        }
+                      })()}
+                    </div>
+                    <div className="side-info">
+                      {(() => {
+                        if (item.location) {
+                          return <p className="location">{item.location}</p>;
+                        }
+                      })()}
+                      {(() => {
+                        if (item.ongoing) {
+                          if (Number(item.startDate)) {
+                            return (
+                              <p className="date">
+                                {format(item.startDate, 'MMM yyyy')} - present
+                              </p>
+                            );
+                          }
+                        } else {
+                          if (Number(item.startDate) && Number(item.endDate)) {
+                            return (
+                              <p className="date">
+                                {format(item.startDate, 'MMM yyyy')} -{' '}
+                                {format(item.endDate, 'MMM yyyy')}
+                              </p>
+                            );
+                          }
+                        }
+                      })()}
+                    </div>
+                    {(() => {
+                      const additionalInfo = getValueByKeyFragment(
+                        item,
+                        'additionalInfo'
+                      );
+                      if (additionalInfo.length === 0) {
+                        return null;
+                      }
+                      if (additionalInfo.every((content) => content === '')) {
                         return null;
                       }
 
-                      return <pre key={index}>{value}</pre>;
-                    })}
+                      return (
+                        <div className="additional-info">
+                          {additionalInfo.map((value, index) => {
+                            if (value === '') {
+                              return null;
+                            }
+
+                            return <pre key={index}>{value}</pre>;
+                          })}
+                        </div>
+                      );
+                    })()}
                   </div>
                 );
-              })()}
+              })}
             </div>
           );
-        })}
-      </div>
-      <div className="work-experience">
-        {(() => {
-          if (cvData.workExperience.length > 0) {
-            return <h3>Work experience</h3>;
-          }
-        })()}
-      </div>
-      <div className="skills">
-        {(() => {
-          if (cvData.skills.length > 0) {
-            return <h3>Skills</h3>;
-          }
-        })()}
-      </div>
+        }
+      })()}
+      {(() => {
+        if (cvData.workExperience.length > 0) {
+          return (
+            <div className="work-experience">
+              <h3>Work experience</h3>
+            </div>
+          );
+        }
+      })()}
+      {(() => {
+        if (cvData.skills.length > 0) {
+          return (
+            <div className="skills">
+              <h3>Skills</h3>
+            </div>
+          );
+        }
+      })()}
     </div>
   );
 }
