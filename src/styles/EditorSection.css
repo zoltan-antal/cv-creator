@@ -91,7 +91,6 @@
   & pre {
     font-weight: normal;
     text-align: right;
-
     white-space: pre-wrap;
   }
 
@@ -103,7 +102,29 @@
 
     & pre {
       text-align: justify;
-      text-align-last: auto;
+    }
+  }
+
+  & .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+
+    list-style-type: none;
+
+    & pre {
+      list-style-position: inside;
+      display: list-item;
+      position: relative;
+      padding-left: 15px;
+
+      &::before {
+        content: "\2022";
+        position: absolute;
+        left: 0;
+      }
     }
   }
 }
