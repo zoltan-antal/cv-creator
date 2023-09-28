@@ -72,7 +72,11 @@ function Page() {
         })}
       </div>
       <div className="education">
-        <h3>Education</h3>
+        {(() => {
+          if (cvData.education.length > 0) {
+            return <h3>Education</h3>;
+          }
+        })()}
         {cvData.education.map((item) => {
           return (
             <div className="school" key={item.id}>
@@ -151,10 +155,18 @@ function Page() {
         })}
       </div>
       <div className="work-experience">
-        <h3>Work experience</h3>
+        {(() => {
+          if (cvData.workExperience.length > 0) {
+            return <h3>Work experience</h3>;
+          }
+        })()}
       </div>
       <div className="skills">
-        <h3>Skills</h3>
+        {(() => {
+          if (cvData.skills.length > 0) {
+            return <h3>Skills</h3>;
+          }
+        })()}
       </div>
     </div>
   );
