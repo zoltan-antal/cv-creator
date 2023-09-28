@@ -76,24 +76,65 @@ function Page() {
         {cvData.education.map((item) => {
           return (
             <div className="school" key={item.id}>
+              <div className="main-info">
+                {(() => {
+                  if (item.school) {
+                    return <h4 className="name">{item.school}</h4>;
+                  }
+                })()}
+                {(() => {
+                  if (item.qualification) {
+                    return (
+                      <h5 className="qualification">{item.qualification}</h5>
+                    );
+                  }
+                })()}
+                {(() => {
+                  if (item.grade) {
+                    return <h5 className="grade">{item.grade}</h5>;
+                  }
+                })()}
+              </div>
+              <div className="side-info">
+                {(() => {
+                  if (item.location) {
+                    return <p className="location">{item.location}</p>;
+                  }
+                })()}
+                {(() => {
+                  if (item.ongoing) {
+                    if (Number(item.startDate)) {
+                      return (
+                        <p className="date">
+                          {format(item.startDate, 'MMM yyyy')} - present
+                        </p>
+                      );
+                    }
+                  } else {
+                    if (Number(item.startDate) && Number(item.endDate)) {
+                      return (
+                        <p className="date">
+                          {format(item.startDate, 'MMM yyyy')} -{' '}
+                          {format(item.endDate, 'MMM yyyy')}
+                        </p>
+                      );
+                    }
+                  }
+                })()}
+              </div>
               {(() => {
-                if (item.school) {
-                  return <h4 className="name">{item.school}</h4>;
-                }
-              })()}
-              {(() => {
-                if (item.qualification) {
-                  return <h5 className="name">{item.qualification}</h5>;
-                }
-              })()}
-              {(() => {
-                if (item.grade) {
-                  return <h5 className="name">{item.grade}</h5>;
-                }
-              })()}
-              {(() => {
-                if (item.location) {
-                  return <p className="name">{item.location}</p>;
+                if (
+                  item.additionalInfo.length > 1 ||
+                  (item.additionalInfo.length === 1 &&
+                    item.additionalInfo[0] !== '')
+                ) {
+                  return (
+                    <div className="additional-info">
+                      {item.additionalInfo.map((value, index) => {
+                        return <pre key={index}>{value}</pre>;
+                      })}
+                    </div>
+                  );
                 }
               })()}
             </div>
