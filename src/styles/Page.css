@@ -53,6 +53,11 @@
       font-size: calc(var(--page-width) / 46);
     }
 
+    & h6 {
+      font-size: calc(var(--page-width) / 48);
+      font-weight: bold;
+    }
+
     & pre {
       white-space: pre-wrap;
       text-align: justify;
@@ -148,7 +153,6 @@
         list-style-type: none;
 
         & pre {
-          list-style-position: inside;
           display: list-item;
           position: relative;
           padding-left: 10px;
@@ -169,5 +173,34 @@
 
   & .skills {
     grid-area: skills;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+
+    & .skills {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 1px;
+
+      margin-top: 4px;
+      list-style-type: none;
+
+      & pre {
+        display: list-item;
+        position: relative;
+        padding-left: 10px;
+
+        &::before {
+          content: "\2022";
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
   }
 }

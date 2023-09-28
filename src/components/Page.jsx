@@ -172,6 +172,38 @@ function Page() {
           return (
             <div className="skills">
               <h3>Skills</h3>
+              {cvData.skills.map((item) => {
+                return (
+                  <div className="skill-category" key={item.id}>
+                    {(() => {
+                      if (item.title) {
+                        return <h6 className="title">{item.title}</h6>;
+                      }
+                    })()}
+                    {(() => {
+                      const skills = getValueByKeyFragment(item, 'skills');
+                      if (skills.length === 0) {
+                        return null;
+                      }
+                      if (skills.every((content) => content === '')) {
+                        return null;
+                      }
+
+                      return (
+                        <div className="skills">
+                          {skills.map((value, index) => {
+                            if (value === '') {
+                              return null;
+                            }
+
+                            return <pre key={index}>{value}</pre>;
+                          })}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                );
+              })}
             </div>
           );
         }
