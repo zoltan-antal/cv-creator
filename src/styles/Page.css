@@ -20,17 +20,17 @@
   align-items: stretch;
   align-content: start;
   justify-content: stretch;
-  column-gap: calc(var(--page-width) / 20);
+  column-gap: calc(var(--page-width) / 28);
   row-gap: calc(var(--page-width) / 32);
   padding: calc(var(--page-width) / 32) calc(var(--page-width) / 32);
 
   & * {
-    font-weight: normal;
     font-size: calc(var(--page-width) / 52);
+    font-weight: normal;
 
     & h1 {
-      font-weight: bold;
       font-size: calc(var(--page-width) / 22);
+      font-weight: bold;
     }
 
     & h2 {
@@ -38,9 +38,10 @@
     }
 
     & h3 {
-      font-size: calc(var(--page-width) / 40);
+      font-size: calc(var(--page-width) / 38);
       text-transform: uppercase;
       font-weight: bold;
+      margin-bottom: calc(-1 * (var(--page-width) / 240));
     }
 
     & h4 {
