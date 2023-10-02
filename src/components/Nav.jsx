@@ -2,40 +2,23 @@ import '../styles/Nav.css';
 import { useRef } from 'react';
 import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
+import ConfirmDialog from './ConfirmDialog';
 
 function Nav() {
   const dispatchCvData = useCvDataDispatch();
-
-  const confirmDialogRef = useRef(null);
+  const clearConfirmDialogRef = useRef(null);
 
   return (
     <nav>
       <Button
         name={'Clear CV'}
-        onClick={() => confirmDialogRef.current.showModal()}
+        onClick={() => clearConfirmDialogRef.current.showModal()}
       />
-      <dialog ref={confirmDialogRef} className="confirm">
-        <div className="dialog-content">
-          <p>Are you sure you want to clear all contents of this CV?</p>
-          <div className="buttons">
-            <button
-              className="yes"
-              onClick={() => {
-                dispatchCvData({ type: 'clearAllData' });
-                confirmDialogRef.current.close();
-              }}
-            >
-              Yes
-            </button>
-            <button
-              className="no"
-              onClick={() => confirmDialogRef.current.close()}
-            >
-              No
-            </button>
-          </div>
-        </div>
-      </dialog>
+      <ConfirmDialog
+        ref={clearConfirmDialogRef}
+        message="Are you sure you want to clear all contents of this CV?"
+        onConfirm={() => dispatchCvData({ type: 'clearAllData' })}
+      />
     </nav>
   );
 }
