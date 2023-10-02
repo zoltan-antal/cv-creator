@@ -7,10 +7,11 @@ import blankCv from '../dataStructures/blankCv';
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
 
-const localCvData = parseDates(JSON.parse(localStorage.getItem('cvData')));
+const cvData = fetchStoredCvData();
+
 const initialCvData = {
-  savedCvData: localCvData || blankCv,
-  tempCvData: localCvData || blankCv,
+  savedCvData: cvData,
+  tempCvData: cvData,
 };
 
 export function CvDataProvider({ children }) {
@@ -53,7 +54,8 @@ function cvDataReducer(cvData, action) {
         ['savedCvData', ...action.path],
         _.get(cvData, ['tempCvData', ...action.path])
       );
-      localStorage.setItem('cvData', JSON.stringify(cvData.tempCvData));
+
+      storeCvData(cvData.tempCvData);
       break;
 
     case 'addListElement':
@@ -91,7 +93,7 @@ function cvDataReducer(cvData, action) {
       });
 
       if (action.save) {
-        localStorage.setItem('cvData', JSON.stringify(cvData.tempCvData));
+        storeCvData(cvData.tempCvData);
       }
 
       break;
@@ -113,7 +115,7 @@ function cvDataReducer(cvData, action) {
       });
 
       if (action.save) {
-        localStorage.setItem('cvData', JSON.stringify(cvData.tempCvData));
+        storeCvData(cvData.tempCvData);
       }
 
       break;
@@ -121,12 +123,64 @@ function cvDataReducer(cvData, action) {
     case 'clearAllData':
       cvData.tempCvData = blankCv;
       cvData.savedCvData = blankCv;
-      localStorage.setItem('cvData', JSON.stringify(blankCv));
+      clearCvData(cvData.tempCvData.cvId);
       break;
 
     default:
       throw Error('Unknown action: ' + action.type);
   }
+}
+
+function fetchStoredCvData() {
+  if (!localStorage.getItem('cvList')) {
+    const cv = { ...blankCv };
+    cv.cvId = crypto.randomUUID();
+    localStorage.setItem('cvList', JSON.stringify([cv]));
+    localStorage.setItem('cvId', cv.cvId);
+  }
+  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  let cvId = localStorage.getItem('cvId');
+  let cvData;
+  if (cvId) {
+    for (const cv of cvList) {
+      if (cv.cvId === cvId) {
+        cvData = cv;
+        break;
+      }
+    }
+  }
+  if (!cvId || !cvData) {
+    cvData = cvList[0];
+    localStorage.setItem('cvId', cvData.cvId);
+  }
+
+  return cvData;
+}
+
+function storeCvData(cvData) {
+  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  let index;
+  for (let i = 0; i < cvList.length; i++) {
+    if (cvList[i].cvId === cvData.cvId) {
+      index = i;
+    }
+  }
+  cvList[index] = cvData;
+  localStorage.setItem('cvList', JSON.stringify(cvList));
+}
+
+function clearCvData(id) {
+  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  let index;
+  for (let i = 0; i < cvList.length; i++) {
+    if (cvList[i].cvId === id) {
+      index = i;
+    }
+  }
+  const newBlankCv = { ...blankCv };
+  newBlankCv.cvId = id;
+  cvList[index] = newBlankCv;
+  localStorage.setItem('cvList', JSON.stringify(cvList));
 }
 
 function parseDates(obj) {

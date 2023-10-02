@@ -1,4 +1,6 @@
 const blankCv = {
+  cvName: 'untitled',
+  cvId: '',
   personalDetails: {
     fullName: '',
     professionalTitle: '',
