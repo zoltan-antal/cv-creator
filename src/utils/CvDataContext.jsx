@@ -3,15 +3,16 @@ import _ from 'lodash';
 import { createContext, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import blankCv from '../dataStructures/blankCv';
+import parseDates from '../utils/parseDates';
 
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
 
-const cvData = fetchStoredCvData();
+const fetchedCvData = fetchStoredCvData();
 
 const initialCvData = {
-  savedCvData: cvData,
-  tempCvData: cvData,
+  savedCvData: fetchedCvData,
+  tempCvData: fetchedCvData,
 };
 
 export function CvDataProvider({ children }) {
@@ -124,6 +125,10 @@ function cvDataReducer(cvData, action) {
       clearCvData(cvData);
       break;
 
+    case 'openCv':
+      openCv({ id: action.cvId, cvData: cvData });
+      break;
+
     default:
       throw Error('Unknown action: ' + action.type);
   }
@@ -186,18 +191,14 @@ function clearCvData(cvData) {
   localStorage.setItem('cvList', JSON.stringify(cvList));
 }
 
-function parseDates(obj) {
-  for (var key in obj) {
-    if (typeof obj[key] === 'object' && obj[key] !== null) {
-      // If the property is an object, recursively parse it
-      obj[key] = parseDates(obj[key]);
-    } else if (
-      typeof obj[key] === 'string' &&
-      obj[key].match(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/)
-    ) {
-      // If the property is a string in ISO date format, convert it to a Date object
-      obj[key] = new Date(obj[key]);
+function openCv({ id, cvData }) {
+  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  let index;
+  for (let i = 0; i < cvList.length; i++) {
+    if (cvList[i].cvId === id) {
+      index = i;
     }
   }
-  return obj;
+  cvData.savedCvData = cvList[index];
+  cvData.tempCvData = cvList[index];
 }
