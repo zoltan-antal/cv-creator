@@ -32,6 +32,7 @@ nav {
     border: 2px solid var(--light-text);
     border-radius: 5px;
     text-align: center;
+    user-select: none;
 
     & .dialog-content {
       display: flex;
@@ -39,28 +40,6 @@ nav {
       justify-content: flex-start;
       align-items: center;
       gap: 10px;
-
-      & .buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-
-        & button {
-          color: var(--light-text);
-          background-color: var(--light-background);
-          border: 2px solid var(--light-text);
-
-          &.yes:hover {
-            border-color: var(--green);
-          }
-
-          &.no:hover {
-            border-color: var(--red);
-          }
-        }
-      }
     }
   }
 }
