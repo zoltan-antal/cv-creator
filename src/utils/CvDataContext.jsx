@@ -121,9 +121,7 @@ function cvDataReducer(cvData, action) {
       break;
 
     case 'clearAllData':
-      clearCvData(cvData.tempCvData.cvId);
-      cvData.tempCvData = { ...blankCv };
-      cvData.savedCvData = { ...blankCv };
+      clearCvData(cvData);
       break;
 
     default:
@@ -169,17 +167,23 @@ function storeCvData(cvData) {
   localStorage.setItem('cvList', JSON.stringify(cvList));
 }
 
-function clearCvData(id) {
+function clearCvData(cvData) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
   let index;
   for (let i = 0; i < cvList.length; i++) {
-    if (cvList[i].cvId === id) {
+    if (cvList[i].cvId === cvData.tempCvData.cvId) {
       index = i;
     }
   }
+  const cvName = cvList[index].cvName;
   const newBlankCv = { ...blankCv };
-  newBlankCv.cvId = id;
+  newBlankCv.cvId = cvData.tempCvData.cvId;
+  newBlankCv.cvName = cvName;
   cvList[index] = newBlankCv;
+  console.log(newBlankCv);
+
+  cvData.tempCvData = { ...newBlankCv };
+  cvData.savedCvData = { ...newBlankCv };
   localStorage.setItem('cvList', JSON.stringify(cvList));
 }
 
