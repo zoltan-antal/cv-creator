@@ -1,5 +1,5 @@
 const blankCv = {
-  cvName: 'untitled',
+  cvName: 'Untitled CV',
   cvId: '',
   personalDetails: {
     fullName: '',
