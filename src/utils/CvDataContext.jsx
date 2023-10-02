@@ -121,9 +121,9 @@ function cvDataReducer(cvData, action) {
       break;
 
     case 'clearAllData':
-      cvData.tempCvData = blankCv;
-      cvData.savedCvData = blankCv;
       clearCvData(cvData.tempCvData.cvId);
+      cvData.tempCvData = { ...blankCv };
+      cvData.savedCvData = { ...blankCv };
       break;
 
     default:
