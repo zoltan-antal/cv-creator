@@ -162,24 +162,14 @@ function fetchStoredCvData() {
 
 function storeCvData(cvData) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  let index;
-  for (let i = 0; i < cvList.length; i++) {
-    if (cvList[i].cvId === cvData.cvId) {
-      index = i;
-    }
-  }
+  const index = cvList.findIndex((cv) => cv.cvId === cvData.cvId);
   cvList[index] = cvData;
   localStorage.setItem('cvList', JSON.stringify(cvList));
 }
 
 function clearCvData(cvData) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  let index;
-  for (let i = 0; i < cvList.length; i++) {
-    if (cvList[i].cvId === cvData.tempCvData.cvId) {
-      index = i;
-    }
-  }
+  const index = cvList.findIndex((cv) => cv.cvId === cvData.tempCvData.cvId);
   const cvName = cvList[index].cvName;
   const newBlankCv = { ...blankCv };
   newBlankCv.cvId = cvData.tempCvData.cvId;
@@ -193,12 +183,7 @@ function clearCvData(cvData) {
 
 function openCv({ id, cvData }) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  let index;
-  for (let i = 0; i < cvList.length; i++) {
-    if (cvList[i].cvId === id) {
-      index = i;
-    }
-  }
+  const index = cvList.findIndex((cv) => cv.cvId === id);
   cvData.savedCvData = cvList[index];
   cvData.tempCvData = cvList[index];
 }
