@@ -13,13 +13,12 @@
   & button {
 
     &.edit {
-      background-color: var(--dark-background);
-      border-color: transparent;
+      background-color: var(--light-background);
+      border-color: var(--light-text);
       border-width: 2px;
 
       &:hover {
-        background-color: var(--light-background);
-        border-color: var(--light-text);
+        border-color: var(--dark-text);
       }
     }
   }
