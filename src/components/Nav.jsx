@@ -16,7 +16,7 @@ function Nav() {
       />
       <dialog ref={confirmDialogRef} className="confirm">
         <div className="dialog-content">
-          <p>Are you sure you want to erase all data from this CV?</p>
+          <p>Are you sure you want to clear all contents of this CV?</p>
           <div className="buttons">
             <button
               className="yes"
