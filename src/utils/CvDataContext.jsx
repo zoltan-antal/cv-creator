@@ -180,7 +180,6 @@ function clearCvData(cvData) {
   newBlankCv.cvId = cvData.tempCvData.cvId;
   newBlankCv.cvName = cvName;
   cvList[index] = newBlankCv;
-  console.log(newBlankCv);
 
   cvData.tempCvData = { ...newBlankCv };
   cvData.savedCvData = { ...newBlankCv };
