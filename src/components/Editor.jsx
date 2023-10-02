@@ -2,6 +2,7 @@ import '../styles/Editor.css';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorSectionList from './EditorSectionList';
+import CvName from './CvName';
 import blankSchool from '../dataStructures/blankSchool';
 import blankJob from '../dataStructures/blankJob';
 import blankSkillCategory from '../dataStructures/blankSkillCategory';
@@ -11,6 +12,7 @@ function Editor() {
 
   return (
     <section className="editor">
+      <CvName></CvName>
       <EditorSection
         title={'Personal Details'}
         path={['personalDetails']}

@@ -12,7 +12,8 @@
 }
 
 .editor-section,
-.editor-section-list {
+.editor-section-list,
+.cv-name {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
