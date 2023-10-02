@@ -11,7 +11,7 @@ function Nav() {
   return (
     <nav>
       <Button
-        name={'Clear CV'}
+        name={'Clear'}
         onClick={() => clearConfirmDialogRef.current.showModal()}
       />
       <ConfirmDialog
