@@ -1,3 +1,4 @@
+import '../styles/ConfirmDialog.css';
 import { forwardRef } from 'react';
 
 const ConfirmDialog = forwardRef(function ConfirmDialog(
