@@ -21,8 +21,8 @@ function Nav() {
       <Button
         name={'New'}
         onClick={() => {
-          const cvId = addNewCv();
-          dispatchCvData({ type: 'openCv', cvId: cvId });
+          addNewCv();
+          dispatchCvData({ type: 'reloadCvData' });
         }}
       />
       <Button

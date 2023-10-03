@@ -30,7 +30,12 @@ function EditorSectionList({
         })()}
       </div>
       <div className="content" style={!isActive ? { display: 'none' } : {}}>
-        {_.get(cvData, ['tempCvData', ...path]).map((element, index) => {
+        {_.get(cvData, [
+          'cvLists',
+          'tempCvData',
+          cvData.selectedCvIndex,
+          ...path,
+        ]).map((element, index) => {
           return (
             <EditorSection
               key={element.id}

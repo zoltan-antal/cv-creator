@@ -15,7 +15,9 @@ function CvName() {
           case 'view':
             return (
               <>
-                <pre>{cvData.savedCvData.cvName}</pre>
+                <pre>
+                  {cvData.cvLists.savedCvData[cvData.selectedCvIndex].cvName}
+                </pre>
                 <Button type={'edit'} onClick={() => setMode('edit')} />
               </>
             );
@@ -26,7 +28,9 @@ function CvName() {
                 <input
                   type="text"
                   name={'cvName'}
-                  value={cvData.tempCvData.cvName}
+                  value={
+                    cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvName
+                  }
                   onChange={(e) =>
                     dispatchCvData({
                       type: 'update',

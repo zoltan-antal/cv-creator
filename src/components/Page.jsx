@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 function Page() {
   const cvDataImport = useCvData();
-  const cvData = cvDataImport.tempCvData;
+  const cvData = cvDataImport.cvLists.tempCvData[cvDataImport.selectedCvIndex];
 
   return (
     <div className="page">

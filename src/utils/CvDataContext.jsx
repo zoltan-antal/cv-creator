@@ -8,15 +8,18 @@ import parseDates from '../utils/parseDates';
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
 
-const fetchedCvData = fetchStoredCvData();
+// const fetchedCvData = fetchStoredCvData();
 
-const initialCvData = {
-  savedCvData: fetchedCvData,
-  tempCvData: fetchedCvData,
-};
+// const initialCvData = {
+//   savedCvData: fetchedCvData,
+//   tempCvData: fetchedCvData,
+// };
 
 export function CvDataProvider({ children }) {
-  const [cvData, dispatch] = useImmerReducer(cvDataReducer, initialCvData);
+  const [cvData, dispatch] = useImmerReducer(
+    cvDataReducer,
+    fetchStoredCvData()
+  );
 
   return (
     <CvDataContext.Provider value={cvData}>
@@ -38,29 +41,37 @@ export function useCvDataDispatch() {
 function cvDataReducer(cvData, action) {
   switch (action.type) {
     case 'update':
-      _.set(cvData, ['tempCvData', ...action.path], action.value);
+      _.set(
+        cvData.cvLists.tempCvData[cvData.selectedCvIndex],
+        [...action.path],
+        action.value
+      );
       break;
 
     case 'discard':
       _.set(
-        cvData,
-        ['tempCvData', ...action.path],
-        _.get(cvData, ['savedCvData', ...action.path])
+        cvData.cvLists.tempCvData[cvData.selectedCvIndex],
+        [...action.path],
+        _.get(cvData.cvLists.savedCvData[cvData.selectedCvIndex], [
+          ...action.path,
+        ])
       );
       break;
 
     case 'save':
       _.set(
-        cvData,
-        ['savedCvData', ...action.path],
-        _.get(cvData, ['tempCvData', ...action.path])
+        cvData.cvLists.savedCvData[cvData.selectedCvIndex],
+        [...action.path],
+        _.get(cvData.cvLists.tempCvData[cvData.selectedCvIndex], [
+          ...action.path,
+        ])
       );
 
-      storeCvData(cvData.tempCvData);
+      storeCvData(cvData);
       break;
 
     case 'addListElement':
-      Object.keys(cvData).forEach((key) => {
+      Object.keys(cvData.cvLists).forEach((key) => {
         if (action.tempOnly && key === 'savedCvData') {
           return;
         }
@@ -68,25 +79,43 @@ function cvDataReducer(cvData, action) {
         if (typeof action.blankDataElement === 'string') {
           _.set(
             cvData,
-            [key, ...action.path],
-            [..._.get(cvData, [key, ...action.path]), action.blankDataElement]
+            ['cvLists', key, cvData.selectedCvIndex, ...action.path],
+            [
+              ..._.get(cvData, [
+                'cvLists',
+                key,
+                cvData.selectedCvIndex,
+                ...action.path,
+              ]),
+              action.blankDataElement,
+            ]
           );
           return;
         }
 
         _.set(
           cvData,
-          [key, ...action.path],
+          ['cvLists', key, cvData.selectedCvIndex, ...action.path],
           [
-            ..._.get(cvData, [key, ...action.path]),
+            ..._.get(cvData, [
+              'cvLists',
+              key,
+              cvData.selectedCvIndex,
+              ...action.path,
+            ]),
             { ...action.blankDataElement },
           ]
         );
         _.set(
           cvData,
           [
-            ...[key, ...action.path],
-            _.get(cvData, [key, ...action.path]).length - 1,
+            ['cvLists', key, cvData.selectedCvIndex, ...action.path],
+            _.get(cvData, [
+              'cvLists',
+              key,
+              cvData.selectedCvIndex,
+              ...action.path,
+            ]).length - 1,
             'id',
           ],
           action.id
@@ -94,29 +123,39 @@ function cvDataReducer(cvData, action) {
       });
 
       if (action.save) {
-        storeCvData(cvData.tempCvData);
+        storeCvData(cvData);
       }
 
       break;
 
     case 'removeListElement':
-      Object.keys(cvData).forEach((key) => {
+      Object.keys(cvData.cvLists).forEach((key) => {
         if (action.tempOnly && key === 'savedCvData') {
           return;
         }
 
         _.set(
           cvData,
-          [key, ...action.path],
+          ['cvLists', key, cvData.selectedCvIndex, ...action.path],
           [
-            ..._.get(cvData, [key, ...action.path]).slice(0, action.index),
-            ..._.get(cvData, [key, ...action.path]).slice(action.index + 1),
+            ..._.get(cvData, [
+              'cvLists',
+              key,
+              cvData.selectedCvIndex,
+              ...action.path,
+            ]).slice(0, action.index),
+            ..._.get(cvData, [
+              'cvLists',
+              key,
+              cvData.selectedCvIndex,
+              ...action.path,
+            ]).slice(action.index + 1),
           ]
         );
       });
 
       if (action.save) {
-        storeCvData(cvData.tempCvData);
+        storeCvData(cvData);
       }
 
       break;
@@ -125,26 +164,21 @@ function cvDataReducer(cvData, action) {
       clearCvData(cvData);
       break;
 
-    case 'openCv':
-      // console.log('openCv before function prop id: ' + action.cvId);
-      // console.log(
-      //   'openCv before function stored id: ' + localStorage.getItem('cvId')
-      // );
-      // console.log(
-      //   'openCv before function stored list: ' +
-      //     JSON.parse(localStorage.getItem('cvList'))
-      // );
-      // console.log(JSON.parse(localStorage.getItem('cvList')));
-      // openCv({ id: action.cvId, cvData: cvData });
-      openCv({ id: localStorage.getItem('cvId'), cvData: cvData });
-      // console.log(
-      //   'openCv after function stored id: ' + localStorage.getItem('cvId')
-      // );
-      // console.log(
-      //   'openCv after function stored list: ' +
-      //     JSON.parse(localStorage.getItem('cvList'))
-      // );
-      // console.log(JSON.parse(localStorage.getItem('cvList')));
+    case 'reloadCvData':
+      console.log('RELOADCVDATA');
+      console.log('stored cvList:');
+      console.log(JSON.parse(localStorage.getItem('cvList')));
+      console.log('stored cvId:');
+      console.log(localStorage.getItem('cvId'));
+      cvData.cvLists.tempCvData = parseDates(
+        JSON.parse(localStorage.getItem('cvList'))
+      );
+      cvData.cvLists.savedCvData = cvData.cvLists.tempCvData;
+      cvData.selectedCvId = localStorage.getItem('cvId');
+      cvData.selectedCvIndex = cvData.cvLists.savedCvData.findIndex(
+        (cv) => cv.cvId === cvData.selectedCvId
+      );
+      // consoe.log(cvData);
       break;
 
     default:
@@ -163,54 +197,35 @@ function fetchStoredCvData() {
     localStorage.setItem('cvId', cv.cvId);
   }
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  let cvId = localStorage.getItem('cvId');
-  let cvData;
-  if (cvId) {
-    for (const cv of cvList) {
-      if (cv.cvId === cvId) {
-        cvData = cv;
-        break;
-      }
-    }
+
+  if (!localStorage.getItem('cvId')) {
+    localStorage.setItem('cvId', cvList[0].cvId);
   }
-  if (!cvId || !cvData) {
-    cvData = cvList[0];
-    localStorage.setItem('cvId', cvData.cvId);
-  }
+  const cvId = localStorage.getItem('cvId');
+  const cvIndex = cvList.findIndex((cv) => cv.cvId === cvId);
+
+  const cvData = {
+    cvLists: {
+      savedCvData: cvList,
+      tempCvData: cvList,
+    },
+    selectedCvId: cvId,
+    selectedCvIndex: cvIndex,
+  };
 
   return cvData;
 }
 
 function storeCvData(cvData) {
-  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  const index = cvList.findIndex((cv) => cv.cvId === cvData.cvId);
-  cvList[index] = cvData;
-  localStorage.setItem('cvList', JSON.stringify(cvList));
+  localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.tempCvData));
 }
 
 function clearCvData(cvData) {
-  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  const index = cvList.findIndex((cv) => cv.cvId === cvData.tempCvData.cvId);
-  const cvName = cvList[index].cvName;
   const newBlankCv = { ...blankCv };
-  newBlankCv.cvId = cvData.tempCvData.cvId;
-  newBlankCv.cvName = cvName;
-  cvList[index] = newBlankCv;
+  newBlankCv.cvId = cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvId;
+  newBlankCv.cvName = cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvName;
 
-  cvData.tempCvData = { ...newBlankCv };
-  cvData.savedCvData = { ...newBlankCv };
-  localStorage.setItem('cvList', JSON.stringify(cvList));
-}
-
-function openCv({ id, cvData }) {
-  // console.log('openCv function prop id: ' + id);
-  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-  // console.log('openCv function cvList: ' + cvList);
-  // console.log(cvList);
-  const index = cvList.findIndex((cv) => cv.cvId === id);
-  // console.log('openCv function cvList[index]: ' + cvList[index]);
-  // console.log(cvList[index]);
-  cvData.savedCvData = cvList[index];
-  cvData.tempCvData = cvList[index];
-  // localStorage.setItem('cvId', id);
+  cvData.cvLists.tempCvData[cvData.selectedCvIndex] = { ...newBlankCv };
+  cvData.cvLists.savedCvData[cvData.selectedCvIndex] = { ...newBlankCv };
+  localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.tempCvData));
 }

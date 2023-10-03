@@ -9,5 +9,4 @@ export default function addNewCv() {
 
   localStorage.setItem('cvList', JSON.stringify(cvList));
   localStorage.setItem('cvId', newCv.cvId);
-  return newCv.cvId;
 }

@@ -30,7 +30,12 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
               return (
                 <>
                   {mapViewFields({
-                    data: _.get(cvData, ['tempCvData', ...path]),
+                    data: _.get(cvData, [
+                      'cvLists',
+                      'tempCvData',
+                      cvData.selectedCvIndex,
+                      ...path,
+                    ]),
                   })}
                   <Button type={'edit'} onClick={() => setMode('edit')} />
                 </>
@@ -41,7 +46,12 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                 <>
                   {children}
                   {mapEditFields({
-                    data: _.get(cvData, ['tempCvData', ...path]),
+                    data: _.get(cvData, [
+                      'cvLists',
+                      'tempCvData',
+                      cvData.selectedCvIndex,
+                      ...path,
+                    ]),
                     path: path,
                   })}
                   <div className="manage-section">
