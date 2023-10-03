@@ -1,0 +1,20 @@
+dialog.cv-list .dialog-content {
+  & .cv {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+
+    &.selected {
+      background-color: var(--dark-background);
+    }
+
+    &:not(.selected):hover {
+      border: 1px solid var(--light-text);
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

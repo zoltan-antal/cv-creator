@@ -126,7 +126,25 @@ function cvDataReducer(cvData, action) {
       break;
 
     case 'openCv':
-      openCv({ id: action.cvId, cvData: cvData });
+      // console.log('openCv before function prop id: ' + action.cvId);
+      // console.log(
+      //   'openCv before function stored id: ' + localStorage.getItem('cvId')
+      // );
+      // console.log(
+      //   'openCv before function stored list: ' +
+      //     JSON.parse(localStorage.getItem('cvList'))
+      // );
+      // console.log(JSON.parse(localStorage.getItem('cvList')));
+      // openCv({ id: action.cvId, cvData: cvData });
+      openCv({ id: localStorage.getItem('cvId'), cvData: cvData });
+      // console.log(
+      //   'openCv after function stored id: ' + localStorage.getItem('cvId')
+      // );
+      // console.log(
+      //   'openCv after function stored list: ' +
+      //     JSON.parse(localStorage.getItem('cvList'))
+      // );
+      // console.log(JSON.parse(localStorage.getItem('cvList')));
       break;
 
     default:
@@ -135,7 +153,10 @@ function cvDataReducer(cvData, action) {
 }
 
 function fetchStoredCvData() {
-  if (!localStorage.getItem('cvList')) {
+  if (
+    !localStorage.getItem('cvList') ||
+    JSON.parse(localStorage.getItem('cvList')).length === 0
+  ) {
     const cv = { ...blankCv };
     cv.cvId = crypto.randomUUID();
     localStorage.setItem('cvList', JSON.stringify([cv]));
@@ -182,8 +203,14 @@ function clearCvData(cvData) {
 }
 
 function openCv({ id, cvData }) {
+  // console.log('openCv function prop id: ' + id);
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  // console.log('openCv function cvList: ' + cvList);
+  // console.log(cvList);
   const index = cvList.findIndex((cv) => cv.cvId === id);
+  // console.log('openCv function cvList[index]: ' + cvList[index]);
+  // console.log(cvList[index]);
   cvData.savedCvData = cvList[index];
   cvData.tempCvData = cvList[index];
+  // localStorage.setItem('cvId', id);
 }

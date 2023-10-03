@@ -26,7 +26,7 @@ function Nav() {
         }}
       />
       <Button
-        name={'Load'}
+        name={'CV list'}
         onClick={() => selectCvDialogRef.current.showModal()}
       />
       <ConfirmDialog
