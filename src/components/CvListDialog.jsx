@@ -12,36 +12,38 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
   return (
     <dialog ref={ref} className="cv-list">
       <div className="dialog-content">
-        {(() => {
-          return cvData.cvLists.savedCvData
-            .toSorted((a, b) => (a.cvName >= b.cvName ? 1 : -1))
-            .map((cv) => {
-              return (
-                <div
-                  key={cv.cvId}
-                  className={`cv${
-                    cv.cvId === cvData.selectedCvId ? ' selected' : ''
-                  }`}
-                  onClick={() => {
-                    localStorage.setItem('cvId', cv.cvId);
-                    dispatchCvData({ type: 'reloadCvData' });
-                  }}
-                >
-                  <p>{cv.cvName}</p>
-                  <div className="manage-cv">
-                    <Button
-                      type={'remove'}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteCv(cv.cvId);
-                        dispatchCvData({ type: 'reloadCvData' });
-                      }}
-                    />
+        <div className="list">
+          {(() => {
+            return cvData.cvLists.savedCvData
+              .toSorted((a, b) => (a.cvName >= b.cvName ? 1 : -1))
+              .map((cv) => {
+                return (
+                  <div
+                    key={cv.cvId}
+                    className={`cv${
+                      cv.cvId === cvData.selectedCvId ? ' selected' : ''
+                    }`}
+                    onClick={() => {
+                      localStorage.setItem('cvId', cv.cvId);
+                      dispatchCvData({ type: 'reloadCvData' });
+                    }}
+                  >
+                    <p>{cv.cvName}</p>
+                    <div className="manage-cv">
+                      <Button
+                        type={'remove'}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteCv(cv.cvId);
+                          dispatchCvData({ type: 'reloadCvData' });
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            });
-        })()}
+                );
+              });
+          })()}
+        </div>
         <div className="buttons">
           <Button
             type={'add'}
