@@ -3,16 +3,19 @@ import parseDates from './parseDates';
 
 export default function deleteCv(id) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+  const cvListSorted = cvList.toSorted((a, b) =>
+    a.cvName >= b.cvName ? 1 : -1
+  );
   if (cvList.length === 1) {
     addNewCv();
   }
   let currentId = localStorage.getItem('cvId');
   if (currentId === id) {
-    let index = cvList.findIndex((cv) => cv.cvId === id);
+    let index = cvListSorted.findIndex((cv) => cv.cvId === id);
     if (index === 0) {
-      currentId = cvList[index + 1].cvId;
+      currentId = cvListSorted[index + 1].cvId;
     } else {
-      currentId = cvList[index - 1].cvId;
+      currentId = cvListSorted[index - 1].cvId;
     }
     localStorage.setItem('cvId', currentId);
   }

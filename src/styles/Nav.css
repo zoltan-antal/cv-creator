@@ -5,7 +5,7 @@ nav {
   align-items: center;
   gap: 10px;
 
-  & button {
+  &>button {
     font-size: 1rem;
     font-weight: bold;
     padding: 8px 14px;
@@ -21,6 +21,7 @@ nav {
   }
 
   & dialog {
+    min-width: 40%;
     position: fixed;
     top: 30%;
     left: 50%;

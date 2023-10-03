@@ -4,7 +4,7 @@ import addIcon from '../assets/icons/plus-circle.svg';
 import deleteIcon from '../assets/icons/trash-can.svg';
 import '../styles/Button.css';
 
-function Button({ type, name, icon, onClick }) {
+function Button({ type, name, className, icon, onClick }) {
   if (!name && !icon) {
     switch (type) {
       case 'edit':
@@ -41,8 +41,12 @@ function Button({ type, name, icon, onClick }) {
     }
   }
 
+  if (!className) {
+    className = type;
+  }
+
   return (
-    <button className={type} onClick={onClick}>
+    <button className={className} onClick={onClick}>
       {icon || name}
     </button>
   );

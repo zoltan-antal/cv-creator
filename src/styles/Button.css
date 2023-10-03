@@ -18,8 +18,4 @@ button {
     filter: invert(1);
     pointer-events: none;
   }
-
-  &.add {
-    padding: 0px 5px;
-  }
 }

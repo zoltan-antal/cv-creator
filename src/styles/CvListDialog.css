@@ -1,5 +1,10 @@
 dialog.cv-list .dialog-content {
   & .cv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
     width: 100%;
     padding: 5px 20px;
     border-radius: 10px;
@@ -15,6 +20,42 @@ dialog.cv-list .dialog-content {
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  & .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 0px 20px;
+  }
+
+  & button {
+    border: none;
+    background-color: inherit;
+    height: 20px;
+
+    &:hover {
+      cursor: pointer;
+
+      &.remove img {
+        filter: invert(33%) sepia(83%) saturate(7477%) hue-rotate(360deg) brightness(95%) contrast(116%);
+      }
+
+      &.add img {
+        filter: invert(65%) sepia(47%) saturate(6053%) hue-rotate(106deg) brightness(97%) contrast(101%);
+      }
+    }
+
+    &.add {
+      height: 25px;
+    }
+
+    &.done {
+      background-color: var(--light-text);
     }
   }
 }
