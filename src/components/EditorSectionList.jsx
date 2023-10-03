@@ -52,6 +52,7 @@ function EditorSectionList({
             >
               <Button
                 type={'delete'}
+                className={'dark'}
                 name={`Delete ${elementName}`}
                 onClick={() =>
                   dispatchCvData({

@@ -9,15 +9,6 @@ nav {
     font-size: 1rem;
     font-weight: bold;
     padding: 8px 14px;
-    border: 2px solid var(--dark-background);
-    border-radius: 10px;
-    color: var(--dark-background);
-    background-color: var(--light-text);
-
-    &:hover {
-      cursor: pointer;
-      border: 2px solid var(--red);
-    }
   }
 
   & dialog {

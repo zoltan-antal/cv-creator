@@ -10,7 +10,7 @@
   color: var(--light-text);
   background-color: var(--light-background);
 
-  & button {
+  /* & button {
 
     &.edit {
       background-color: var(--light-background);
@@ -21,7 +21,7 @@
         border-color: var(--dark-text);
       }
     }
-  }
+  } */
 
   & input {
     flex-grow: 1;

@@ -1,5 +1,6 @@
 import '../styles/ConfirmDialog.css';
 import { forwardRef } from 'react';
+import Button from './Button';
 
 const ConfirmDialog = forwardRef(function ConfirmDialog(
   { message, onConfirm, onCancel },
@@ -10,28 +11,26 @@ const ConfirmDialog = forwardRef(function ConfirmDialog(
       <div className="dialog-content">
         <p>{message}</p>
         <div className="buttons">
-          <button
-            className="yes"
+          <Button
+            className="yes dark"
+            name="Yes"
             onClick={() => {
               if (onConfirm) {
                 onConfirm();
               }
               ref.current.close();
             }}
-          >
-            Yes
-          </button>
-          <button
-            className="no"
+          />
+          <Button
+            className="no dark"
+            name="No"
             onClick={() => {
               if (onCancel) {
                 onCancel();
               }
               ref.current.close();
             }}
-          >
-            No
-          </button>
+          />
         </div>
       </div>
     </dialog>

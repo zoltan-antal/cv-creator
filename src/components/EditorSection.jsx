@@ -37,7 +37,11 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                       ...path,
                     ]),
                   })}
-                  <Button type={'edit'} onClick={() => setMode('edit')} />
+                  <Button
+                    type={'edit'}
+                    className="dark"
+                    onClick={() => setMode('edit')}
+                  />
                 </>
               );
 
@@ -57,6 +61,7 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                   <div className="manage-section">
                     <Button
                       type={'discard'}
+                      className="dark"
                       onClick={() => {
                         dispatchCvData({
                           type: 'discard',
@@ -67,6 +72,7 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                     />
                     <Button
                       type={'save'}
+                      className="dark"
                       onClick={() => {
                         dispatchCvData({
                           type: 'save',

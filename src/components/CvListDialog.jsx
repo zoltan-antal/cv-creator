@@ -25,7 +25,6 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                   onClick={() => {
                     localStorage.setItem('cvId', cv.cvId);
                     dispatchCvData({ type: 'reloadCvData' });
-                    // ref.current.close();
                   }}
                 >
                   <p>{cv.cvName}</p>
@@ -52,7 +51,7 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
             }}
           />
           <Button
-            className="done"
+            className="done dark"
             name="Done"
             onClick={() => ref.current.close()}
           />

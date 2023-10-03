@@ -2,7 +2,6 @@ import '../styles/Nav.css';
 import { useRef } from 'react';
 import { useCvDataDispatch } from '../utils/CvDataContext';
 import Button from './Button';
-import addNewCv from '../utils/addNewCv';
 import ConfirmDialog from './ConfirmDialog';
 import CvListDialog from './CvListDialog';
 
@@ -16,17 +15,12 @@ function Nav() {
     <nav>
       <Button
         name={'Clear'}
+        className="dark red"
         onClick={() => clearConfirmDialogRef.current.showModal()}
       />
       <Button
-        name={'New'}
-        onClick={() => {
-          addNewCv();
-          dispatchCvData({ type: 'reloadCvData' });
-        }}
-      />
-      <Button
         name={'CV list'}
+        className="dark"
         onClick={() => selectCvDialogRef.current.showModal()}
       />
       <ConfirmDialog

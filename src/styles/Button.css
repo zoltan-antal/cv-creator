@@ -11,11 +11,76 @@ button {
 
   &:hover {
     cursor: pointer;
-  }
 
-  & img {
-    height: 100%;
-    filter: invert(1);
-    pointer-events: none;
+    &.remove img {
+      filter: invert(17%) sepia(44%) saturate(7214%) hue-rotate(357deg) brightness(109%) contrast(115%);
+    }
+
+    &.add img {
+      filter: invert(65%) sepia(47%) saturate(6053%) hue-rotate(106deg) brightness(97%) contrast(101%);
+    }
+
+    &.light {
+      background-color: rgb(205, 205, 205);
+    }
+
+    &.dark {
+      border-color: var(--dark-text);
+    }
+
+    &.red {
+      border: 2px solid var(--red);
+    }
+
+    &.green {
+      border: 2px solid var(--green)
+    }
   }
+}
+
+& img {
+  height: 100%;
+  filter: invert(80%) sepia(38%) saturate(1%) hue-rotate(6deg) brightness(103%) contrast(92%);
+}
+
+& .light,
+& .dark {
+  border: 2px solid;
+  background-color: inherit;
+  border-radius: 10px;
+  padding: 8px 20px;
+}
+
+& .light {
+  color: var(--dark-background);
+  background-color: var(--light-text);
+}
+
+& .dark {
+  color: var(--light-text);
+  background-color: var(--light-background);
+  border-color: var(--light-text);
+}
+
+& .add,
+& .remove {
+  border: none;
+  padding: none;
+  background-color: inherit;
+  border: none;
+}
+
+& .add {
+  height: 25px;
+}
+
+& .remove {
+  height: 20px;
+}
+
+& .expand,
+& .collapse {
+  height: 90%;
+  background-color: inherit;
+  border: none;
 }

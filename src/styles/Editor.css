@@ -38,24 +38,6 @@
     & .title {
       color: var(--light-text);
     }
-
-    & button {
-      height: 90%;
-      background-color: inherit;
-      border: none;
-    }
-  }
-
-  & button.edit {
-    background-color: var(--light-background);
-    padding: 8px 15px;
-    color: var(--light-text);
-    border-radius: 10px;
-    border: 1px solid var(--light-text);
-
-    &:hover {
-      border-color: transparent;
-    }
   }
 
   & .manage-section {
@@ -64,52 +46,15 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-
-    & button {
-      background-color: var(--light-background);
-      padding: 8px 20px;
-      color: var(--light-text);
-      border-radius: 10px;
-      border: 2px solid var(--light-text);
-
-      &.discard:hover {
-        border-color: var(--dark-text);
-      }
-
-      &.save:hover {
-        border-color: var(--green);
-      }
-    }
-  }
-
-  & button.delete {
-    align-self: stretch;
-    background-color: var(--light-background);
-    padding: 8px 15px;
-    color: var(--light-text);
-    font-weight: bold;
-    border: 2px solid var(--light-text);
-    border-radius: 10px;
-
-    &:hover {
-      border-color: var(--red);
-    }
   }
 
   & button.add {
     align-self: center;
-    height: 30px;
-    background-color: inherit;
-    border: none;
-
-    &:hover {
-      filter: invert(40%) sepia(39%) saturate(5655%) hue-rotate(107deg) brightness(97%) contrast(102%);
-    }
   }
+}
 
-  & .editor-list button.add {
-    height: 25px;
-  }
+.editor-section-list .content>button.add {
+  height: 30px;
 }
 
 .editor-section-list .editor-section {

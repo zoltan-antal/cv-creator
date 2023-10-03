@@ -5,6 +5,8 @@ import deleteIcon from '../assets/icons/trash-can.svg';
 import '../styles/Button.css';
 
 function Button({ type, name, className, icon, onClick }) {
+  let classList = className ? className : '';
+
   if (!name && !icon) {
     switch (type) {
       case 'edit':
@@ -41,12 +43,25 @@ function Button({ type, name, className, icon, onClick }) {
     }
   }
 
-  if (!className) {
-    className = type;
+  switch (type) {
+    case 'save':
+      classList += ' green';
+      break;
+
+    case 'delete':
+      classList += ' red';
+      break;
+
+    default:
+      break;
+  }
+
+  if (!classList) {
+    classList = type;
   }
 
   return (
-    <button className={className} onClick={onClick}>
+    <button className={classList} onClick={onClick}>
       {icon || name}
     </button>
   );

@@ -18,7 +18,11 @@ function CvName() {
                 <pre>
                   {cvData.cvLists.savedCvData[cvData.selectedCvIndex].cvName}
                 </pre>
-                <Button type={'edit'} onClick={() => setMode('edit')} />
+                <Button
+                  type={'edit'}
+                  className="dark"
+                  onClick={() => setMode('edit')}
+                />
               </>
             );
 
@@ -42,6 +46,7 @@ function CvName() {
                 <div className="manage-section">
                   <Button
                     type={'discard'}
+                    className="dark"
                     onClick={() => {
                       dispatchCvData({
                         type: 'discard',
@@ -52,6 +57,7 @@ function CvName() {
                   />
                   <Button
                     type={'save'}
+                    className="dark"
                     onClick={() => {
                       dispatchCvData({
                         type: 'save',
