@@ -8,13 +8,6 @@ import parseDates from '../utils/parseDates';
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
 
-// const fetchedCvData = fetchStoredCvData();
-
-// const initialCvData = {
-//   savedCvData: fetchedCvData,
-//   tempCvData: fetchedCvData,
-// };
-
 export function CvDataProvider({ children }) {
   const [cvData, dispatch] = useImmerReducer(
     cvDataReducer,
@@ -165,11 +158,6 @@ function cvDataReducer(cvData, action) {
       break;
 
     case 'reloadCvData':
-      console.log('RELOADCVDATA');
-      console.log('stored cvList:');
-      console.log(JSON.parse(localStorage.getItem('cvList')));
-      console.log('stored cvId:');
-      console.log(localStorage.getItem('cvId'));
       cvData.cvLists.tempCvData = parseDates(
         JSON.parse(localStorage.getItem('cvList'))
       );
@@ -178,7 +166,6 @@ function cvDataReducer(cvData, action) {
       cvData.selectedCvIndex = cvData.cvLists.savedCvData.findIndex(
         (cv) => cv.cvId === cvData.selectedCvId
       );
-      // consoe.log(cvData);
       break;
 
     default:

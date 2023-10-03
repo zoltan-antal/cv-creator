@@ -31,11 +31,6 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteCv(cv.cvId);
-                    console.log('CVLISTDIALOG');
-                    console.log('stored cvList:');
-                    console.log(JSON.parse(localStorage.getItem('cvList')));
-                    console.log('stored cvId:');
-                    console.log(localStorage.getItem('cvId'));
                     dispatchCvData({ type: 'reloadCvData' });
                   }}
                 />
