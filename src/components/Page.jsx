@@ -54,20 +54,16 @@ function Page() {
               </div>
             );
           } else if (key.includes('links')) {
-            return (
-              <>
-                {value.map((value, index) => {
-                  if (value) {
-                    return (
-                      <div className="entry link" key={index}>
-                        <img src={linkIcon} alt="" />
-                        <pre>{value}</pre>
-                      </div>
-                    );
-                  }
-                })}
-              </>
-            );
+            return value.map((value, index) => {
+              if (value) {
+                return (
+                  <div className="entry link" key={index}>
+                    <img src={linkIcon} alt="" />
+                    <pre>{value}</pre>
+                  </div>
+                );
+              }
+            });
           }
         })}
       </div>
