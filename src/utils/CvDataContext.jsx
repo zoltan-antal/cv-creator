@@ -99,20 +99,6 @@ function cvDataReducer(cvData, action) {
             { ...action.blankDataElement },
           ]
         );
-        _.set(
-          cvData,
-          [
-            ['cvLists', key, cvData.selectedCvIndex, ...action.path],
-            _.get(cvData, [
-              'cvLists',
-              key,
-              cvData.selectedCvIndex,
-              ...action.path,
-            ]).length - 1,
-            'id',
-          ],
-          action.id
-        );
       });
 
       if (action.save) {

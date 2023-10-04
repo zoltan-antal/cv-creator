@@ -70,11 +70,12 @@ function EditorSectionList({
           type={'add'}
           onClick={() => {
             const id = self.crypto.randomUUID();
+            const newDataElement = { ...blankDataElement };
+            newDataElement.id = id;
             dispatchCvData({
               type: 'addListElement',
               path: path,
-              blankDataElement: blankDataElement,
-              id: id,
+              blankDataElement: newDataElement,
               save: true,
             });
             setActiveEditorSection(id);
