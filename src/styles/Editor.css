@@ -6,9 +6,7 @@
   gap: 20px;
   padding: 20px;
 
-  & * {
-    user-select: none;
-  }
+  overflow-y: auto;
 }
 
 .editor-section,
@@ -30,6 +28,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    user-select: none;
 
     &:hover {
       cursor: pointer;

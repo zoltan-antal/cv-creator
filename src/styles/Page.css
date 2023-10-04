@@ -3,12 +3,8 @@
   --page-width: 40vw;
   width: var(--page-width);
   aspect-ratio: 1 / 1.41;
-  color: var(--light-text);
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  color: var(--light-text);
 
   display: grid;
   grid-template-columns: 1fr minmax(auto, 30%);

@@ -7,4 +7,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+
+  ::-webkit-scrollbar {
+    background-color: var(--dark-background);
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--dark-text);
+    border-radius: 0px;
+  }
 }
