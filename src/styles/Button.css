@@ -49,6 +49,7 @@ button {
   background-color: inherit;
   border-radius: 10px;
   padding: 8px 14px;
+  font-weight: bold;
 }
 
 & .light {

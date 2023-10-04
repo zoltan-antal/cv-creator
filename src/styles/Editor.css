@@ -40,11 +40,19 @@
   }
 
   & .manage-section {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    &>button {
+      &:nth-child(1) {
+        justify-self: right;
+      }
+
+      &:nth-child(2) {
+        justify-self: left;
+      }
+    }
   }
 
   & button.add {

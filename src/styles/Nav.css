@@ -7,8 +7,6 @@ nav {
 
   &>button {
     font-size: 1rem;
-    font-weight: bold;
-    padding: 8px 14px;
   }
 
   & dialog {
