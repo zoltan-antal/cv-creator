@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 7px 0px 3px;
+  font-size: 0.9rem;
+
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+
+  & a {
+    color: var(--dark-text);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--light-text);
+    }
+  }
+
+  & img {
+    height: 1rem;
+    filter: invert(80%) sepia(38%) saturate(1%) hue-rotate(6deg) brightness(103%) contrast(92%);
+  }
+}
