@@ -10,19 +10,6 @@
   color: var(--light-text);
   background-color: var(--light-background);
 
-  /* & button {
-
-    &.edit {
-      background-color: var(--light-background);
-      border-color: var(--light-text);
-      border-width: 2px;
-
-      &:hover {
-        border-color: var(--dark-text);
-      }
-    }
-  } */
-
   & input {
     flex-grow: 1;
     font-size: 1.4rem;
