@@ -11,7 +11,7 @@
   align-items: center;
 
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr minmax(auto, 30%);
   grid-template-rows: auto auto auto;
   grid-template-areas:
     "personal-info personal-data"
@@ -99,6 +99,10 @@
       justify-content: flex-start;
       align-items: center;
       gap: calc(var(--page-width) / 96);
+
+      & pre {
+        text-align: left;
+      }
     }
   }
 
