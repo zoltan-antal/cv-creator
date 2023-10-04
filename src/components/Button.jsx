@@ -40,6 +40,14 @@ function Button({ type, name, className, icon, onClick }) {
       case 'collapse':
         icon = <img src={collapseIcon} alt={'Collapse'} />;
         break;
+
+      case 'yes':
+        name = 'Yes';
+        break;
+
+      case 'no':
+        name = 'No';
+        break;
     }
   }
 
@@ -49,6 +57,14 @@ function Button({ type, name, className, icon, onClick }) {
       break;
 
     case 'delete':
+      classList += ' red';
+      break;
+
+    case 'yes':
+      classList += ' green';
+      break;
+
+    case 'no':
       classList += ' red';
       break;
 

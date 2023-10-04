@@ -19,17 +19,16 @@ nav {
     padding: 20px;
     color: var(--light-text);
     background-color: var(--light-background);
-    border: 2px solid var(--light-text);
+    border: 3px solid var(--light-text);
     border-radius: 5px;
-    text-align: center;
     user-select: none;
 
     & .dialog-content {
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+      align-items: stretch;
+      gap: 15px;
     }
   }
 }

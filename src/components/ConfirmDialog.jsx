@@ -13,7 +13,7 @@ const ConfirmDialog = forwardRef(function ConfirmDialog(
         <div className="buttons">
           <Button
             className="yes dark"
-            name="Yes"
+            type="yes"
             onClick={() => {
               if (onConfirm) {
                 onConfirm();
@@ -23,7 +23,7 @@ const ConfirmDialog = forwardRef(function ConfirmDialog(
           />
           <Button
             className="no dark"
-            name="No"
+            type="no"
             onClick={() => {
               if (onCancel) {
                 onCancel();
