@@ -1,8 +1,18 @@
 import blankCv from '../dataStructures/blankCv';
+import exampleCv from '../dataStructures/exampleCv';
 import parseDates from './parseDates';
 
-export default function addNewCv() {
-  const newCv = { ...blankCv };
+export default function addNewCv({ type }) {
+  let newCv;
+  switch (type) {
+    case 'blank':
+      newCv = { ...blankCv };
+      break;
+
+    case 'example':
+      newCv = { ...exampleCv };
+      break;
+  }
   newCv.cvId = crypto.randomUUID();
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
   cvList.push(newCv);

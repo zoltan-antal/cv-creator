@@ -48,7 +48,7 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
           <Button
             type={'add'}
             onClick={() => {
-              addNewCv();
+              addNewCv({ type: 'blank' });
               dispatchCvData({ type: 'reloadCvData' });
             }}
           />
