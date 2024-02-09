@@ -5,7 +5,7 @@ function Header() {
   return (
     <header>
       <h1>
-        <a href="">CV Generator</a>
+        <a href="">CV Creator</a>
       </h1>
       <Nav />
     </header>
