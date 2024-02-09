@@ -6,7 +6,7 @@ require('express-async-errors');
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/ping', (request, response) => {
+app.get('/ping', (request, response) => {
   response.send('Hello');
 });
 
