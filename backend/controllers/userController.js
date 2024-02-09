@@ -38,8 +38,6 @@ const createUser = async (req, res) => {
   res.json(userWithoutSensitiveData);
 };
 
-// ...
-
 module.exports = {
   getAllUsers,
   getUserById,

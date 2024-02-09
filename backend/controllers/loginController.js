@@ -1,9 +1,8 @@
 const passport = require('passport');
 
 const login = async (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', (err, user) => {
     if (err) {
-      console.log(err);
       return res.status(500).json({ message: 'Internal Server Error' });
     }
     if (!user) {
