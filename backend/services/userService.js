@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, CV } = require('../models');
 
 const getAllUsers = async () => {
   return await User.find({});
@@ -25,6 +25,7 @@ const createUser = async (username, passwordHash) => {
 };
 
 const deleteUserById = async (id) => {
+  await CV.deleteMany({ user: id });
   return await User.findByIdAndDelete(id);
 };
 
