@@ -21,9 +21,14 @@ const createUser = async (username, passwordHash) => {
   return await user.save();
 };
 
+const deleteUserById = async (id) => {
+  return await User.findByIdAndDelete(id);
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   getUserByUsername,
   createUser,
+  deleteUserById,
 };
