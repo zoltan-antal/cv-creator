@@ -5,12 +5,14 @@ import addNewCv from '../utils/addNewCv';
 import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';
 import CvListDialog from './CvListDialog';
+import LoginDialog from './LoginDialog';
 
 function Nav() {
   const dispatchCvData = useCvDataDispatch();
 
   const clearConfirmDialogRef = useRef(null);
   const selectCvDialogRef = useRef(null);
+  const loginDialogRef = useRef(null);
 
   return (
     <nav>
@@ -32,12 +34,18 @@ function Nav() {
         className="dark"
         onClick={() => selectCvDialogRef.current.showModal()}
       />
+      <Button
+        name={'Login'}
+        className="dark"
+        onClick={() => loginDialogRef.current.showModal()}
+      />
       <ConfirmDialog
         ref={clearConfirmDialogRef}
         message="Are you sure you want to clear all contents of this CV?"
         onConfirm={() => dispatchCvData({ type: 'clearAllData' })}
       />
       <CvListDialog ref={selectCvDialogRef} />
+      <LoginDialog ref={loginDialogRef} />
     </nav>
   );
 }
