@@ -3,10 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const getAllUsers = async (req, res) => {
   const users = await userService.getAllUsers();
-  const usersWithoutSensitiveData = users.map((user) => {
-    return { id: user.id, username: user.username };
-  });
-  res.json(usersWithoutSensitiveData);
+  res.json(users);
 };
 
 const getUserById = async (req, res) => {
@@ -17,11 +14,7 @@ const getUserById = async (req, res) => {
     res.status(404).end();
   }
 
-  const userWithoutSensitiveData = {
-    id: user.id,
-    username: user.username,
-  };
-  res.json(userWithoutSensitiveData);
+  res.json(user);
 };
 
 const createUser = async (req, res) => {
@@ -31,11 +24,7 @@ const createUser = async (req, res) => {
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
   const user = await userService.createUser(username, passwordHash);
-  const userWithoutSensitiveData = {
-    id: user.id,
-    username: user.username,
-  };
-  res.json(userWithoutSensitiveData);
+  res.json(user);
 };
 
 const deleteUser = async (req, res) => {
