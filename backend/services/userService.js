@@ -25,10 +25,24 @@ const deleteUserById = async (id) => {
   return await User.findByIdAndDelete(id);
 };
 
+const addCV = async (userId, cvId) => {
+  const user = await User.findById(userId);
+  user.CVs = [...user.CVs, cvId];
+  return await user.save();
+};
+
+const removeCV = async (userId, cvId) => {
+  const user = await User.findById(userId);
+  user.CVs = user.CVs.filter((id) => id.toString() !== cvId);
+  return await user.save();
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   getUserByUsername,
   createUser,
   deleteUserById,
+  addCV,
+  removeCV,
 };

@@ -12,6 +12,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  CVs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'CV',
+    },
+  ],
 });
 
 userSchema.plugin(uniqueValidator);
