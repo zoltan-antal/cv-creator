@@ -15,7 +15,8 @@ const configurePassport = (passport) => {
         if (!user) {
           return done(null, false);
         }
-        return done(null, user);
+        const userBasic = { username: user.username, id: user.id };
+        return done(null, userBasic);
       } catch (err) {
         return done(err, false);
       }

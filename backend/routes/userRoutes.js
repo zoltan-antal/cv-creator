@@ -3,6 +3,11 @@ const router = require('express').Router();
 const userController = require('../controllers/userController');
 
 router.get('/', userController.getAllUsers);
+router.get(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  userController.getCurrentUser
+);
 router.get('/:id', userController.getUserById);
 router.post('/', userController.createUser);
 router.delete(

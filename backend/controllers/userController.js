@@ -17,6 +17,11 @@ const getUserById = async (req, res) => {
   res.json(user);
 };
 
+const getCurrentUser = async (req, res) => {
+  const user = await userService.getUserById(req.user.id);
+  res.json(user);
+};
+
 const createUser = async (req, res) => {
   const { username, password } = req.body;
 
@@ -36,6 +41,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
+  getCurrentUser,
   createUser,
   deleteUser,
 };
