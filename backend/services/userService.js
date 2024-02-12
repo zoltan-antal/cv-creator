@@ -5,7 +5,7 @@ const getAllUsers = async () => {
 };
 
 const getUserById = async (id) => {
-  return await User.findById(id);
+  return await User.findById(id).populate('CVs', { content: 1, id: 1 });
 };
 
 const getUserByUsername = async (username) => {
