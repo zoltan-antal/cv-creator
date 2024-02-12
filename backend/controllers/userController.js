@@ -30,7 +30,7 @@ const createUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   const id = req.user.id;
   await userService.deleteUserById(id);
-  res.send(204);
+  res.status(204).end();
 };
 
 module.exports = {
