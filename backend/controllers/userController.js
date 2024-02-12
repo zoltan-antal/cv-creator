@@ -11,7 +11,7 @@ const getUserById = async (req, res) => {
   const user = await userService.getUserById(id);
 
   if (!user) {
-    res.status(404).end();
+    return res.status(404).end();
   }
 
   res.json(user);
