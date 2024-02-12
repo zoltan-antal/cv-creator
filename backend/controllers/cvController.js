@@ -22,6 +22,22 @@ const createCV = async (req, res) => {
   res.json(savedCV);
 };
 
+const updateCVById = async (req, res) => {
+  const id = req.params.id;
+  const cv = await cvService.getCVById(id);
+
+  if (!cv) {
+    return res.status(404).end();
+  }
+
+  const body = req.body;
+  const user = req.user;
+
+  const updatedCV = await cvService.updateCVById(id, body, user.id);
+
+  res.json(updatedCV);
+};
+
 const deleteCVById = async (req, res) => {
   const id = req.params.id;
   const user = req.user;
@@ -40,5 +56,6 @@ const deleteCVById = async (req, res) => {
 module.exports = {
   getCVById,
   createCV,
+  updateCVById,
   deleteCVById,
 };

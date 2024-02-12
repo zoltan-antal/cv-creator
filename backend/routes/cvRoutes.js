@@ -12,6 +12,11 @@ router.post(
   passport.authenticate('jwt', { session: false }),
   cvController.createCV
 );
+router.put(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  cvController.updateCVById
+);
 router.delete(
   '/:id',
   passport.authenticate('jwt', { session: false }),

@@ -13,6 +13,19 @@ const createCV = async (content, userId) => {
   return await cv.save();
 };
 
+const updateCVById = async (cvId, content, userId) => {
+  const cv = {
+    content,
+    user: userId,
+  };
+
+  return await CV.findByIdAndUpdate(cvId, cv, {
+    new: true,
+    runValidators: true,
+    context: 'query',
+  });
+};
+
 const deleteCVById = async (id) => {
   return await CV.findByIdAndDelete(id);
 };
@@ -20,5 +33,6 @@ const deleteCVById = async (id) => {
 module.exports = {
   getCVById,
   createCV,
+  updateCVById,
   deleteCVById,
 };
