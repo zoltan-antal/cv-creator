@@ -11,8 +11,8 @@ const LoginDialog = forwardRef(function LoginDialog(_, ref) {
     e.preventDefault();
     try {
       const user = await loginService.login({ username, password });
-      console.log(user);
-      ref.current.close();
+      localStorage.setItem('cvCreatorAuthToken', user.token);
+      location.reload();
     } catch (error) {
       alert(error.response.data.error);
     }

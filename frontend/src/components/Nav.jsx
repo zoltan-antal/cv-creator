@@ -1,6 +1,7 @@
 import '../styles/Nav.css';
 import { useRef } from 'react';
 import { useCvDataDispatch } from '../utils/CvDataContext';
+import { useSession } from '../utils/SessionContext';
 import addNewCv from '../utils/addNewCv';
 import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';
@@ -9,6 +10,7 @@ import LoginDialog from './LoginDialog';
 
 function Nav() {
   const dispatchCvData = useCvDataDispatch();
+  const session = useSession();
 
   const clearConfirmDialogRef = useRef(null);
   const selectCvDialogRef = useRef(null);
@@ -34,11 +36,15 @@ function Nav() {
         className="dark"
         onClick={() => selectCvDialogRef.current.showModal()}
       />
-      <Button
-        name={'Login'}
-        className="dark"
-        onClick={() => loginDialogRef.current.showModal()}
-      />
+      {!session.user ? (
+        <Button
+          name={'Login'}
+          className="dark"
+          onClick={() => loginDialogRef.current.showModal()}
+        />
+      ) : (
+        <Button name={'Log out'} className="dark" onClick={() => {}} />
+      )}
       <ConfirmDialog
         ref={clearConfirmDialogRef}
         message="Are you sure you want to clear all contents of this CV?"
