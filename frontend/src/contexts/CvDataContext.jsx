@@ -2,8 +2,10 @@
 import _ from 'lodash';
 import { createContext, useContext } from 'react';
 import { useImmerReducer } from 'use-immer';
-import blankCv from '../dataStructures/blankCv';
 import parseDates from '../utils/parseDates';
+import fetchStoredCvData from '../utils/fetchStoredCvData';
+import storeCvData from '../utils/storeCvData';
+import clearCvData from '../utils/clearCvData';
 
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
@@ -157,48 +159,4 @@ function cvDataReducer(cvData, action) {
     default:
       throw Error('Unknown action: ' + action.type);
   }
-}
-
-function fetchStoredCvData() {
-  if (
-    !localStorage.getItem('cvList') ||
-    JSON.parse(localStorage.getItem('cvList')).length === 0
-  ) {
-    const cv = { ...blankCv };
-    cv.cvId = crypto.randomUUID();
-    localStorage.setItem('cvList', JSON.stringify([cv]));
-    localStorage.setItem('cvId', cv.cvId);
-  }
-  const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-
-  if (!localStorage.getItem('cvId')) {
-    localStorage.setItem('cvId', cvList[0].cvId);
-  }
-  const cvId = localStorage.getItem('cvId');
-  const cvIndex = cvList.findIndex((cv) => cv.cvId === cvId);
-
-  const cvData = {
-    cvLists: {
-      savedCvData: cvList,
-      tempCvData: cvList,
-    },
-    selectedCvId: cvId,
-    selectedCvIndex: cvIndex,
-  };
-
-  return cvData;
-}
-
-function storeCvData(cvData) {
-  localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.tempCvData));
-}
-
-function clearCvData(cvData) {
-  const newBlankCv = { ...blankCv };
-  newBlankCv.cvId = cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvId;
-  newBlankCv.cvName = cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvName;
-
-  cvData.cvLists.tempCvData[cvData.selectedCvIndex] = { ...newBlankCv };
-  cvData.cvLists.savedCvData[cvData.selectedCvIndex] = { ...newBlankCv };
-  localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.tempCvData));
 }
