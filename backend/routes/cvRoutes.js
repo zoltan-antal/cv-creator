@@ -7,6 +7,11 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   cvController.getCVById
 );
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  cvController.getUserCVs
+);
 router.post(
   '/',
   passport.authenticate('jwt', { session: false }),

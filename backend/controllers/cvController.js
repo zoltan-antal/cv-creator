@@ -12,6 +12,12 @@ const getCVById = async (req, res) => {
   res.json(cv);
 };
 
+const getUserCVs = async (req, res) => {
+  const userId = req.user.id;
+  const CVs = await cvService.getCVsByUserId(userId);
+  res.json(CVs);
+};
+
 const createCV = async (req, res) => {
   const body = req.body;
   const user = req.user;
@@ -55,6 +61,7 @@ const deleteCVById = async (req, res) => {
 
 module.exports = {
   getCVById,
+  getUserCVs,
   createCV,
   updateCVById,
   deleteCVById,

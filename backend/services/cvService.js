@@ -4,6 +4,10 @@ const getCVById = async (id) => {
   return await CV.findById(id);
 };
 
+const getCVsByUserId = async (id) => {
+  return await CV.find({ user: id }).select({ user: 0 });
+};
+
 const createCV = async (body, userId) => {
   const cv = new CV({
     ...body,
@@ -32,6 +36,7 @@ const deleteCVById = async (id) => {
 
 module.exports = {
   getCVById,
+  getCVsByUserId,
   createCV,
   updateCVById,
   deleteCVById,
