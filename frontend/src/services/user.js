@@ -16,4 +16,9 @@ async function getUser() {
   return response.data;
 }
 
-export default { getUser, setToken };
+async function createUser(credentials) {
+  const response = await axios.post(baseUrl, credentials);
+  return response.data;
+}
+
+export default { getUser, createUser, setToken };
