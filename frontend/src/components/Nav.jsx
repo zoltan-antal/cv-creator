@@ -43,7 +43,14 @@ function Nav() {
           onClick={() => loginDialogRef.current.showModal()}
         />
       ) : (
-        <Button name={'Log out'} className="dark" onClick={() => {}} />
+        <Button
+          name={'Logout'}
+          className="dark"
+          onClick={() => {
+            localStorage.removeItem('cvCreatorAuthToken');
+            location.reload();
+          }}
+        />
       )}
       <ConfirmDialog
         ref={clearConfirmDialogRef}
