@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { useState } from 'react';
-import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
 

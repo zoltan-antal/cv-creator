@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvDataDispatch } from '../contexts/CvDataContext';
 import { useEffect } from 'react';
 
 function EditorField({ title, name, type, value, path }) {

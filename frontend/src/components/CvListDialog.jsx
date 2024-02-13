@@ -1,6 +1,6 @@
 import '../styles/CvListDialog.css';
 import { forwardRef } from 'react';
-import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import deleteCv from '../utils/deleteCv';
 import addNewCv from '../utils/addNewCv';
 import Button from './Button';

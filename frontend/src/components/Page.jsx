@@ -1,5 +1,5 @@
 import '../styles/Page.css';
-import { useCvData } from '../utils/CvDataContext';
+import { useCvData } from '../contexts/CvDataContext';
 import emailIcon from '../assets/icons/email.svg';
 import phoneIcon from '../assets/icons/phone.svg';
 import addressIcon from '../assets/icons/map-marker.svg';

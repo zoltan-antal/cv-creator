@@ -1,6 +1,6 @@
 import '../styles/MainComponent.css';
 import { useEffect } from 'react';
-import { useSessionDispatch } from '../utils/SessionContext';
+import { useSessionDispatch } from '../contexts/SessionContext';
 import userService from '../services/user';
 import Editor from './Editor';
 import Display from './Display';

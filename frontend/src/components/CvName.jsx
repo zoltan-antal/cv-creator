@@ -1,6 +1,6 @@
 import '../styles/CvName.css';
 import { useState } from 'react';
-import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import Button from './Button';
 
 function CvName() {

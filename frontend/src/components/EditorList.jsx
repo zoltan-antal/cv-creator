@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import '../styles/EditorList.css';
-import { useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvDataDispatch } from '../contexts/CvDataContext';
 import Button from './Button';
 
 function EditorList({ title, type, path, data }) {

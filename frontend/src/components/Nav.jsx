@@ -1,7 +1,7 @@
 import '../styles/Nav.css';
 import { useRef } from 'react';
-import { useCvDataDispatch } from '../utils/CvDataContext';
-import { useSession } from '../utils/SessionContext';
+import { useCvDataDispatch } from '../contexts/CvDataContext';
+import { useSession } from '../contexts/SessionContext';
 import addNewCv from '../utils/addNewCv';
 import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';

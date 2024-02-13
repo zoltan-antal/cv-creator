@@ -1,7 +1,7 @@
 import '../styles/EditorSection.css';
 import _ from 'lodash';
 import { useState } from 'react';
-import { useCvData, useCvDataDispatch } from '../utils/CvDataContext';
+import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import Button from './Button';
 import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
