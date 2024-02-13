@@ -13,7 +13,7 @@ function Footer() {
         <img src={githubIcon} alt="GitHub" />
       </a>
       <pre> | </pre>
-      <a className="repo" href="https://github.com/zoltan-antal/cv-generator">
+      <a className="repo" href="https://github.com/zoltan-antal/cv-creator">
         Source code
       </a>
     </footer>
