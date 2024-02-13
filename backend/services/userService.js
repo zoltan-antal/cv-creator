@@ -6,7 +6,7 @@ const getAllUsers = async () => {
 
 const getUserById = async (id) => {
   return await User.findById(id).populate('CVs', {
-    content: { cvName: 1 },
+    name: 1,
     id: 1,
   });
 };

@@ -15,26 +15,26 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
         <div className="list">
           {(() => {
             return cvData.cvLists.savedCvData
-              .toSorted((a, b) => (a.cvName >= b.cvName ? 1 : -1))
+              .toSorted((a, b) => (a.name >= b.name ? 1 : -1))
               .map((cv) => {
                 return (
                   <div
-                    key={cv.cvId}
+                    key={cv.id}
                     className={`cv${
-                      cv.cvId === cvData.selectedCvId ? ' selected' : ''
+                      cv.id === cvData.selectedCvId ? ' selected' : ''
                     }`}
                     onClick={() => {
-                      localStorage.setItem('cvId', cv.cvId);
+                      localStorage.setItem('cvId', cv.id);
                       dispatchCvData({ type: 'reloadCvData' });
                     }}
                   >
-                    <p>{cv.cvName}</p>
+                    <p>{cv.name}</p>
                     <div className="manage-cv">
                       <Button
                         type={'remove'}
                         onClick={(e) => {
                           e.stopPropagation();
-                          deleteCv(cv.cvId);
+                          deleteCv(cv.id);
                           dispatchCvData({ type: 'reloadCvData' });
                         }}
                       />

@@ -16,7 +16,7 @@ function CvName() {
             return (
               <>
                 <pre>
-                  {cvData.cvLists.savedCvData[cvData.selectedCvIndex].cvName}
+                  {cvData.cvLists.savedCvData[cvData.selectedCvIndex].name}
                 </pre>
                 <Button
                   type={'edit'}
@@ -31,14 +31,12 @@ function CvName() {
               <>
                 <input
                   type="text"
-                  name={'cvName'}
-                  value={
-                    cvData.cvLists.tempCvData[cvData.selectedCvIndex].cvName
-                  }
+                  name={'name'}
+                  value={cvData.cvLists.tempCvData[cvData.selectedCvIndex].name}
                   onChange={(e) =>
                     dispatchCvData({
                       type: 'update',
-                      path: ['cvName'],
+                      path: ['name'],
                       value: e.target.value,
                     })
                   }
@@ -50,7 +48,7 @@ function CvName() {
                     onClick={() => {
                       dispatchCvData({
                         type: 'discard',
-                        path: ['cvName'],
+                        path: ['name'],
                       });
                       setMode('view');
                     }}
@@ -61,7 +59,7 @@ function CvName() {
                     onClick={() => {
                       dispatchCvData({
                         type: 'save',
-                        path: ['cvName'],
+                        path: ['name'],
                       });
                       setMode('view');
                     }}

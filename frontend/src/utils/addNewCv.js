@@ -13,10 +13,10 @@ export default function addNewCv({ type }) {
       newCv = { ...exampleCv };
       break;
   }
-  newCv.cvId = crypto.randomUUID();
+  newCv.id = crypto.randomUUID();
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
   cvList.push(newCv);
 
   localStorage.setItem('cvList', JSON.stringify(cvList));
-  localStorage.setItem('cvId', newCv.cvId);
+  localStorage.setItem('cvId', newCv.id);
 }

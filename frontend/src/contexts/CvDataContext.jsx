@@ -152,7 +152,7 @@ function cvDataReducer(cvData, action) {
       cvData.cvLists.savedCvData = cvData.cvLists.tempCvData;
       cvData.selectedCvId = localStorage.getItem('cvId');
       cvData.selectedCvIndex = cvData.cvLists.savedCvData.findIndex(
-        (cv) => cv.cvId === cvData.selectedCvId
+        (cv) => cv.id === cvData.selectedCvId
       );
       break;
 

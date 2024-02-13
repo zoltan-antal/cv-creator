@@ -4,18 +4,18 @@ const getCVById = async (id) => {
   return await CV.findById(id);
 };
 
-const createCV = async (content, userId) => {
+const createCV = async (body, userId) => {
   const cv = new CV({
-    content,
+    ...body,
     user: userId,
   });
 
   return await cv.save();
 };
 
-const updateCVById = async (cvId, content, userId) => {
+const updateCVById = async (cvId, body, userId) => {
   const cv = {
-    content,
+    ...body,
     user: userId,
   };
 

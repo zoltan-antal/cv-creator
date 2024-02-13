@@ -1,18 +1,20 @@
 const blankCv = {
-  cvName: 'Untitled CV',
-  cvId: '',
-  personalDetails: {
-    fullName: '',
-    professionalTitle: '',
-    email: '',
-    phone: '',
-    address: '',
-    links: [''],
-    professionalSummary_long: '',
+  name: 'Untitled CV',
+  id: '',
+  content: {
+    personalDetails: {
+      fullName: '',
+      professionalTitle: '',
+      email: '',
+      phone: '',
+      address: '',
+      links: [''],
+      professionalSummary_long: '',
+    },
+    education: [],
+    workExperience: [],
+    skills: [],
   },
-  education: [],
-  workExperience: [],
-  skills: [],
 };
 
 export default blankCv;

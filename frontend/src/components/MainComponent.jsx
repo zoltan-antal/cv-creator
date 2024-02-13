@@ -11,7 +11,6 @@ function Main() {
   useEffect(() => {
     const initialiseSession = async () => {
       const token = localStorage.getItem('cvCreatorAuthToken');
-      console.log(token);
       if (!token) {
         return;
       }
