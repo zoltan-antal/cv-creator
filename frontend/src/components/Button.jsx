@@ -77,7 +77,7 @@ function Button({ type, name, className, icon, onClick }) {
   }
 
   return (
-    <button className={classList} onClick={onClick}>
+    <button className={classList} onClick={onClick} type={type}>
       {icon || name}
     </button>
   );
