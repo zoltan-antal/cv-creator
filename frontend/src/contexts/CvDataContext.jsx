@@ -145,16 +145,22 @@ function cvDataReducer(cvData, action) {
       clearCvData(cvData);
       break;
 
-    case 'reloadCvData':
-      cvData.cvLists.tempCvData = parseDates(
-        JSON.parse(localStorage.getItem('cvList'))
-      );
-      cvData.cvLists.savedCvData = cvData.cvLists.tempCvData;
-      cvData.selectedCvId = localStorage.getItem('cvId');
-      cvData.selectedCvIndex = cvData.cvLists.savedCvData.findIndex(
+    case 'reloadCvData': {
+      const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
+      cvData.cvLists.tempCvData = cvList;
+      cvData.cvLists.savedCvData = cvList;
+      let selectedCvId = localStorage.getItem('cvId');
+      let selectedCvIndex = cvList.findIndex(
         (cv) => cv.id === cvData.selectedCvId
       );
+      if (selectedCvIndex === -1) {
+        selectedCvId = cvList[0].id;
+        selectedCvIndex = 0;
+      }
+      cvData.selectedCvId = selectedCvId;
+      cvData.selectedCvIndex = selectedCvIndex;
       break;
+    }
 
     default:
       throw Error('Unknown action: ' + action.type);
