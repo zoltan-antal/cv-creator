@@ -7,6 +7,7 @@ import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';
 import CvListDialog from './CvListDialog';
 import LoginDialog from './LoginDialog';
+import LogoutButton from './LogoutButton';
 
 function Nav() {
   const dispatchCvData = useCvDataDispatch();
@@ -43,14 +44,7 @@ function Nav() {
           onClick={() => loginDialogRef.current.showModal()}
         />
       ) : (
-        <Button
-          name={'Logout'}
-          className="dark"
-          onClick={() => {
-            localStorage.removeItem('cvCreatorAuthToken');
-            location.reload();
-          }}
-        />
+        <LogoutButton />
       )}
       <ConfirmDialog
         ref={clearConfirmDialogRef}
