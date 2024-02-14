@@ -28,7 +28,7 @@ async function updateCV(id, cv) {
   const requestConfig = {
     headers: { Authorization: token },
   };
-  const response = await axios.post(`${baseUrl}/${id}`, cv, requestConfig);
+  const response = await axios.put(`${baseUrl}/${id}`, cv, requestConfig);
   return response.data;
 }
 
