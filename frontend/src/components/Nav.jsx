@@ -27,8 +27,8 @@ function Nav() {
       <Button
         name={'Example CV'}
         className="dark"
-        onClick={() => {
-          addNewCv({ type: 'example', session });
+        onClick={async () => {
+          await addNewCv({ type: 'example', session });
           dispatchCvData({ type: 'reloadCvData' });
         }}
       />
