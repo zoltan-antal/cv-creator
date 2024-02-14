@@ -1,6 +1,7 @@
 import '../styles/CvListDialog.css';
 import { forwardRef } from 'react';
 import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+import { useSession } from '../contexts/SessionContext';
 import deleteCv from '../utils/deleteCv';
 import addNewCv from '../utils/addNewCv';
 import Button from './Button';
@@ -8,6 +9,7 @@ import Button from './Button';
 const CvListDialog = forwardRef(function CvListDialog(_, ref) {
   const cvData = useCvData();
   const dispatchCvData = useCvDataDispatch();
+  const session = useSession();
 
   return (
     <dialog ref={ref} className="cv-list">
@@ -48,7 +50,7 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
           <Button
             type={'add'}
             onClick={() => {
-              addNewCv({ type: 'blank' });
+              addNewCv({ type: 'blank', session });
               dispatchCvData({ type: 'reloadCvData' });
             }}
           />

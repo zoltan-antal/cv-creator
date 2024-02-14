@@ -28,7 +28,7 @@ function Nav() {
         name={'Example CV'}
         className="dark"
         onClick={() => {
-          addNewCv({ type: 'example' });
+          addNewCv({ type: 'example', session });
           dispatchCvData({ type: 'reloadCvData' });
         }}
       />
