@@ -1,6 +1,6 @@
 import '../styles/Nav.css';
 import { useRef } from 'react';
-import { useCvDataDispatch } from '../contexts/CvDataContext';
+import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import { useSession } from '../contexts/SessionContext';
 import addNewCv from '../utils/addNewCv';
 import Button from './Button';
@@ -8,8 +8,12 @@ import ConfirmDialog from './ConfirmDialog';
 import CvListDialog from './CvListDialog';
 import LoginDialog from './LoginDialog';
 import LogoutButton from './LogoutButton';
+import cvService from '../services/cv';
+import _ from 'lodash';
+import blankCv from '../dataStructures/blankCv';
 
 function Nav() {
+  const cvData = useCvData();
   const dispatchCvData = useCvDataDispatch();
   const session = useSession();
 
@@ -49,9 +53,16 @@ function Nav() {
       <ConfirmDialog
         ref={clearConfirmDialogRef}
         message="Are you sure you want to clear all contents of this CV?"
-        onConfirm={async () =>
-          await dispatchCvData({ type: 'clearAllData', session })
-        }
+        onConfirm={async () => {
+          dispatchCvData({ type: 'clearAllData', session });
+          const newBlankCv = { ...blankCv };
+          newBlankCv.name =
+            cvData.cvLists.tempCvData[cvData.selectedCvIndex].name;
+          await cvService.updateCV(
+            cvData.selectedCvId,
+            _.omit(newBlankCv, ['id'])
+          );
+        }}
       />
       <CvListDialog ref={selectCvDialogRef} />
       <LoginDialog ref={loginDialogRef} />

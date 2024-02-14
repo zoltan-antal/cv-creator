@@ -5,7 +5,7 @@ import { useImmerReducer } from 'use-immer';
 import parseDates from '../utils/parseDates';
 import fetchStoredCvData from '../utils/fetchStoredCvData';
 import storeCvData from '../utils/storeCvData';
-import clearCvData from '../utils/clearCvData';
+import blankCv from '../dataStructures/blankCv';
 
 const CvDataContext = createContext(null);
 const CvDataDispatchContext = createContext(null);
@@ -141,9 +141,16 @@ function cvDataReducer(cvData, action) {
 
       break;
 
-    case 'clearAllData':
-      clearCvData(cvData, action.session);
+    case 'clearAllData': {
+      const newBlankCv = { ...blankCv };
+      newBlankCv.id = cvData.cvLists.tempCvData[cvData.selectedCvIndex].id;
+      newBlankCv.name = cvData.cvLists.tempCvData[cvData.selectedCvIndex].name;
+
+      cvData.cvLists.tempCvData[cvData.selectedCvIndex] = { ...newBlankCv };
+      cvData.cvLists.savedCvData[cvData.selectedCvIndex] = { ...newBlankCv };
+      localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.tempCvData));
       break;
+    }
 
     case 'reloadCvData': {
       const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
