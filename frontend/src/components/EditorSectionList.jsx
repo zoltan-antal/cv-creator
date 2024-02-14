@@ -1,8 +1,10 @@
 import _ from 'lodash';
 import { useState } from 'react';
 import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+import { useSession } from '../contexts/SessionContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
+import cvService from '../services/cv';
 
 function EditorSectionList({
   title,
@@ -15,6 +17,7 @@ function EditorSectionList({
 }) {
   const cvData = useCvData();
   const dispatchCvData = useCvDataDispatch();
+  const session = useSession();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
   return (
@@ -54,14 +57,20 @@ function EditorSectionList({
                 type={'delete'}
                 className={'dark'}
                 name={`Delete ${elementName}`}
-                onClick={() =>
+                onClick={async () => {
                   dispatchCvData({
                     type: 'removeListElement',
                     path: path,
                     index: index,
                     save: true,
-                  })
-                }
+                  });
+                  if (session) {
+                    await cvService.updateCV(
+                      cvData.selectedCvIndex,
+                      cvData.cvLists.tempCvData[cvData.selectedCvId]
+                    );
+                  }
+                }}
               />
             </EditorSection>
           );

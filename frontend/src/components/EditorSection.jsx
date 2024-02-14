@@ -2,13 +2,16 @@ import '../styles/EditorSection.css';
 import _ from 'lodash';
 import { useState } from 'react';
 import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+import { useSession } from '../contexts/SessionContext';
 import Button from './Button';
 import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
+import cvService from '../services/cv';
 
 function EditorSection({ children, title, path, isActive, onShow, onHide }) {
   const cvData = useCvData();
   const dispatchCvData = useCvDataDispatch();
+  const session = useSession();
   const [mode, setMode] = useState('view');
 
   return (
@@ -73,11 +76,17 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                     <Button
                       type={'save'}
                       className="dark"
-                      onClick={() => {
+                      onClick={async () => {
                         dispatchCvData({
                           type: 'save',
                           path: path,
                         });
+                        if (session) {
+                          cvService.updateCV(
+                            cvData.selectedCvId,
+                            cvData.cvLists.tempCvData[cvData.selectedCvIndex]
+                          );
+                        }
                         setMode('view');
                       }}
                     />

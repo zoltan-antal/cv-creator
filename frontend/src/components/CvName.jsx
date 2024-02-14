@@ -1,11 +1,14 @@
 import '../styles/CvName.css';
 import { useState } from 'react';
 import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+import { useSession } from '../contexts/SessionContext';
 import Button from './Button';
+import cvService from '../services/cv';
 
 function CvName() {
   const cvData = useCvData();
   const dispatchCvData = useCvDataDispatch();
+  const session = useSession();
   const [mode, setMode] = useState('view');
 
   return (
@@ -56,11 +59,17 @@ function CvName() {
                   <Button
                     type={'save'}
                     className="dark"
-                    onClick={() => {
+                    onClick={async () => {
                       dispatchCvData({
                         type: 'save',
                         path: ['name'],
                       });
+                      if (session) {
+                        cvService.updateCV(
+                          cvData.selectedCvId,
+                          cvData.cvLists.tempCvData[cvData.selectedCvIndex]
+                        );
+                      }
                       setMode('view');
                     }}
                   />
