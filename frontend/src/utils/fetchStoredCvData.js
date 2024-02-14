@@ -16,8 +16,12 @@ function fetchStoredCvData() {
   if (!localStorage.getItem('cvId')) {
     localStorage.setItem('cvId', cvList[0].id);
   }
-  const cvId = localStorage.getItem('cvId');
-  const cvIndex = cvList.findIndex((cv) => cv.id === cvId);
+  let cvId = localStorage.getItem('cvId');
+  let cvIndex = cvList.findIndex((cv) => cv.id === cvId);
+  if (cvIndex === -1) {
+    cvId = cvList[0].id;
+    cvIndex = 0;
+  }
 
   const cvData = {
     cvLists: {
