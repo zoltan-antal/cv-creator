@@ -49,7 +49,9 @@ function Nav() {
       <ConfirmDialog
         ref={clearConfirmDialogRef}
         message="Are you sure you want to clear all contents of this CV?"
-        onConfirm={async () => await dispatchCvData({ type: 'clearAllData' })}
+        onConfirm={async () =>
+          await dispatchCvData({ type: 'clearAllData', session })
+        }
       />
       <CvListDialog ref={selectCvDialogRef} />
       <LoginDialog ref={loginDialogRef} />

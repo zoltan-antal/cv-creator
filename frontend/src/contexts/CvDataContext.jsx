@@ -142,7 +142,7 @@ function cvDataReducer(cvData, action) {
       break;
 
     case 'clearAllData':
-      clearCvData(cvData);
+      clearCvData(cvData, action.session);
       break;
 
     case 'reloadCvData': {

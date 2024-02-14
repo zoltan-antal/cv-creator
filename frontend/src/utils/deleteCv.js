@@ -2,7 +2,7 @@ import addNewCv from './addNewCv';
 import parseDates from './parseDates';
 import cvService from '../services/cv';
 
-export default async function deleteCv(id) {
+export default async function deleteCv(id, session = null) {
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
   const cvListSorted = cvList.toSorted((a, b) => (a.name >= b.name ? 1 : -1));
   if (cvList.length === 1) {
@@ -19,6 +19,8 @@ export default async function deleteCv(id) {
     localStorage.setItem('cvId', currentId);
   }
   const filteredCvList = cvList.filter((cv) => cv.id !== id);
-  await cvService.deleteCV(id);
+  if (session) {
+    await cvService.deleteCV(id);
+  }
   localStorage.setItem('cvList', JSON.stringify(filteredCvList));
 }

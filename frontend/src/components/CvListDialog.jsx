@@ -36,7 +36,7 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                         type={'remove'}
                         onClick={async (e) => {
                           e.stopPropagation();
-                          await deleteCv(cv.id);
+                          await deleteCv(cv.id, session);
                           dispatchCvData({ type: 'reloadCvData' });
                         }}
                       />
