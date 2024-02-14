@@ -37,7 +37,7 @@ function Nav() {
         className="dark"
         onClick={() => selectCvDialogRef.current.showModal()}
       />
-      {!session.user ? (
+      {!session ? (
         <Button
           name={'Login'}
           className="dark"

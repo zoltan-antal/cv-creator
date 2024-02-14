@@ -5,7 +5,7 @@ const SessionContext = createContext(null);
 const SessionDispatchContext = createContext(null);
 
 export function SessionProvider({ children }) {
-  const [session, dispatch] = useReducer(sessionReducer, initialSession);
+  const [session, dispatch] = useReducer(sessionReducer, null);
 
   return (
     <SessionContext.Provider value={session}>
@@ -37,8 +37,3 @@ function sessionReducer(session, action) {
     }
   }
 }
-
-const initialSession = {
-  token: '',
-  user: '',
-};
