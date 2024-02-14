@@ -17,8 +17,6 @@ export default function deleteCv(id) {
     }
     localStorage.setItem('cvId', currentId);
   }
-  const filteredCvList = cvList.filter((cv) => {
-    return cv.id !== id;
-  });
+  const filteredCvList = cvList.filter((cv) => cv.id !== id);
   localStorage.setItem('cvList', JSON.stringify(filteredCvList));
 }
