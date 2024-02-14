@@ -154,8 +154,6 @@ function cvDataReducer(cvData, action) {
 
     case 'reloadCvData': {
       const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
-      console.log('cvList:');
-      console.log(cvList);
       cvData.cvLists.tempCvData = cvList;
       cvData.cvLists.savedCvData = cvList;
       let selectedCvId = localStorage.getItem('cvId');
