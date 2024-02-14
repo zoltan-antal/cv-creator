@@ -17,10 +17,9 @@ export default async function addNewCv({ type, session = null }) {
   newCv.id = crypto.randomUUID();
   const cvList = parseDates(JSON.parse(localStorage.getItem('cvList')));
   cvList.push(newCv);
+  localStorage.setItem('cvList', JSON.stringify(cvList));
+  localStorage.setItem('cvId', newCv.id);
   if (session) {
     await cvService.createCV(newCv);
   }
-
-  localStorage.setItem('cvList', JSON.stringify(cvList));
-  localStorage.setItem('cvId', newCv.id);
 }
