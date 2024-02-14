@@ -32,4 +32,12 @@ async function updateCV(id, cv) {
   return response.data;
 }
 
-export default { getCVs, createCV, updateCV, setToken };
+async function deleteCV(id) {
+  const requestConfig = {
+    headers: { Authorization: token },
+  };
+  const response = await axios.delete(`${baseUrl}/${id}`, requestConfig);
+  return response.data;
+}
+
+export default { getCVs, createCV, updateCV, deleteCV, setToken };
