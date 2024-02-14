@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import _ from 'lodash';
 import Button from './Button';
 import userService from '../services/user';
 import loginService from '../services/login';
+import cvService from '../services/cv';
+import { useCvData } from '../contexts/CvDataContext';
 
 const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
+  const cvList = useCvData().cvLists.savedCvData;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +18,10 @@ const SignUpForm = () => {
       await userService.createUser({ username, password });
       const user = await loginService.login({ username, password });
       localStorage.setItem('cvCreatorAuthToken', user.token);
+      cvService.setToken(user.token);
+      cvList.forEach(
+        async (cv) => await cvService.createCV(_.omit(cv, ['id']))
+      );
       location.reload();
     } catch (error) {
       alert(error.response.data.error);
