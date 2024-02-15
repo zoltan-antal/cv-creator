@@ -4,7 +4,7 @@ import emailIcon from '../assets/icons/email.svg';
 import phoneIcon from '../assets/icons/phone.svg';
 import addressIcon from '../assets/icons/map-marker.svg';
 import linkIcon from '../assets/icons/link.svg';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { useSelector } from 'react-redux';
 
 function Page() {
@@ -110,19 +110,20 @@ function Page() {
                       })()}
                       {(() => {
                         if (item.ongoing) {
-                          if (Number(item.startDate)) {
+                          if (item.startDate) {
                             return (
                               <p className="date">
-                                {format(item.startDate, 'MMM yyyy')} - present
+                                {format(parseISO(item.startDate), 'MMM yyyy')} -
+                                present
                               </p>
                             );
                           }
                         } else {
-                          if (Number(item.startDate) && Number(item.endDate)) {
+                          if (item.startDate && item.endDate) {
                             return (
                               <p className="date">
-                                {format(item.startDate, 'MMM yyyy')} -{' '}
-                                {format(item.endDate, 'MMM yyyy')}
+                                {format(parseISO(item.startDate), 'MMM yyyy')} -{' '}
+                                {format(parseISO(item.startDate), 'MMM yyyy')}
                               </p>
                             );
                           }
@@ -188,19 +189,20 @@ function Page() {
                       })()}
                       {(() => {
                         if (item.ongoing) {
-                          if (Number(item.startDate)) {
+                          if (item.startDate) {
                             return (
                               <p className="date">
-                                {format(item.startDate, 'MMM yyyy')} - present
+                                {format(parseISO(item.startDate), 'MMM yyyy')} -
+                                present
                               </p>
                             );
                           }
                         } else {
-                          if (Number(item.startDate) && Number(item.endDate)) {
+                          if (item.startDate && item.endDate) {
                             return (
                               <p className="date">
-                                {format(item.startDate, 'MMM yyyy')} -{' '}
-                                {format(item.endDate, 'MMM yyyy')}
+                                {format(parseISO(item.startDate), 'MMM yyyy')} -{' '}
+                                {format(parseISO(item.startDate), 'MMM yyyy')}
                               </p>
                             );
                           }

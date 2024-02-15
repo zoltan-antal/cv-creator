@@ -1,4 +1,3 @@
-import { format } from 'date-fns';
 // import { useCvDataDispatch } from '../contexts/CvDataContext';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -77,12 +76,15 @@ function EditorField({ title, name, type, value, path }) {
               <input
                 type={type}
                 name={name}
-                value={Date.parse(value) !== 0 ? format(value, 'yyyy-MM') : ''}
+                // value={value ? format(value, 'yyyy-MM') : ''}
+                value={value}
                 onChange={
-                  (e) =>
-                    dispatch(
-                      updateTempCV({ value: new Date(e.target.value), path })
-                    )
+                  // (e) => {
+                  //   const dateValue = new Date(e.target.value);
+                  //   const isoDateString = dateValue.toISOString();
+                  //   dispatch(updateTempCV({ value: isoDateString, path }));
+                  // }
+                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
                   // dispatchCvData({
                   //   type: 'update',
                   //   path: path,

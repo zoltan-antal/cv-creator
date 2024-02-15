@@ -5,8 +5,8 @@ const blankSchool = {
   qualification: '',
   grade: '',
   ongoing: false,
-  startDate: new Date(0),
-  endDate: new Date(0),
+  startDate: '',
+  endDate: '',
   additionalInfo_long: [''],
 };
 

@@ -4,8 +4,8 @@ const blankJob = {
   company: '',
   location: '',
   ongoing: false,
-  startDate: new Date(0),
-  endDate: new Date(0),
+  startDate: '',
+  endDate: '',
   responsibilities_long: [''],
 };
 

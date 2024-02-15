@@ -20,8 +20,8 @@ const exampleCv = {
         qualification: 'BSc in Computer Science',
         grade: '1st class',
         ongoing: true,
-        startDate: new Date('2019-09-01T00:00:00.000Z'),
-        endDate: new Date(0),
+        startDate: '2019-09',
+        endDate: '',
         additionalInfo_long: ['Committee member in drama society for 2 year.'],
       },
       {
@@ -31,8 +31,8 @@ const exampleCv = {
         qualification: 'A levels: Maths & Physics',
         grade: 'A*',
         ongoing: false,
-        startDate: new Date('2017-09-01T00:00:00.000Z'),
-        endDate: new Date('2019-07-01T00:00:00.000Z'),
+        startDate: '2017-09',
+        endDate: '2019-07',
         additionalInfo_long: [
           'Football captain for 1 year',
           'Won local maths competition',
@@ -46,8 +46,8 @@ const exampleCv = {
         company: 'MySpace',
         location: 'Bristol',
         ongoing: false,
-        startDate: new Date('2021-09-01T00:00:00.000Z'),
-        endDate: new Date('2012-09-01T00:00:00.000Z'),
+        startDate: '2021-09',
+        endDate: '2022-09',
         responsibilities_long: [
           'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
           'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.',

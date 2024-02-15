@@ -34,6 +34,9 @@ function mapEditFields({ data, path }) {
         title={title}
         name={title}
         type={(() => {
+          if (key.includes('Date')) {
+            return 'month';
+          }
           if (key.includes('_long')) {
             return 'textarea';
           }
@@ -42,9 +45,6 @@ function mapEditFields({ data, path }) {
           }
           if (typeof value === 'boolean') {
             return 'checkbox';
-          }
-          if (typeof value === 'object' && value instanceof Date) {
-            return 'month';
           }
         })()}
         value={value}

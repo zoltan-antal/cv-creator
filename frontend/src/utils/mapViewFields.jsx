@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import parseCamelCaseString from './parseCamelCaseString';
 import isFieldEmpty from './isFieldEmpty';
 
@@ -53,17 +53,17 @@ function mapViewFields({ data }) {
         content = <pre>{nonEmptyValues.join('\n')}</pre>;
       }
     }
-    if (typeof value === 'object' && value instanceof Date) {
-      if (Date.parse(value) === 0) {
+    if (typeof value === 'string') {
+      content = <pre>{value}</pre>;
+    }
+    if (key.includes('Date')) {
+      if (!value) {
         return null;
       }
       if (ongoing && key === 'endDate') {
         return null;
       }
-      content = <pre>{format(value, 'MMMM yyyy')}</pre>;
-    }
-    if (typeof value === 'string') {
-      content = <pre>{value}</pre>;
+      content = <pre>{format(parseISO(value), 'MMMM yyyy')}</pre>;
     }
     return (
       <label className={`view-field${isLong ? ' long' : ''}`} key={key}>
