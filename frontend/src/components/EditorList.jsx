@@ -1,10 +1,17 @@
 import { useEffect } from 'react';
 import '../styles/EditorList.css';
-import { useCvDataDispatch } from '../contexts/CvDataContext';
+// import { useCvDataDispatch } from '../contexts/CvDataContext';
 import Button from './Button';
+import { useDispatch } from 'react-redux';
+import {
+  addListElementToTempCV,
+  removeListElementFromTempCV,
+  updateTempCV,
+} from '../slices/cvDataSlice';
 
 function EditorList({ title, type, path, data }) {
-  const dispatchCvData = useCvDataDispatch();
+  // const dispatchCvData = useCvDataDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const textareas = document.querySelectorAll('.editor-list textarea');
@@ -27,12 +34,19 @@ function EditorList({ title, type, path, data }) {
                     <input
                       type="text"
                       value={value}
-                      onChange={(e) =>
-                        dispatchCvData({
-                          type: 'update',
-                          path: [...path, index],
-                          value: e.target.value,
-                        })
+                      onChange={
+                        (e) =>
+                          dispatch(
+                            updateTempCV({
+                              value: e.target.value,
+                              path: [...path, index],
+                            })
+                          )
+                        // dispatchCvData({
+                        //   type: 'update',
+                        //   path: [...path, index],
+                        //   value: e.target.value,
+                        // })
                       }
                     ></input>
                   );
@@ -42,12 +56,19 @@ function EditorList({ title, type, path, data }) {
                     <textarea
                       rows={1}
                       value={value}
-                      onChange={(e) =>
-                        dispatchCvData({
-                          type: 'update',
-                          path: [...path, index],
-                          value: e.target.value,
-                        })
+                      onChange={
+                        (e) =>
+                          dispatch(
+                            updateTempCV({
+                              value: e.target.value,
+                              path: [...path, index],
+                            })
+                          )
+                        // dispatchCvData({
+                        //   type: 'update',
+                        //   path: [...path, index],
+                        //   value: e.target.value,
+                        // })
                       }
                     ></textarea>
                   );
@@ -55,14 +76,15 @@ function EditorList({ title, type, path, data }) {
             })()}
             <Button
               type={'remove'}
-              onClick={() => {
-                dispatchCvData({
-                  type: 'removeListElement',
-                  path: path,
-                  index: index,
-                  tempOnly: true,
-                });
-              }}
+              onClick={() =>
+                // dispatchCvData({
+                //   type: 'removeListElement',
+                //   path: path,
+                //   index: index,
+                //   tempOnly: true,
+                // })
+                dispatch(removeListElementFromTempCV({ index, path }))
+              }
             ></Button>
           </div>
         );
@@ -70,12 +92,13 @@ function EditorList({ title, type, path, data }) {
       <Button
         type={'add'}
         onClick={() =>
-          dispatchCvData({
-            type: 'addListElement',
-            path: path,
-            blankDataElement: '',
-            tempOnly: true,
-          })
+          // dispatchCvData({
+          //   type: 'addListElement',
+          //   path: path,
+          //   blankDataElement: '',
+          //   tempOnly: true,
+          // })
+          dispatch(addListElementToTempCV({ blankDataElement: '', path }))
         }
       ></Button>
     </label>

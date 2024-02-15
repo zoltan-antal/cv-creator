@@ -1,10 +1,16 @@
 import _ from 'lodash';
 import { useState } from 'react';
-import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+// import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
 import { useSession } from '../contexts/SessionContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
 import cvService from '../services/cv';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addListElementToTempCV,
+  removeListElementFromTempCV,
+  saveTempCV,
+} from '../slices/cvDataSlice';
 
 function EditorSectionList({
   title,
@@ -15,8 +21,10 @@ function EditorSectionList({
   onHide,
   blankDataElement,
 }) {
-  const cvData = useCvData();
-  const dispatchCvData = useCvDataDispatch();
+  // const cvData = useCvData();
+  // const dispatchCvData = useCvDataDispatch();
+  const cvData = useSelector((state) => state.cvData);
+  const dispatch = useDispatch();
   const session = useSession();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
@@ -58,12 +66,14 @@ function EditorSectionList({
                 className={'dark'}
                 name={`Delete ${elementName}`}
                 onClick={async () => {
-                  dispatchCvData({
-                    type: 'removeListElement',
-                    path: path,
-                    index: index,
-                    save: true,
-                  });
+                  // dispatchCvData({
+                  //   type: 'removeListElement',
+                  //   path: path,
+                  //   index: index,
+                  //   save: true,
+                  // });
+                  dispatch(removeListElementFromTempCV({ index, path }));
+                  dispatch(saveTempCV());
                   if (session) {
                     await cvService.updateCV(
                       cvData.selectedCvIndex,
@@ -81,12 +91,16 @@ function EditorSectionList({
             const id = self.crypto.randomUUID();
             const newDataElement = { ...blankDataElement };
             newDataElement.id = id;
-            dispatchCvData({
-              type: 'addListElement',
-              path: path,
-              blankDataElement: newDataElement,
-              save: true,
-            });
+            // dispatchCvData({
+            //   type: 'addListElement',
+            //   path: path,
+            //   blankDataElement: newDataElement,
+            //   save: true,
+            // });
+            dispatch(
+              addListElementToTempCV({ blankDataElement: newDataElement, path })
+            );
+            dispatch(saveTempCV());
             setActiveEditorSection(id);
           }}
         />

@@ -1,15 +1,23 @@
 import '../styles/CvListDialog.css';
 import { forwardRef } from 'react';
-import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
-import { useSession } from '../contexts/SessionContext';
-import deleteCv from '../utils/deleteCv';
-import addNewCv from '../utils/addNewCv';
+// import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
+// import { useSession } from '../contexts/SessionContext';
+// import deleteCv from '../utils/deleteCv';
+// import addNewCv from '../utils/addNewCv';
 import Button from './Button';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addNewCV,
+  deleteCVById,
+  updateSelectedCVId,
+} from '../slices/cvDataSlice';
 
 const CvListDialog = forwardRef(function CvListDialog(_, ref) {
-  const cvData = useCvData();
-  const dispatchCvData = useCvDataDispatch();
-  const session = useSession();
+  // const cvData = useCvData();
+  // const dispatchCvData = useCvDataDispatch();
+  const cvData = useSelector((state) => state.cvData);
+  const dispatch = useDispatch();
+  // const session = useSession();
 
   return (
     <dialog ref={ref} className="cv-list">
@@ -25,10 +33,13 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                     className={`cv${
                       cv.id === cvData.selectedCvId ? ' selected' : ''
                     }`}
-                    onClick={() => {
-                      localStorage.setItem('cvId', cv.id);
-                      dispatchCvData({ type: 'reloadCvData' });
-                    }}
+                    onClick={() =>
+                      //   {
+                      //   localStorage.setItem('cvId', cv.id);
+                      //   dispatchCvData({ type: 'reloadCvData' });
+                      // }
+                      dispatch(updateSelectedCVId({ id: cv.id }))
+                    }
                   >
                     <p>{cv.name}</p>
                     <div className="manage-cv">
@@ -36,8 +47,9 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                         type={'remove'}
                         onClick={async (e) => {
                           e.stopPropagation();
-                          await deleteCv(cv.id, session);
-                          dispatchCvData({ type: 'reloadCvData' });
+                          // await deleteCv(cv.id, session);
+                          // dispatchCvData({ type: 'reloadCvData' });
+                          dispatch(deleteCVById({ id: cv.id }));
                         }}
                       />
                     </div>
@@ -49,10 +61,13 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
         <div className="buttons">
           <Button
             type={'add'}
-            onClick={async () => {
-              await addNewCv({ type: 'blank', session });
-              dispatchCvData({ type: 'reloadCvData' });
-            }}
+            onClick={
+              async () => dispatch(addNewCV({ type: 'blank' }))
+              //   {
+              //   await addNewCv({ type: 'blank', session });
+              //   dispatchCvData({ type: 'reloadCvData' });
+              // }
+            }
           />
           <Button
             className="done dark"

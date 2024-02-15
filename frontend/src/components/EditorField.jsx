@@ -1,9 +1,12 @@
 import { format } from 'date-fns';
-import { useCvDataDispatch } from '../contexts/CvDataContext';
+// import { useCvDataDispatch } from '../contexts/CvDataContext';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateTempCV } from '../slices/cvDataSlice';
 
 function EditorField({ title, name, type, value, path }) {
-  const dispatchCvData = useCvDataDispatch();
+  // const dispatchCvData = useCvDataDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const textareas = document.querySelectorAll('.editor-field textarea');
@@ -24,12 +27,13 @@ function EditorField({ title, name, type, value, path }) {
                 type={type}
                 name={name}
                 value={value}
-                onChange={(e) =>
-                  dispatchCvData({
-                    type: 'update',
-                    path: path,
-                    value: e.target.value,
-                  })
+                onChange={
+                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
+                  // dispatchCvData({
+                  //   type: 'update',
+                  //   path: path,
+                  //   value: e.target.value,
+                  // })
                 }
               ></input>
             );
@@ -39,12 +43,13 @@ function EditorField({ title, name, type, value, path }) {
               <textarea
                 name={name}
                 value={value}
-                onChange={(e) =>
-                  dispatchCvData({
-                    type: 'update',
-                    path: path,
-                    value: e.target.value,
-                  })
+                onChange={
+                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
+                  // dispatchCvData({
+                  //   type: 'update',
+                  //   path: path,
+                  //   value: e.target.value,
+                  // })
                 }
               ></textarea>
             );
@@ -55,12 +60,14 @@ function EditorField({ title, name, type, value, path }) {
                 type={type}
                 name={name}
                 checked={value}
-                onChange={(e) =>
-                  dispatchCvData({
-                    type: 'update',
-                    path: path,
-                    value: e.target.checked,
-                  })
+                onChange={
+                  (e) =>
+                    dispatch(updateTempCV({ value: e.target.checked, path }))
+                  // dispatchCvData({
+                  //   type: 'update',
+                  //   path: path,
+                  //   value: e.target.checked,
+                  // })
                 }
               ></input>
             );
@@ -71,12 +78,16 @@ function EditorField({ title, name, type, value, path }) {
                 type={type}
                 name={name}
                 value={Date.parse(value) !== 0 ? format(value, 'yyyy-MM') : ''}
-                onChange={(e) =>
-                  dispatchCvData({
-                    type: 'update',
-                    path: path,
-                    value: new Date(e.target.value),
-                  })
+                onChange={
+                  (e) =>
+                    dispatch(
+                      updateTempCV({ value: new Date(e.target.value), path })
+                    )
+                  // dispatchCvData({
+                  //   type: 'update',
+                  //   path: path,
+                  //   value: new Date(e.target.value),
+                  // })
                 }
               ></input>
             );
