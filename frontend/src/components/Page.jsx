@@ -123,7 +123,7 @@ function Page() {
                             return (
                               <p className="date">
                                 {format(parseISO(item.startDate), 'MMM yyyy')} -{' '}
-                                {format(parseISO(item.startDate), 'MMM yyyy')}
+                                {format(parseISO(item.endDate), 'MMM yyyy')}
                               </p>
                             );
                           }
@@ -202,7 +202,7 @@ function Page() {
                             return (
                               <p className="date">
                                 {format(parseISO(item.startDate), 'MMM yyyy')} -{' '}
-                                {format(parseISO(item.startDate), 'MMM yyyy')}
+                                {format(parseISO(item.endDate), 'MMM yyyy')}
                               </p>
                             );
                           }
