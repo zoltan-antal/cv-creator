@@ -1,9 +1,9 @@
 import '../styles/CvName.css';
 import { useState } from 'react';
 // import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
-import { useSession } from '../contexts/SessionContext';
+// import { useSession } from '../contexts/SessionContext';
 import Button from './Button';
-import cvService from '../services/cv';
+// import cvService from '../services/cv';
 import { useDispatch, useSelector } from 'react-redux';
 import { discardTempCV, saveTempCV, updateTempCV } from '../slices/cvDataSlice';
 
@@ -12,7 +12,7 @@ function CvName() {
   // const dispatchCvData = useCvDataDispatch();
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
-  const session = useSession();
+  // const session = useSession();
   const [mode, setMode] = useState('view');
 
   return (
@@ -72,13 +72,13 @@ function CvName() {
                       //   type: 'save',
                       //   path: ['name'],
                       // });
-                      dispatch(saveTempCV());
-                      if (session) {
-                        cvService.updateCV(
-                          cvData.selectedCvId,
-                          cvData.cvLists.tempCvData[cvData.selectedCvIndex]
-                        );
-                      }
+                      await dispatch(saveTempCV());
+                      // if (session) {
+                      //   cvService.updateCV(
+                      //     cvData.selectedCvId,
+                      //     cvData.cvLists.tempCvData[cvData.selectedCvIndex]
+                      //   );
+                      // }
                       setMode('view');
                     }}
                   />

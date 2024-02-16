@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import { useState } from 'react';
 // import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
-import { useSession } from '../contexts/SessionContext';
+// import { useSession } from '../contexts/SessionContext';
 import EditorSection from './EditorSection';
 import Button from './Button';
-import cvService from '../services/cv';
+// import cvService from '../services/cv';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addListElementToTempCV,
@@ -25,7 +25,7 @@ function EditorSectionList({
   // const dispatchCvData = useCvDataDispatch();
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
-  const session = useSession();
+  // const session = useSession();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
 
   return (
@@ -73,13 +73,13 @@ function EditorSectionList({
                   //   save: true,
                   // });
                   dispatch(removeListElementFromTempCV({ index, path }));
-                  dispatch(saveTempCV());
-                  if (session) {
-                    await cvService.updateCV(
-                      cvData.selectedCvIndex,
-                      cvData.cvLists.tempCvData[cvData.selectedCvId]
-                    );
-                  }
+                  await dispatch(saveTempCV());
+                  // if (session) {
+                  //   await cvService.updateCV(
+                  //     cvData.selectedCvIndex,
+                  //     cvData.cvLists.tempCvData[cvData.selectedCvId]
+                  //   );
+                  // }
                 }}
               />
             </EditorSection>
@@ -87,7 +87,7 @@ function EditorSectionList({
         })}
         <Button
           type={'add'}
-          onClick={() => {
+          onClick={async () => {
             const id = self.crypto.randomUUID();
             const newDataElement = { ...blankDataElement };
             newDataElement.id = id;
@@ -100,7 +100,7 @@ function EditorSectionList({
             dispatch(
               addListElementToTempCV({ blankDataElement: newDataElement, path })
             );
-            dispatch(saveTempCV());
+            await dispatch(saveTempCV());
             setActiveEditorSection(id);
           }}
         />

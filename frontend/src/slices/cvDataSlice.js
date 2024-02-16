@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
 import blankCv from '../dataStructures/blankCv';
 import exampleCv from '../dataStructures/exampleCv';
+import cvService from '../services/cv';
 
 const generateBlankCV = () => {
   const cv = _.cloneDeep(blankCv);
@@ -184,10 +185,18 @@ const discardTempCV = () => {
 };
 
 const saveTempCV = () => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     dispatch(saveTemp());
     const cvData = getState().cvData;
-    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
+    const cvList = cvData.cvLists.savedCvData;
+    localStorage.setItem('cvList', JSON.stringify(cvList));
+    const user = getState().user;
+    if (!user) {
+      return;
+    }
+    const id = cvData.selectedCvId;
+    const index = cvList.findIndex((cv) => cv.id === id);
+    await cvService.updateCV(id, cvList[index]);
   };
 };
 
