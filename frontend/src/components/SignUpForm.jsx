@@ -20,7 +20,7 @@ const SignUpForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      dispatch(createUser({ username, password }));
+      await dispatch(createUser({ username, password }));
       resetInputs();
       setSelectedTab('login');
       dialogRef.current.close();
