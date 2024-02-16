@@ -1,13 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import fetchStoredCvData from '../utils/fetchStoredCvData';
 import blankCv from '../dataStructures/blankCv';
 import exampleCv from '../dataStructures/exampleCv';
 
+const generateInitialState = () => {
+  const cv = _.cloneDeep(blankCv);
+  cv.id = crypto.randomUUID();
+  return {
+    cvLists: {
+      savedCvData: [_.cloneDeep(cv)],
+      tempCvData: [_.cloneDeep(cv)],
+    },
+    selectedCvId: cv.id,
+    selectedCvIndex: 0,
+  };
+};
+
 const cvDataSlice = createSlice({
   name: 'cvData',
-  initialState: fetchStoredCvData(),
+  initialState: generateInitialState(),
   reducers: {
+    setCVData(state, action) {
+      const { cvList, cvId } = action.payload;
+      const index = cvList.findIndex((cv) => cv.id === cvId);
+      state.cvLists.savedCvData = _.cloneDeep(cvList);
+      state.cvLists.tempCvData = _.cloneDeep(cvList);
+      state.selectedCvId = cvId;
+      state.selectedCvIndex = index;
+    },
+
     updateTemp(state, action) {
       const { value, path } = action.payload;
       _.set(state.cvLists.tempCvData[state.selectedCvIndex], [...path], value);
@@ -113,6 +134,28 @@ const cvDataSlice = createSlice({
 
 // Action creators
 
+const initialiseCVData = () => {
+  return (dispatch, getState) => {
+    const cvData = getState().cvData;
+    const cvList = JSON.parse(localStorage.getItem('cvList'));
+    let cvId = localStorage.getItem('cvId');
+    if (!cvList) {
+      localStorage.setItem(
+        'cvList',
+        JSON.stringify(cvData.cvLists.savedCvData)
+      );
+      localStorage.setItem('cvId', cvData.selectedCvId);
+      return;
+    }
+    const cvIndex = cvList.findIndex((cv) => cv.id === cvId);
+    if (!cvId || cvIndex === -1) {
+      cvId = cvList[0].id;
+      localStorage.setItem('cvId', cvId);
+    }
+    dispatch(setCVData({ cvList, cvId }));
+  };
+};
+
 const updateTempCV = ({ value, path }) => {
   return (dispatch) => {
     dispatch(updateTemp({ value, path }));
@@ -195,6 +238,7 @@ const updateSelectedCVId = ({ id }) => {
 
 export default cvDataSlice.reducer;
 export const {
+  setCVData,
   updateTemp,
   discardTemp,
   saveTemp,
@@ -206,6 +250,7 @@ export const {
   setSelectedCVId,
 } = cvDataSlice.actions;
 export {
+  initialiseCVData,
   updateTempCV,
   discardTempCV,
   saveTempCV,
