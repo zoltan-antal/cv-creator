@@ -16,11 +16,6 @@ function isFieldEmpty([key, value]) {
       return true;
     }
   }
-  if (typeof value === 'object' && value instanceof Date) {
-    if (Date.parse(value) === 0) {
-      return true;
-    }
-  }
 
   return false;
 }
