@@ -1,19 +1,19 @@
-import { useState } from 'react';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../slices/userSlice';
 
-const LoginForm = ({ dialogRef }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const LoginForm = ({
+  dialogRef,
+  formValues: { username, setUsername, password, setPassword },
+  resetInputs,
+}) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await dispatch(loginUser({ username, password }));
-      setUsername('');
-      setPassword('');
+      resetInputs();
       dialogRef.current.close();
     } catch (error) {
       alert(error.response.data.error);

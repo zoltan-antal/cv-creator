@@ -1,20 +1,27 @@
-import { useState } from 'react';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../slices/userSlice';
 
-const SignUpForm = ({ dialogRef, setSelectedTab }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+const SignUpForm = ({
+  dialogRef,
+  setSelectedTab,
+  formValues: {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    passwordRepeat,
+    setPasswordRepeat,
+  },
+  resetInputs,
+}) => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       dispatch(createUser({ username, password }));
-      setUsername('');
-      setPassword('');
+      resetInputs();
       setSelectedTab('login');
       dialogRef.current.close();
     } catch (error) {
