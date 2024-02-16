@@ -28,6 +28,8 @@ const LoginForm = ({ dialogRef }) => {
       // );
       // location.reload();
       await dispatch(loginUser({ username, password }));
+      setUsername('');
+      setPassword('');
       dialogRef.current.close();
     } catch (error) {
       alert(error.response.data.error);

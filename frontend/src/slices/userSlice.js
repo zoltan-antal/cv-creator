@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import _ from 'lodash';
 import loginService from '../services/login';
 import userService from '../services/user';
 import cvService from '../services/cv';
-import { restoreInitialCVData } from './cvDataSlice';
+import { initialiseCVData, restoreInitialCVData } from './cvDataSlice';
+import blankCv from '../dataStructures/blankCv';
 
 const initialState = null;
 
@@ -31,17 +33,35 @@ const retrieveLoggedUser = () => {
     cvService.setToken(token);
     const userFull = await userService.getUser();
     dispatch(setUser(userFull));
+    const fetchedCVList = await cvService.getCVs();
+    localStorage.setItem('cvList', JSON.stringify(fetchedCVList));
+    dispatch(initialiseCVData());
   };
 };
 
 const loginUser = ({ username, password }) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     const user = await loginService.login({ username, password });
     localStorage.setItem('cvCreatorAuthToken', user.token);
     userService.setToken(user.token);
     cvService.setToken(user.token);
-    const userFull = await userService.getUser();
+    const cvList = getState().cvData.cvLists.savedCvData;
+    const cvListToKeep = cvList.filter(
+      (cv) => !_.isEqual(_.omit(cv, ['id']), _.omit(blankCv, ['id']))
+    );
+    cvListToKeep.forEach(
+      async (cv) => await cvService.createCV(_.omit(cv, ['id']))
+    );
+    let userFull = await userService.getUser();
+    let fetchedCVList = await cvService.getCVs();
+    if (cvListToKeep.length === 0 && fetchedCVList.length === 0) {
+      await cvService.createCV(_.omit(blankCv, ['id']));
+      fetchedCVList = await cvService.getCVs();
+      userFull = await userService.getUser();
+    }
     dispatch(setUser(userFull));
+    localStorage.setItem('cvList', JSON.stringify(fetchedCVList));
+    dispatch(initialiseCVData());
   };
 };
 

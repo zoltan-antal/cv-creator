@@ -8,7 +8,7 @@ import { createUser } from '../slices/userSlice';
 // import cvService from '../services/cv';
 // import { useCvData } from '../contexts/CvDataContext';
 
-const SignUpForm = ({ dialogRef }) => {
+const SignUpForm = ({ dialogRef, setSelectedTab }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
@@ -27,6 +27,9 @@ const SignUpForm = ({ dialogRef }) => {
       // );
       // location.reload();
       dispatch(createUser({ username, password }));
+      setUsername('');
+      setPassword('');
+      setSelectedTab('login');
       dialogRef.current.close();
     } catch (error) {
       alert(error.response.data.error);

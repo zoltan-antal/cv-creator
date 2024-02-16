@@ -164,7 +164,10 @@ const initialiseCVData = () => {
 const restoreInitialCVData = () => {
   return (dispatch) => {
     const cv = generateBlankCV();
-    dispatch(setCVData({ cvList: [cv], cvId: cv.id }));
+    const cvList = [cv];
+    dispatch(setCVData({ cvList, cvId: cv.id }));
+    localStorage.setItem('cvList', JSON.stringify(cvList));
+    localStorage.setItem('cvId', cv.id);
   };
 };
 
