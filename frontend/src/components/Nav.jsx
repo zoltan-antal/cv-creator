@@ -8,7 +8,7 @@ import LogoutButton from './LogoutButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { addNewCV, clearCV } from '../slices/cvDataSlice';
 
-function Nav() {
+const Nav = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
@@ -55,6 +55,6 @@ function Nav() {
       <LoginDialog ref={loginDialogRef} />
     </nav>
   );
-}
+};
 
 export default Nav;

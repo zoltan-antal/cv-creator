@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTempCV } from '../slices/cvDataSlice';
 
-function EditorField({ title, name, type, value, path }) {
+const EditorField = ({ title, name, type, value, path }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -68,6 +68,6 @@ function EditorField({ title, name, type, value, path }) {
       })()}
     </label>
   );
-}
+};
 
 export default EditorField;

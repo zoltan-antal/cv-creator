@@ -9,7 +9,7 @@ import {
   saveTempCV,
 } from '../slices/cvDataSlice';
 
-function EditorSectionList({
+const EditorSectionList = ({
   title,
   elementName,
   path,
@@ -17,7 +17,7 @@ function EditorSectionList({
   onShow,
   onHide,
   blankDataElement,
-}) {
+}) => {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
@@ -83,6 +83,6 @@ function EditorSectionList({
       </div>
     </div>
   );
-}
+};
 
 export default EditorSectionList;

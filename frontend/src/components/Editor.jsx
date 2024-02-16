@@ -7,7 +7,7 @@ import blankSchool from '../dataStructures/blankSchool';
 import blankJob from '../dataStructures/blankJob';
 import blankSkillCategory from '../dataStructures/blankSkillCategory';
 
-function Editor() {
+const Editor = () => {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
   const basePath = ['content'];
 
@@ -50,6 +50,6 @@ function Editor() {
       ></EditorSectionList>
     </section>
   );
-}
+};
 
 export default Editor;

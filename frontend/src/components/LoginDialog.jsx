@@ -4,7 +4,7 @@ import Button from './Button';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
-const LoginDialog = forwardRef(function LoginDialog(_, ref) {
+const LoginDialog = forwardRef((_, ref) => {
   const [selectedTab, setSelectedTab] = useState('login');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -87,5 +87,7 @@ const LoginDialog = forwardRef(function LoginDialog(_, ref) {
     </dialog>
   );
 });
+
+LoginDialog.displayName = 'LoginDialog';
 
 export default LoginDialog;

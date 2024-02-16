@@ -7,7 +7,7 @@ import mapViewFields from '../utils/mapViewFields';
 import { useDispatch, useSelector } from 'react-redux';
 import { discardTempCV, saveTempCV } from '../slices/cvDataSlice';
 
-function EditorSection({ children, title, path, isActive, onShow, onHide }) {
+const EditorSection = ({ children, title, path, isActive, onShow, onHide }) => {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
   const [mode, setMode] = useState('view');
@@ -84,6 +84,6 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
       </div>
     </div>
   );
-}
+};
 
 export default EditorSection;

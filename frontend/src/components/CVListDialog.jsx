@@ -8,7 +8,7 @@ import {
   updateSelectedCVId,
 } from '../slices/cvDataSlice';
 
-const CVListDialog = forwardRef(function CVListDialog(_, ref) {
+const CVListDialog = forwardRef((_, ref) => {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
 
@@ -58,5 +58,7 @@ const CVListDialog = forwardRef(function CVListDialog(_, ref) {
     </dialog>
   );
 });
+
+CVListDialog.displayName = 'CVListDialog';
 
 export default CVListDialog;

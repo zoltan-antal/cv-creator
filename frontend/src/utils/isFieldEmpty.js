@@ -1,4 +1,4 @@
-function isFieldEmpty([key, value]) {
+const isFieldEmpty = ([key, value]) => {
   if (key === 'id') {
     return true;
   }
@@ -18,6 +18,6 @@ function isFieldEmpty([key, value]) {
   }
 
   return false;
-}
+};
 
 export default isFieldEmpty;

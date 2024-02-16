@@ -1,7 +1,7 @@
 import '../styles/Footer.css';
 import githubIcon from '../assets/icons/github.svg';
 
-function Footer() {
+const Footer = () => {
   return (
     <footer>
       <pre>Built by </pre>
@@ -18,6 +18,6 @@ function Footer() {
       </a>
     </footer>
   );
-}
+};
 
 export default Footer;

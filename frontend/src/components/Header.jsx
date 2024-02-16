@@ -1,7 +1,7 @@
 import '../styles/Header.css';
 import Nav from './Nav';
 
-function Header() {
+const Header = () => {
   return (
     <header>
       <h1>
@@ -10,6 +10,6 @@ function Header() {
       <Nav />
     </header>
   );
-}
+};
 
 export default Header;

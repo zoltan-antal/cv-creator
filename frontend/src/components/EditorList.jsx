@@ -8,7 +8,7 @@ import {
   updateTempCV,
 } from '../slices/cvDataSlice';
 
-function EditorList({ title, type, path, data }) {
+const EditorList = ({ title, type, path, data }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -77,6 +77,6 @@ function EditorList({ title, type, path, data }) {
       ></Button>
     </label>
   );
-}
+};
 
 export default EditorList;

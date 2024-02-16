@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { initialiseCVData } from './slices/cvDataSlice';
 import { retrieveLoggedUser } from './slices/userSlice';
 
-function App() {
+const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +28,6 @@ function App() {
       <Footer />
     </>
   );
-}
+};
 
 export default App;

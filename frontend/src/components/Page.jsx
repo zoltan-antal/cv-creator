@@ -6,7 +6,7 @@ import linkIcon from '../assets/icons/link.svg';
 import { format, parseISO } from 'date-fns';
 import { useSelector } from 'react-redux';
 
-function Page() {
+const Page = () => {
   const cvData = useSelector(
     (state) =>
       state.cvData.cvLists.tempCVData[state.cvData.selectedCVIndex].content
@@ -279,7 +279,7 @@ function Page() {
       })()}
     </div>
   );
-}
+};
 
 function getValueByKeyFragment(object, string) {
   return object[

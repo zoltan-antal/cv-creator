@@ -4,7 +4,7 @@ import addIcon from '../assets/icons/plus-circle.svg';
 import deleteIcon from '../assets/icons/trash-can.svg';
 import '../styles/Button.css';
 
-function Button({ type, name, className, icon, onClick }) {
+const Button = ({ type, name, className, icon, onClick }) => {
   let classList = className ? className : '';
 
   if (!name && !icon) {
@@ -81,6 +81,6 @@ function Button({ type, name, className, icon, onClick }) {
       {icon || name}
     </button>
   );
-}
+};
 
 export default Button;

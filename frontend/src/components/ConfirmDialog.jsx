@@ -2,10 +2,7 @@ import '../styles/ConfirmDialog.css';
 import { forwardRef } from 'react';
 import Button from './Button';
 
-const ConfirmDialog = forwardRef(function ConfirmDialog(
-  { message, onConfirm, onCancel },
-  ref
-) {
+const ConfirmDialog = forwardRef(({ message, onConfirm, onCancel }, ref) => {
   return (
     <dialog ref={ref} className="confirm">
       <div className="dialog-content">
@@ -36,5 +33,7 @@ const ConfirmDialog = forwardRef(function ConfirmDialog(
     </dialog>
   );
 });
+
+ConfirmDialog.displayName = 'ConfirmDialog';
 
 export default ConfirmDialog;

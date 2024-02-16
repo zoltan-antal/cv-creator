@@ -4,7 +4,7 @@ import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { discardTempCV, saveTempCV, updateTempCV } from '../slices/cvDataSlice';
 
-function CVName() {
+const CVName = () => {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
   const [mode, setMode] = useState('view');
@@ -64,6 +64,6 @@ function CVName() {
       })()}
     </div>
   );
-}
+};
 
 export default CVName;
