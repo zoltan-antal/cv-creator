@@ -233,6 +233,7 @@ const deleteCVById = ({ id }) => {
 const updateSelectedCVId = ({ id }) => {
   return (dispatch) => {
     dispatch(setSelectedCVId({ id }));
+    localStorage.setItem('cvId', id);
   };
 };
 
