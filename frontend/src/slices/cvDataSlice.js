@@ -3,6 +3,8 @@ import _ from 'lodash';
 import blankCv from '../dataStructures/blankCv';
 import exampleCv from '../dataStructures/exampleCv';
 import cvService from '../services/cv';
+import userService from '../services/user';
+import { setUser } from './userSlice';
 
 const generateBlankCV = () => {
   const cv = _.cloneDeep(blankCv);
@@ -213,10 +215,18 @@ const removeListElementFromTempCV = ({ index, path }) => {
 };
 
 const clearCV = () => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     dispatch(clearAllData());
     const cvData = getState().cvData;
-    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
+    const cvList = cvData.cvLists.savedCvData;
+    localStorage.setItem('cvList', JSON.stringify(cvList));
+    const user = getState().user;
+    if (!user) {
+      return;
+    }
+    const id = cvData.selectedCvId;
+    const index = cvList.findIndex((cv) => cv.id === id);
+    await cvService.updateCV(id, cvList[index]);
   };
 };
 
@@ -246,11 +256,18 @@ const addNewCV = ({ type }) => {
 };
 
 const deleteCVById = ({ id }) => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     dispatch(deleteCV({ id }));
     const cvData = getState().cvData;
     localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
     localStorage.setItem('cvId', cvData.selectedCvId);
+    const user = getState().user;
+    if (!user) {
+      return;
+    }
+    await cvService.deleteCV(id);
+    const userFull = await userService.getUser();
+    dispatch(setUser(userFull));
   };
 };
 

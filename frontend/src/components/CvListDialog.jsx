@@ -49,7 +49,7 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
                           e.stopPropagation();
                           // await deleteCv(cv.id, session);
                           // dispatchCvData({ type: 'reloadCvData' });
-                          dispatch(deleteCVById({ id: cv.id }));
+                          await dispatch(deleteCVById({ id: cv.id }));
                         }}
                       />
                     </div>

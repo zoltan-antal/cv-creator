@@ -60,7 +60,7 @@ function Nav() {
         message="Are you sure you want to clear all contents of this CV?"
         onConfirm={async () => {
           // dispatchCvData({ type: 'clearAllData', session });
-          dispatch(clearCV());
+          await dispatch(clearCV());
           // const newBlankCv = { ...blankCv };
           // newBlankCv.name =
           //   cvData.cvLists.tempCvData[cvData.selectedCvIndex].name;
