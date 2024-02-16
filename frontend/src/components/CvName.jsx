@@ -20,7 +20,7 @@ function CvName() {
                   {cvData.cvLists.savedCvData[cvData.selectedCvIndex].name}
                 </pre>
                 <Button
-                  type={'edit'}
+                  name={'Rename'}
                   className="dark"
                   onClick={() => setMode('edit')}
                 />
