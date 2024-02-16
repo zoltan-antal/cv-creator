@@ -37,8 +37,8 @@ function EditorSectionList({
       <div className="content" style={!isActive ? { display: 'none' } : {}}>
         {_.get(cvData, [
           'cvLists',
-          'tempCvData',
-          cvData.selectedCvIndex,
+          'tempCVData',
+          cvData.selectedCVIndex,
           ...path,
         ]).map((element, index) => {
           return (

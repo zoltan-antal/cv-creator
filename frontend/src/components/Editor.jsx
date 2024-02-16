@@ -2,7 +2,7 @@ import '../styles/Editor.css';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorSectionList from './EditorSectionList';
-import CvName from './CvName';
+import CVName from './CVName';
 import blankSchool from '../dataStructures/blankSchool';
 import blankJob from '../dataStructures/blankJob';
 import blankSkillCategory from '../dataStructures/blankSkillCategory';
@@ -13,7 +13,7 @@ function Editor() {
 
   return (
     <section className="editor">
-      <CvName></CvName>
+      <CVName></CVName>
       <EditorSection
         title={'Personal Details'}
         path={[...basePath, 'personalDetails']}

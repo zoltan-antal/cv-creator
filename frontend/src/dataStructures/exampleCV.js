@@ -1,4 +1,4 @@
-const exampleCv = {
+const exampleCV = {
   name: 'Example CV',
   id: '',
   content: {
@@ -70,4 +70,4 @@ const exampleCv = {
   },
 };
 
-export default exampleCv;
+export default exampleCV;

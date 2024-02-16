@@ -4,7 +4,7 @@ import loginService from '../services/login';
 import userService from '../services/user';
 import cvService from '../services/cv';
 import { restoreInitialCVData, setCVData } from './cvDataSlice';
-import blankCv from '../dataStructures/blankCv';
+import blankCV from '../dataStructures/blankCV';
 
 const initialState = null;
 
@@ -35,7 +35,7 @@ const retrieveLoggedUser = () => {
     dispatch(setUser(userFull));
     const fetchedCVList = await cvService.getCVs();
     localStorage.setItem('cvList', JSON.stringify(fetchedCVList));
-    let cvId = getState().cvData.selectedCvId;
+    let cvId = getState().cvData.selectedCVId;
     if (!fetchedCVList.find((cv) => cv.id === cvId)) {
       cvId = fetchedCVList[0].id;
       localStorage.setItem('cvId', cvId);
@@ -50,11 +50,11 @@ const loginUser = ({ username, password }) => {
     localStorage.setItem('cvCreatorAuthToken', user.token);
     userService.setToken(user.token);
     cvService.setToken(user.token);
-    const cvList = getState().cvData.cvLists.savedCvData;
+    const cvList = getState().cvData.cvLists.savedCVData;
     const cvListToKeep = cvList.filter(
-      (cv) => !_.isEqual(_.omit(cv, ['id']), _.omit(blankCv, ['id']))
+      (cv) => !_.isEqual(_.omit(cv, ['id']), _.omit(blankCV, ['id']))
     );
-    let cvId = getState().cvData.selectedCvId;
+    let cvId = getState().cvData.selectedCVId;
     for (const cv of cvListToKeep) {
       const createdCV = await cvService.createCV(_.omit(cv, ['id']));
       if (cv.id === cvId) {
@@ -64,7 +64,7 @@ const loginUser = ({ username, password }) => {
     let fetchedCVList = await cvService.getCVs();
     let userFull = await userService.getUser();
     if (cvListToKeep.length === 0 && fetchedCVList.length === 0) {
-      await cvService.createCV(_.omit(blankCv, ['id']));
+      await cvService.createCV(_.omit(blankCV, ['id']));
       fetchedCVList = await cvService.getCVs();
       userFull = await userService.getUser();
     }

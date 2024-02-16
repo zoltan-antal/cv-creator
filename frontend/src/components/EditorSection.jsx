@@ -33,8 +33,8 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                   {mapViewFields({
                     data: _.get(cvData, [
                       'cvLists',
-                      'tempCvData',
-                      cvData.selectedCvIndex,
+                      'tempCVData',
+                      cvData.selectedCVIndex,
                       ...path,
                     ]),
                   })}
@@ -53,8 +53,8 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                   {mapEditFields({
                     data: _.get(cvData, [
                       'cvLists',
-                      'tempCvData',
-                      cvData.selectedCvIndex,
+                      'tempCVData',
+                      cvData.selectedCVIndex,
                       ...path,
                     ]),
                     path: path,

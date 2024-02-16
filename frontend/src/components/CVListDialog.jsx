@@ -1,4 +1,4 @@
-import '../styles/CvListDialog.css';
+import '../styles/CVListDialog.css';
 import { forwardRef } from 'react';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import {
   updateSelectedCVId,
 } from '../slices/cvDataSlice';
 
-const CvListDialog = forwardRef(function CvListDialog(_, ref) {
+const CVListDialog = forwardRef(function CVListDialog(_, ref) {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
 
@@ -17,14 +17,14 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
       <div className="dialog-content">
         <div className="list">
           {(() => {
-            return cvData.cvLists.savedCvData
+            return cvData.cvLists.savedCVData
               .toSorted((a, b) => (a.name >= b.name ? 1 : -1))
               .map((cv) => {
                 return (
                   <div
                     key={cv.id}
                     className={`cv${
-                      cv.id === cvData.selectedCvId ? ' selected' : ''
+                      cv.id === cvData.selectedCVId ? ' selected' : ''
                     }`}
                     onClick={() => dispatch(updateSelectedCVId({ id: cv.id }))}
                   >
@@ -59,4 +59,4 @@ const CvListDialog = forwardRef(function CvListDialog(_, ref) {
   );
 });
 
-export default CvListDialog;
+export default CVListDialog;

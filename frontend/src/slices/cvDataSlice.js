@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import _ from 'lodash';
-import blankCv from '../dataStructures/blankCv';
-import exampleCv from '../dataStructures/exampleCv';
+import blankCV from '../dataStructures/blankCV';
+import exampleCV from '../dataStructures/exampleCV';
 import cvService from '../services/cv';
 import userService from '../services/user';
 import { setUser } from './userSlice';
 
 const generateBlankCV = () => {
-  const cv = _.cloneDeep(blankCv);
+  const cv = _.cloneDeep(blankCV);
   cv.id = crypto.randomUUID();
   return cv;
 };
@@ -16,11 +16,11 @@ const generateInitialState = () => {
   const cv = generateBlankCV();
   return {
     cvLists: {
-      savedCvData: [_.cloneDeep(cv)],
-      tempCvData: [_.cloneDeep(cv)],
+      savedCVData: [_.cloneDeep(cv)],
+      tempCVData: [_.cloneDeep(cv)],
     },
-    selectedCvId: cv.id,
-    selectedCvIndex: 0,
+    selectedCVId: cv.id,
+    selectedCVIndex: 0,
   };
 };
 
@@ -31,32 +31,32 @@ const cvDataSlice = createSlice({
     setCVData(state, action) {
       const { cvList, cvId } = action.payload;
       const index = cvList.findIndex((cv) => cv.id === cvId);
-      state.cvLists.savedCvData = _.cloneDeep(cvList);
-      state.cvLists.tempCvData = _.cloneDeep(cvList);
-      state.selectedCvId = cvId;
-      state.selectedCvIndex = index;
+      state.cvLists.savedCVData = _.cloneDeep(cvList);
+      state.cvLists.tempCVData = _.cloneDeep(cvList);
+      state.selectedCVId = cvId;
+      state.selectedCVIndex = index;
     },
 
     updateTemp(state, action) {
       const { value, path } = action.payload;
-      _.set(state.cvLists.tempCvData[state.selectedCvIndex], [...path], value);
+      _.set(state.cvLists.tempCVData[state.selectedCVIndex], [...path], value);
     },
 
     discardTemp(state) {
-      state.cvLists.tempCvData[state.selectedCvIndex] = _.cloneDeep(
-        state.cvLists.savedCvData[state.selectedCvIndex]
+      state.cvLists.tempCVData[state.selectedCVIndex] = _.cloneDeep(
+        state.cvLists.savedCVData[state.selectedCVIndex]
       );
     },
 
     saveTemp(state) {
-      state.cvLists.savedCvData[state.selectedCvIndex] = _.cloneDeep(
-        state.cvLists.tempCvData[state.selectedCvIndex]
+      state.cvLists.savedCVData[state.selectedCVIndex] = _.cloneDeep(
+        state.cvLists.tempCVData[state.selectedCVIndex]
       );
     },
 
     addListElement(state, action) {
       const { blankDataElement, path } = action.payload;
-      const cv = state.cvLists.tempCvData[state.selectedCvIndex];
+      const cv = state.cvLists.tempCVData[state.selectedCVIndex];
       _.set(cv, path, [
         ..._.get(cv, path),
         typeof blankDataElement === 'string' ? '' : { ...blankDataElement },
@@ -65,7 +65,7 @@ const cvDataSlice = createSlice({
 
     removeListElement(state, action) {
       const { index, path } = action.payload;
-      const cv = state.cvLists.tempCvData[state.selectedCvIndex];
+      const cv = state.cvLists.tempCVData[state.selectedCVIndex];
       _.set(cv, path, [
         ..._.get(cv, path).slice(0, index),
         ..._.get(cv, path).slice(index + 1),
@@ -73,25 +73,25 @@ const cvDataSlice = createSlice({
     },
 
     clearAllData(state) {
-      const newBlankCv = _.cloneDeep(blankCv);
-      newBlankCv.id = state.cvLists.tempCvData[state.selectedCvIndex].id;
-      newBlankCv.name = state.cvLists.tempCvData[state.selectedCvIndex].name;
-      state.cvLists.tempCvData[state.selectedCvIndex] = _.cloneDeep(newBlankCv);
-      state.cvLists.savedCvData[state.selectedCvIndex] =
-        _.cloneDeep(newBlankCv);
+      const newBlankCV = _.cloneDeep(blankCV);
+      newBlankCV.id = state.cvLists.tempCVData[state.selectedCVIndex].id;
+      newBlankCV.name = state.cvLists.tempCVData[state.selectedCVIndex].name;
+      state.cvLists.tempCVData[state.selectedCVIndex] = _.cloneDeep(newBlankCV);
+      state.cvLists.savedCVData[state.selectedCVIndex] =
+        _.cloneDeep(newBlankCV);
     },
 
     addCV(state, action) {
       const { cv } = action.payload;
-      state.cvLists.tempCvData.push(_.cloneDeep(cv));
-      state.cvLists.savedCvData.push(_.cloneDeep(cv));
-      state.selectedCvId = cv.id;
-      state.selectedCvIndex++;
+      state.cvLists.tempCVData.push(_.cloneDeep(cv));
+      state.cvLists.savedCVData.push(_.cloneDeep(cv));
+      state.selectedCVId = cv.id;
+      state.selectedCVIndex++;
     },
 
     deleteCV(state, action) {
       const { id } = action.payload;
-      const cvList = state.cvLists.savedCvData;
+      const cvList = state.cvLists.savedCVData;
       if (cvList.length === 1) {
         return;
       }
@@ -99,14 +99,14 @@ const cvDataSlice = createSlice({
         a.name >= b.name ? 1 : -1
       );
       let index = cvList.findIndex((cv) => cv.id === id);
-      let currentId = state.selectedCvId;
-      let currentIndex = state.selectedCvIndex;
+      let currentId = state.selectedCVId;
+      let currentIndex = state.selectedCVIndex;
       let currentSortedIndex = cvListSorted.findIndex(
         (cv) => cv.id === currentId
       );
 
-      const filteredCvList = cvList.filter((cv) => cv.id !== id);
-      const filteredCvListSorted = filteredCvList.toSorted((a, b) =>
+      const filteredCVList = cvList.filter((cv) => cv.id !== id);
+      const filteredCVListSorted = filteredCVList.toSorted((a, b) =>
         a.name >= b.name ? 1 : -1
       );
 
@@ -116,26 +116,26 @@ const cvDataSlice = createSlice({
         if (currentSortedIndex != 0) {
           currentSortedIndex--;
         }
-        currentId = filteredCvListSorted[currentSortedIndex].id;
-        currentIndex = filteredCvList.findIndex((cv) => cv.id === currentId);
+        currentId = filteredCVListSorted[currentSortedIndex].id;
+        currentIndex = filteredCVList.findIndex((cv) => cv.id === currentId);
       }
 
-      state.cvLists.tempCvData = filteredCvList;
-      state.cvLists.savedCvData = filteredCvList;
-      state.selectedCvId = currentId;
-      state.selectedCvIndex = currentIndex;
+      state.cvLists.tempCVData = filteredCVList;
+      state.cvLists.savedCVData = filteredCVList;
+      state.selectedCVId = currentId;
+      state.selectedCVIndex = currentIndex;
     },
 
     setSelectedCVId(state, action) {
       let { id } = action.payload;
-      const cvList = state.cvLists.savedCvData;
+      const cvList = state.cvLists.savedCVData;
       let index = cvList.findIndex((cv) => cv.id === id);
       // if (index === -1) {
       //   id = cvList[0].id;
       //   index = 0;
       // }
-      state.selectedCvId = id;
-      state.selectedCvIndex = index;
+      state.selectedCVId = id;
+      state.selectedCVIndex = index;
     },
   },
 });
@@ -150,9 +150,9 @@ const initialiseCVData = () => {
     if (!cvList) {
       localStorage.setItem(
         'cvList',
-        JSON.stringify(cvData.cvLists.savedCvData)
+        JSON.stringify(cvData.cvLists.savedCVData)
       );
-      localStorage.setItem('cvId', cvData.selectedCvId);
+      localStorage.setItem('cvId', cvData.selectedCVId);
       return;
     }
     const cvIndex = cvList.findIndex((cv) => cv.id === cvId);
@@ -190,13 +190,13 @@ const saveTempCV = () => {
   return async (dispatch, getState) => {
     dispatch(saveTemp());
     const cvData = getState().cvData;
-    const cvList = cvData.cvLists.savedCvData;
+    const cvList = cvData.cvLists.savedCVData;
     localStorage.setItem('cvList', JSON.stringify(cvList));
     const user = getState().user;
     if (!user) {
       return;
     }
-    const id = cvData.selectedCvId;
+    const id = cvData.selectedCVId;
     const index = cvList.findIndex((cv) => cv.id === id);
     await cvService.updateCV(id, cvList[index]);
   };
@@ -218,13 +218,13 @@ const clearCV = () => {
   return async (dispatch, getState) => {
     dispatch(clearAllData());
     const cvData = getState().cvData;
-    const cvList = cvData.cvLists.savedCvData;
+    const cvList = cvData.cvLists.savedCVData;
     localStorage.setItem('cvList', JSON.stringify(cvList));
     const user = getState().user;
     if (!user) {
       return;
     }
-    const id = cvData.selectedCvId;
+    const id = cvData.selectedCVId;
     const index = cvList.findIndex((cv) => cv.id === id);
     await cvService.updateCV(id, cvList[index]);
   };
@@ -239,7 +239,7 @@ const addNewCV = ({ type }) => {
         break;
 
       case 'example':
-        newCV = _.cloneDeep(exampleCv);
+        newCV = _.cloneDeep(exampleCV);
         newCV.id = crypto.randomUUID();
         break;
     }
@@ -251,8 +251,8 @@ const addNewCV = ({ type }) => {
     }
     dispatch(addCV({ cv: newCV }));
     const cvData = getState().cvData;
-    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
-    localStorage.setItem('cvId', cvData.selectedCvId);
+    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCVData));
+    localStorage.setItem('cvId', cvData.selectedCVId);
   };
 };
 
@@ -260,8 +260,8 @@ const deleteCVById = ({ id }) => {
   return async (dispatch, getState) => {
     dispatch(deleteCV({ id }));
     const cvData = getState().cvData;
-    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
-    localStorage.setItem('cvId', cvData.selectedCvId);
+    localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCVData));
+    localStorage.setItem('cvId', cvData.selectedCVId);
     const user = getState().user;
     if (!user) {
       return;

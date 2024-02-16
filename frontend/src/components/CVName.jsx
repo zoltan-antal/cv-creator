@@ -1,10 +1,10 @@
-import '../styles/CvName.css';
+import '../styles/CVName.css';
 import { useState } from 'react';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { discardTempCV, saveTempCV, updateTempCV } from '../slices/cvDataSlice';
 
-function CvName() {
+function CVName() {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
   const [mode, setMode] = useState('view');
@@ -17,7 +17,7 @@ function CvName() {
             return (
               <>
                 <pre>
-                  {cvData.cvLists.savedCvData[cvData.selectedCvIndex].name}
+                  {cvData.cvLists.savedCVData[cvData.selectedCVIndex].name}
                 </pre>
                 <Button
                   name={'Rename'}
@@ -33,7 +33,7 @@ function CvName() {
                 <input
                   type="text"
                   name={'name'}
-                  value={cvData.cvLists.tempCvData[cvData.selectedCvIndex].name}
+                  value={cvData.cvLists.tempCVData[cvData.selectedCVIndex].name}
                   onChange={(e) =>
                     dispatch(
                       updateTempCV({ value: e.target.value, path: ['name'] })
@@ -66,4 +66,4 @@ function CvName() {
   );
 }
 
-export default CvName;
+export default CVName;

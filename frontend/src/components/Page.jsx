@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 function Page() {
   const cvData = useSelector(
     (state) =>
-      state.cvData.cvLists.tempCvData[state.cvData.selectedCvIndex].content
+      state.cvData.cvLists.tempCVData[state.cvData.selectedCVIndex].content
   );
 
   return (

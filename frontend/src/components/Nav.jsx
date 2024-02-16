@@ -2,7 +2,7 @@ import '../styles/Nav.css';
 import { useRef } from 'react';
 import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';
-import CvListDialog from './CvListDialog';
+import CVListDialog from './CVListDialog';
 import LoginDialog from './LoginDialog';
 import LogoutButton from './LogoutButton';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,7 @@ function Nav() {
   const dispatch = useDispatch();
 
   const clearConfirmDialogRef = useRef(null);
-  const selectCvDialogRef = useRef(null);
+  const selectCVDialogRef = useRef(null);
   const loginDialogRef = useRef(null);
 
   return (
@@ -33,7 +33,7 @@ function Nav() {
       <Button
         name={'CV list'}
         className="dark"
-        onClick={() => selectCvDialogRef.current.showModal()}
+        onClick={() => selectCVDialogRef.current.showModal()}
       />
       {!user ? (
         <Button
@@ -51,7 +51,7 @@ function Nav() {
           await dispatch(clearCV());
         }}
       />
-      <CvListDialog ref={selectCvDialogRef} />
+      <CVListDialog ref={selectCVDialogRef} />
       <LoginDialog ref={loginDialogRef} />
     </nav>
   );
