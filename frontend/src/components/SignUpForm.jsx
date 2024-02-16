@@ -30,6 +30,7 @@ const SignUpForm = ({ dialogRef, setSelectedTab }) => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          autoComplete="username"
         />
       </label>
       <label>
@@ -38,6 +39,7 @@ const SignUpForm = ({ dialogRef, setSelectedTab }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
         />
       </label>
       <label>
@@ -46,6 +48,7 @@ const SignUpForm = ({ dialogRef, setSelectedTab }) => {
           type="password"
           value={passwordRepeat}
           onChange={(e) => setPasswordRepeat(e.target.value)}
+          autoComplete="new-password"
         />
       </label>
       <Button className="done dark" name="Submit" type="submit" />

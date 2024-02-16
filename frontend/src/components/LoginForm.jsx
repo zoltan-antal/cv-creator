@@ -28,6 +28,7 @@ const LoginForm = ({ dialogRef }) => {
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          autoComplete="username"
         />
       </label>
       <label>
@@ -36,6 +37,7 @@ const LoginForm = ({ dialogRef }) => {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="current-password"
         />
       </label>
       <Button className="done dark" name="Submit" type="submit" />
