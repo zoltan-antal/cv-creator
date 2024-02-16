@@ -1,10 +1,8 @@
-// import { useCvDataDispatch } from '../contexts/CvDataContext';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTempCV } from '../slices/cvDataSlice';
 
 function EditorField({ title, name, type, value, path }) {
-  // const dispatchCvData = useCvDataDispatch();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,13 +24,8 @@ function EditorField({ title, name, type, value, path }) {
                 type={type}
                 name={name}
                 value={value}
-                onChange={
-                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
-                  // dispatchCvData({
-                  //   type: 'update',
-                  //   path: path,
-                  //   value: e.target.value,
-                  // })
+                onChange={(e) =>
+                  dispatch(updateTempCV({ value: e.target.value, path }))
                 }
               ></input>
             );
@@ -42,13 +35,8 @@ function EditorField({ title, name, type, value, path }) {
               <textarea
                 name={name}
                 value={value}
-                onChange={
-                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
-                  // dispatchCvData({
-                  //   type: 'update',
-                  //   path: path,
-                  //   value: e.target.value,
-                  // })
+                onChange={(e) =>
+                  dispatch(updateTempCV({ value: e.target.value, path }))
                 }
               ></textarea>
             );
@@ -59,14 +47,8 @@ function EditorField({ title, name, type, value, path }) {
                 type={type}
                 name={name}
                 checked={value}
-                onChange={
-                  (e) =>
-                    dispatch(updateTempCV({ value: e.target.checked, path }))
-                  // dispatchCvData({
-                  //   type: 'update',
-                  //   path: path,
-                  //   value: e.target.checked,
-                  // })
+                onChange={(e) =>
+                  dispatch(updateTempCV({ value: e.target.checked, path }))
                 }
               ></input>
             );
@@ -76,20 +58,9 @@ function EditorField({ title, name, type, value, path }) {
               <input
                 type={type}
                 name={name}
-                // value={value ? format(value, 'yyyy-MM') : ''}
                 value={value}
-                onChange={
-                  // (e) => {
-                  //   const dateValue = new Date(e.target.value);
-                  //   const isoDateString = dateValue.toISOString();
-                  //   dispatch(updateTempCV({ value: isoDateString, path }));
-                  // }
-                  (e) => dispatch(updateTempCV({ value: e.target.value, path }))
-                  // dispatchCvData({
-                  //   type: 'update',
-                  //   path: path,
-                  //   value: new Date(e.target.value),
-                  // })
+                onChange={(e) =>
+                  dispatch(updateTempCV({ value: e.target.value, path }))
                 }
               ></input>
             );

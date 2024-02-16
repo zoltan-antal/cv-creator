@@ -7,10 +7,6 @@ const LogoutButton = () => {
 
   const handleClick = () => {
     dispatch(logoutUser());
-    // localStorage.removeItem('cvCreatorAuthToken');
-    // localStorage.removeItem('cvList');
-    // localStorage.removeItem('cvId');
-    // location.reload();
   };
 
   return <Button name={'Logout'} className="dark" onClick={handleClick} />;

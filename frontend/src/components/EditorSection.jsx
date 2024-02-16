@@ -1,21 +1,15 @@
 import '../styles/EditorSection.css';
 import _ from 'lodash';
 import { useState } from 'react';
-// import { useCvData, useCvDataDispatch } from '../contexts/CvDataContext';
-// import { useSession } from '../contexts/SessionContext';
 import Button from './Button';
 import mapEditFields from '../utils/mapEditFields';
 import mapViewFields from '../utils/mapViewFields';
-// import cvService from '../services/cv';
 import { useDispatch, useSelector } from 'react-redux';
 import { discardTempCV, saveTempCV } from '../slices/cvDataSlice';
 
 function EditorSection({ children, title, path, isActive, onShow, onHide }) {
-  // const cvData = useCvData();
-  // const dispatchCvData = useCvDataDispatch();
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
-  // const session = useSession();
   const [mode, setMode] = useState('view');
 
   return (
@@ -70,10 +64,6 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                       type={'discard'}
                       className="dark"
                       onClick={() => {
-                        // dispatchCvData({
-                        //   type: 'discard',
-                        //   path: path,
-                        // });
                         dispatch(discardTempCV());
                         setMode('view');
                       }}
@@ -82,17 +72,7 @@ function EditorSection({ children, title, path, isActive, onShow, onHide }) {
                       type={'save'}
                       className="dark"
                       onClick={async () => {
-                        // dispatchCvData({
-                        //   type: 'save',
-                        //   path: path,
-                        // });
                         await dispatch(saveTempCV());
-                        // if (session) {
-                        //   cvService.updateCV(
-                        //     cvData.selectedCvId,
-                        //     cvData.cvLists.tempCvData[cvData.selectedCvIndex]
-                        //   );
-                        // }
                         setMode('view');
                       }}
                     />

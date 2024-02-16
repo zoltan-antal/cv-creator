@@ -1,5 +1,4 @@
 import '../styles/Page.css';
-// import { useCvData } from '../contexts/CvDataContext';
 import emailIcon from '../assets/icons/email.svg';
 import phoneIcon from '../assets/icons/phone.svg';
 import addressIcon from '../assets/icons/map-marker.svg';
@@ -8,9 +7,6 @@ import { format, parseISO } from 'date-fns';
 import { useSelector } from 'react-redux';
 
 function Page() {
-  // const cvDataImport = useCvData();
-  // const cvData =
-  //   cvDataImport.cvLists.tempCvData[cvDataImport.selectedCvIndex].content;
   const cvData = useSelector(
     (state) =>
       state.cvData.cvLists.tempCvData[state.cvData.selectedCvIndex].content

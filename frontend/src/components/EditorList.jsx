@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import '../styles/EditorList.css';
-// import { useCvDataDispatch } from '../contexts/CvDataContext';
 import Button from './Button';
 import { useDispatch } from 'react-redux';
 import {
@@ -10,7 +9,6 @@ import {
 } from '../slices/cvDataSlice';
 
 function EditorList({ title, type, path, data }) {
-  // const dispatchCvData = useCvDataDispatch();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,19 +32,13 @@ function EditorList({ title, type, path, data }) {
                     <input
                       type="text"
                       value={value}
-                      onChange={
-                        (e) =>
-                          dispatch(
-                            updateTempCV({
-                              value: e.target.value,
-                              path: [...path, index],
-                            })
-                          )
-                        // dispatchCvData({
-                        //   type: 'update',
-                        //   path: [...path, index],
-                        //   value: e.target.value,
-                        // })
+                      onChange={(e) =>
+                        dispatch(
+                          updateTempCV({
+                            value: e.target.value,
+                            path: [...path, index],
+                          })
+                        )
                       }
                     ></input>
                   );
@@ -56,19 +48,13 @@ function EditorList({ title, type, path, data }) {
                     <textarea
                       rows={1}
                       value={value}
-                      onChange={
-                        (e) =>
-                          dispatch(
-                            updateTempCV({
-                              value: e.target.value,
-                              path: [...path, index],
-                            })
-                          )
-                        // dispatchCvData({
-                        //   type: 'update',
-                        //   path: [...path, index],
-                        //   value: e.target.value,
-                        // })
+                      onChange={(e) =>
+                        dispatch(
+                          updateTempCV({
+                            value: e.target.value,
+                            path: [...path, index],
+                          })
+                        )
                       }
                     ></textarea>
                   );
@@ -77,12 +63,6 @@ function EditorList({ title, type, path, data }) {
             <Button
               type={'remove'}
               onClick={() =>
-                // dispatchCvData({
-                //   type: 'removeListElement',
-                //   path: path,
-                //   index: index,
-                //   tempOnly: true,
-                // })
                 dispatch(removeListElementFromTempCV({ index, path }))
               }
             ></Button>
@@ -92,12 +72,6 @@ function EditorList({ title, type, path, data }) {
       <Button
         type={'add'}
         onClick={() =>
-          // dispatchCvData({
-          //   type: 'addListElement',
-          //   path: path,
-          //   blankDataElement: '',
-          //   tempOnly: true,
-          // })
           dispatch(addListElementToTempCV({ blankDataElement: '', path }))
         }
       ></Button>
