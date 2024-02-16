@@ -231,7 +231,7 @@ const clearCV = () => {
 };
 
 const addNewCV = ({ type }) => {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     let newCV;
     switch (type) {
       case 'blank':
@@ -243,11 +243,12 @@ const addNewCV = ({ type }) => {
         newCV.id = crypto.randomUUID();
         break;
     }
-    // if (session) {
-    //   newCV = await cvService.createCV(newCV);
-    // } else {
-    //   newCV.id = crypto.randomUUID();
-    // }
+    const user = getState().user;
+    if (user) {
+      newCV = await cvService.createCV(newCV);
+    } else {
+      newCV.id = crypto.randomUUID();
+    }
     dispatch(addCV({ cv: newCV }));
     const cvData = getState().cvData;
     localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
