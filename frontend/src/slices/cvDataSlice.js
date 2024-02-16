@@ -130,10 +130,6 @@ const cvDataSlice = createSlice({
       let { id } = action.payload;
       const cvList = state.cvLists.savedCVData;
       let index = cvList.findIndex((cv) => cv.id === id);
-      // if (index === -1) {
-      //   id = cvList[0].id;
-      //   index = 0;
-      // }
       state.selectedCVId = id;
       state.selectedCVIndex = index;
     },
