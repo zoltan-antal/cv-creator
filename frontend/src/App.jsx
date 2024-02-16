@@ -5,12 +5,20 @@ import Main from './components/MainComponent';
 import Footer from './components/Footer';
 import { useDispatch } from 'react-redux';
 import { initialiseCVData } from './slices/cvDataSlice';
+import { retrieveLoggedUser } from './slices/userSlice';
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(initialiseCVData());
+  });
+
+  useEffect(() => {
+    const initialiseUser = async () => {
+      await dispatch(retrieveLoggedUser());
+    };
+    initialiseUser();
   });
 
   return (

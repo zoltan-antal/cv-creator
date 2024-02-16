@@ -22,8 +22,8 @@ const LoginDialog = forwardRef(function LoginDialog(_, ref) {
             onClick={() => setSelectedTab('signup')}
           />
         </div>
-        {selectedTab === 'login' && <LoginForm />}
-        {selectedTab === 'signup' && <SignUpForm />}
+        {selectedTab === 'login' && <LoginForm dialogRef={ref} />}
+        {selectedTab === 'signup' && <SignUpForm dialogRef={ref} />}
       </div>
     </dialog>
   );

@@ -6,23 +6,24 @@ import { useRef } from 'react';
 import Button from './Button';
 import ConfirmDialog from './ConfirmDialog';
 import CvListDialog from './CvListDialog';
-// import LoginDialog from './LoginDialog';
-// import LogoutButton from './LogoutButton';
+import LoginDialog from './LoginDialog';
+import LogoutButton from './LogoutButton';
 // import cvService from '../services/cv';
 // import _ from 'lodash';
 // import blankCv from '../dataStructures/blankCv';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addNewCV, clearCV } from '../slices/cvDataSlice';
 
 function Nav() {
   // const cvData = useCvData();
   // const dispatchCvData = useCvDataDispatch();
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   // const session = useSession();
 
   const clearConfirmDialogRef = useRef(null);
   const selectCvDialogRef = useRef(null);
-  // const loginDialogRef = useRef(null);
+  const loginDialogRef = useRef(null);
 
   return (
     <nav>
@@ -45,7 +46,7 @@ function Nav() {
         className="dark"
         onClick={() => selectCvDialogRef.current.showModal()}
       />
-      {/* {!session ? (
+      {!user ? (
         <Button
           name={'Login'}
           className="dark"
@@ -53,7 +54,7 @@ function Nav() {
         />
       ) : (
         <LogoutButton />
-      )} */}
+      )}
       <ConfirmDialog
         ref={clearConfirmDialogRef}
         message="Are you sure you want to clear all contents of this CV?"
@@ -70,7 +71,7 @@ function Nav() {
         }}
       />
       <CvListDialog ref={selectCvDialogRef} />
-      {/* <LoginDialog ref={loginDialogRef} /> */}
+      <LoginDialog ref={loginDialogRef} />
     </nav>
   );
 }

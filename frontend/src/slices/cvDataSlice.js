@@ -3,9 +3,14 @@ import _ from 'lodash';
 import blankCv from '../dataStructures/blankCv';
 import exampleCv from '../dataStructures/exampleCv';
 
-const generateInitialState = () => {
+const generateBlankCV = () => {
   const cv = _.cloneDeep(blankCv);
   cv.id = crypto.randomUUID();
+  return cv;
+};
+
+const generateInitialState = () => {
+  const cv = generateBlankCV();
   return {
     cvLists: {
       savedCvData: [_.cloneDeep(cv)],
@@ -156,6 +161,13 @@ const initialiseCVData = () => {
   };
 };
 
+const restoreInitialCVData = () => {
+  return (dispatch) => {
+    const cv = generateBlankCV();
+    dispatch(setCVData({ cvList: [cv], cvId: cv.id }));
+  };
+};
+
 const updateTempCV = ({ value, path }) => {
   return (dispatch) => {
     dispatch(updateTemp({ value, path }));
@@ -201,11 +213,12 @@ const addNewCV = ({ type }) => {
     let newCV;
     switch (type) {
       case 'blank':
-        newCV = _.cloneDeep(blankCv);
+        newCV = generateBlankCV();
         break;
 
       case 'example':
         newCV = _.cloneDeep(exampleCv);
+        newCV.id = crypto.randomUUID();
         break;
     }
     // if (session) {
@@ -213,7 +226,6 @@ const addNewCV = ({ type }) => {
     // } else {
     //   newCV.id = crypto.randomUUID();
     // }
-    newCV.id = crypto.randomUUID();
     dispatch(addCV({ cv: newCV }));
     const cvData = getState().cvData;
     localStorage.setItem('cvList', JSON.stringify(cvData.cvLists.savedCvData));
@@ -252,6 +264,7 @@ export const {
 } = cvDataSlice.actions;
 export {
   initialiseCVData,
+  restoreInitialCVData,
   updateTempCV,
   discardTempCV,
   saveTempCV,
