@@ -57,10 +57,7 @@ const cvDataSlice = createSlice({
     addListElement(state, action) {
       const { blankDataElement, path } = action.payload;
       const cv = state.cvLists.tempCVData[state.selectedCVIndex];
-      _.set(cv, path, [
-        ..._.get(cv, path),
-        typeof blankDataElement === 'string' ? '' : { ...blankDataElement },
-      ]);
+      _.set(cv, path, [..._.get(cv, path), blankDataElement]);
     },
 
     removeListElement(state, action) {

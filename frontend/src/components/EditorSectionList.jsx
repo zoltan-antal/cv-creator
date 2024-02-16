@@ -71,7 +71,7 @@ const EditorSectionList = ({
           type={'add'}
           onClick={async () => {
             const id = self.crypto.randomUUID();
-            const newDataElement = { ...blankDataElement };
+            const newDataElement = _.cloneDeep(blankDataElement);
             newDataElement.id = id;
             dispatch(
               addListElementToTempCV({ blankDataElement: newDataElement, path })
