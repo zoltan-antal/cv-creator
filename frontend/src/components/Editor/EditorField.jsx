@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateTempCV } from '../slices/cvDataSlice';
+import { updateTempCV } from '../../slices/cvDataSlice';
 
 const EditorField = ({ title, name, type, value, path }) => {
   const dispatch = useDispatch();

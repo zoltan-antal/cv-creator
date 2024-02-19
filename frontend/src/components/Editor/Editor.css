@@ -1,9 +1,121 @@
-.content {
+.editor {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
-  gap: 12px;
+  gap: 20px;
+  padding: 20px;
+
+  overflow-y: auto;
+}
+
+.editor-section,
+.editor-section-list,
+.cv-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 15px;
+
+  background-color: var(--dark-background);
+  border-radius: 10px;
+  padding: 15px;
+  font-size: 1.05rem;
+
+  & .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    & .title {
+      color: var(--light-text);
+    }
+  }
+
+  & .manage-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+
+    &>button {
+      &:nth-child(1) {
+        justify-self: right;
+      }
+
+      &:nth-child(2) {
+        justify-self: left;
+      }
+    }
+  }
+
+  & button.add {
+    align-self: center;
+  }
+}
+
+.editor-section-list .content>button.add {
+  height: 30px;
+}
+
+.editor-section-list .editor-section {
+  border: 2px solid var(--light-text);
+  font-size: 0.9rem;
+}
+
+.editor-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 5px;
+
+  & .list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+
+    & input {
+      flex-grow: 1;
+    }
+  }
+}
+
+.cv-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 0 0 10px;
+
+  &:has(input) {
+    padding: 0;
+  }
+
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: var(--light-text);
+  background-color: var(--light-background);
+
+  & input {
+    width: 100%;
+    font-size: 1.4rem;
+    margin: -5px 0;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    color: var(--light-text);
+    background-color: var(--dark-background);
+  }
 }
 
 .editor-field,
@@ -116,5 +228,16 @@
         left: 0;
       }
     }
+  }
+}
+
+.editor-section,
+.editor-section-list {
+  & .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 12px;
   }
 }

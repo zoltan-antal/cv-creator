@@ -1,6 +1,6 @@
-import EditorField from '../components/EditorField';
-import EditorList from '../components/EditorList';
-import parseCamelCaseString from './parseCamelCaseString';
+import EditorField from './EditorField';
+import EditorList from './EditorList';
+import parseCamelCaseString from '../../utils/parseCamelCaseString';
 
 const mapEditFields = ({ data, path }) => {
   const ongoingIndex = Object.keys(data).indexOf('ongoing');

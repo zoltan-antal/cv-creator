@@ -1,8 +1,11 @@
-import '../styles/CVName.css';
 import { useState } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { discardTempCV, saveTempCV, updateTempCV } from '../slices/cvDataSlice';
+import {
+  discardTempCV,
+  saveTempCV,
+  updateTempCV,
+} from '../../slices/cvDataSlice';
 
 const CVName = () => {
   const cvData = useSelector((state) => state.cvData);

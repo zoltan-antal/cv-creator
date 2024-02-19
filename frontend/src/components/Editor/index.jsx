@@ -1,11 +1,11 @@
-import '../styles/Editor.css';
+import './Editor.css';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorSectionList from './EditorSectionList';
 import CVName from './CVName';
-import blankSchool from '../dataStructures/blankSchool';
-import blankJob from '../dataStructures/blankJob';
-import blankSkillCategory from '../dataStructures/blankSkillCategory';
+import blankSchool from '../../dataStructures/blankSchool';
+import blankJob from '../../dataStructures/blankJob';
+import blankSkillCategory from '../../dataStructures/blankSkillCategory';
 
 const Editor = () => {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);

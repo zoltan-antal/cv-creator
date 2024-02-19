@@ -1,13 +1,13 @@
 import _ from 'lodash';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
-import Button from './Button';
+import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addListElementToTempCV,
   removeListElementFromTempCV,
   saveTempCV,
-} from '../slices/cvDataSlice';
+} from '../../slices/cvDataSlice';
 
 const EditorSectionList = ({
   title,

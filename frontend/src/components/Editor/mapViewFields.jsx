@@ -1,5 +1,5 @@
 import { format, parseISO } from 'date-fns';
-import parseCamelCaseString from './parseCamelCaseString';
+import parseCamelCaseString from '../../utils/parseCamelCaseString';
 import isFieldEmpty from './isFieldEmpty';
 
 const mapViewFields = ({ data }) => {

@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import '../styles/EditorList.css';
-import Button from './Button';
+import Button from '../Button';
 import { useDispatch } from 'react-redux';
 import {
   addListElementToTempCV,
   removeListElementFromTempCV,
   updateTempCV,
-} from '../slices/cvDataSlice';
+} from '../../slices/cvDataSlice';
 
 const EditorList = ({ title, type, path, data }) => {
   const dispatch = useDispatch();

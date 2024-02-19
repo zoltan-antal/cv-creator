@@ -1,11 +1,10 @@
-import '../styles/EditorSection.css';
 import _ from 'lodash';
 import { useState } from 'react';
-import Button from './Button';
-import mapEditFields from '../utils/mapEditFields';
-import mapViewFields from '../utils/mapViewFields';
+import Button from '../Button';
+import mapEditFields from './mapEditFields';
+import mapViewFields from './mapViewFields';
 import { useDispatch, useSelector } from 'react-redux';
-import { discardTempCV, saveTempCV } from '../slices/cvDataSlice';
+import { discardTempCV, saveTempCV } from '../../slices/cvDataSlice';
 
 const EditorSection = ({ children, title, path, isActive, onShow, onHide }) => {
   const cvData = useSelector((state) => state.cvData);
