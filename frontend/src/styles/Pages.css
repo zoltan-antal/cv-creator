@@ -1,3 +1,9 @@
+.pages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .page {
   background-color: var(--dark-background);
   --page-width: 40vw;

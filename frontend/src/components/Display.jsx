@@ -1,10 +1,10 @@
 import '../styles/Display.css';
-import Page from './Page';
+import Pages from './Pages';
 
 const Display = () => {
   return (
     <section className="display">
-      <Page />
+      <Pages />
     </section>
   );
 };

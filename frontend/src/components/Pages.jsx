@@ -1,4 +1,4 @@
-import '../styles/Page.css';
+import '../styles/Pages.css';
 import emailIcon from '../assets/icons/email.svg';
 import phoneIcon from '../assets/icons/phone.svg';
 import addressIcon from '../assets/icons/map-marker.svg';
@@ -6,69 +6,73 @@ import linkIcon from '../assets/icons/link.svg';
 import { format, parseISO } from 'date-fns';
 import { useSelector } from 'react-redux';
 
-const Page = () => {
+const Pages = () => {
   const cvData = useSelector(
     (state) =>
       state.cvData.cvLists.tempCVData[state.cvData.selectedCVIndex].content
   );
 
-  return (
-    <div className="page">
-      <div className="personal-info">
-        <h1 className="name">{cvData.personalDetails.fullName}</h1>
-        {Object.entries(cvData.personalDetails).map(([key, value]) => {
-          if (key.includes('professionalTitle') && value) {
-            return (
-              <h2 className="title" key={key}>
-                {value}
-              </h2>
-            );
-          } else if (key.includes('professionalSummary') && value) {
-            return (
-              <pre className="summary" key={key}>
-                {value}
-              </pre>
-            );
-          }
-        })}
-      </div>
-      <div className="personal-data">
-        {Object.entries(cvData.personalDetails).map(([key, value]) => {
-          if (key.includes('email') && value) {
-            return (
-              <div className="entry email" key={key}>
-                <img src={emailIcon} alt="" />
-                <pre>{value}</pre>
-              </div>
-            );
-          } else if (key.includes('phone') && value) {
-            return (
-              <div className="entry phone" key={key}>
-                <img src={phoneIcon} alt="" />
-                <pre>{value}</pre>
-              </div>
-            );
-          } else if (key.includes('address') && value) {
-            return (
-              <div className="entry address" key={key}>
-                <img src={addressIcon} alt="" />
-                <pre>{value}</pre>
-              </div>
-            );
-          } else if (key.includes('links')) {
-            return value.map((value, index) => {
-              if (value) {
-                return (
-                  <div className="entry link" key={index}>
-                    <img src={linkIcon} alt="" />
-                    <pre>{value}</pre>
-                  </div>
-                );
-              }
-            });
-          }
-        })}
-      </div>
+  const personalInfo = (
+    <div className="personal-info">
+      <h1 className="name">{cvData.personalDetails.fullName}</h1>
+      {Object.entries(cvData.personalDetails).map(([key, value]) => {
+        if (key.includes('professionalTitle') && value) {
+          return (
+            <h2 className="title" key={key}>
+              {value}
+            </h2>
+          );
+        } else if (key.includes('professionalSummary') && value) {
+          return (
+            <pre className="summary" key={key}>
+              {value}
+            </pre>
+          );
+        }
+      })}
+    </div>
+  );
+  const personalData = (
+    <div className="personal-data">
+      {Object.entries(cvData.personalDetails).map(([key, value]) => {
+        if (key.includes('email') && value) {
+          return (
+            <div className="entry email" key={key}>
+              <img src={emailIcon} alt="" />
+              <pre>{value}</pre>
+            </div>
+          );
+        } else if (key.includes('phone') && value) {
+          return (
+            <div className="entry phone" key={key}>
+              <img src={phoneIcon} alt="" />
+              <pre>{value}</pre>
+            </div>
+          );
+        } else if (key.includes('address') && value) {
+          return (
+            <div className="entry address" key={key}>
+              <img src={addressIcon} alt="" />
+              <pre>{value}</pre>
+            </div>
+          );
+        } else if (key.includes('links')) {
+          return value.map((value, index) => {
+            if (value) {
+              return (
+                <div className="entry link" key={index}>
+                  <img src={linkIcon} alt="" />
+                  <pre>{value}</pre>
+                </div>
+              );
+            }
+          });
+        }
+      })}
+    </div>
+  );
+  const education = (
+    <>
       {(() => {
         if (cvData.education.length > 0) {
           return (
@@ -157,6 +161,55 @@ const Page = () => {
           );
         }
       })()}
+    </>
+  );
+  const skills = (
+    <>
+      {(() => {
+        if (cvData.skills.length > 0) {
+          return (
+            <div className="skills">
+              <h3>Skills</h3>
+              {cvData.skills.map((item) => {
+                return (
+                  <div className="skill-category" key={item.id}>
+                    {(() => {
+                      if (item.title) {
+                        return <h6 className="title">{item.title}</h6>;
+                      }
+                    })()}
+                    {(() => {
+                      const skills = getValueByKeyFragment(item, 'skills');
+                      if (skills.length === 0) {
+                        return null;
+                      }
+                      if (skills.every((content) => content === '')) {
+                        return null;
+                      }
+
+                      return (
+                        <div className="skills">
+                          {skills.map((value, index) => {
+                            if (value === '') {
+                              return null;
+                            }
+
+                            return <pre key={index}>{value}</pre>;
+                          })}
+                        </div>
+                      );
+                    })()}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+      })()}
+    </>
+  );
+  const workExperience = (
+    <>
       {(() => {
         if (cvData.workExperience.length > 0) {
           return (
@@ -236,47 +289,25 @@ const Page = () => {
           );
         }
       })()}
-      {(() => {
-        if (cvData.skills.length > 0) {
-          return (
-            <div className="skills">
-              <h3>Skills</h3>
-              {cvData.skills.map((item) => {
-                return (
-                  <div className="skill-category" key={item.id}>
-                    {(() => {
-                      if (item.title) {
-                        return <h6 className="title">{item.title}</h6>;
-                      }
-                    })()}
-                    {(() => {
-                      const skills = getValueByKeyFragment(item, 'skills');
-                      if (skills.length === 0) {
-                        return null;
-                      }
-                      if (skills.every((content) => content === '')) {
-                        return null;
-                      }
+    </>
+  );
 
-                      return (
-                        <div className="skills">
-                          {skills.map((value, index) => {
-                            if (value === '') {
-                              return null;
-                            }
+  const pages = [];
+  let pageNumber = 0;
+  pages[pageNumber] = [];
+  pages[pageNumber].push(personalInfo);
+  pages[pageNumber].push(personalData);
+  pages[pageNumber].push(education);
+  pages[pageNumber].push(workExperience);
+  pages[pageNumber].push(skills);
 
-                            return <pre key={index}>{value}</pre>;
-                          })}
-                        </div>
-                      );
-                    })()}
-                  </div>
-                );
-              })}
-            </div>
-          );
-        }
-      })()}
+  return (
+    <div className="pages">
+      {pages.map((page, index) => (
+        <div key={index} className="page">
+          {page}
+        </div>
+      ))}
     </div>
   );
 };
@@ -287,4 +318,4 @@ function getValueByKeyFragment(object, string) {
   ];
 }
 
-export default Page;
+export default Pages;
