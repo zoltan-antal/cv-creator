@@ -6,8 +6,8 @@ const exampleCV = {
       fullName: 'John Doe',
       professionalTitle: 'Software Developer',
       email: 'john.doe@outlook.com',
-      phone: '+44 1632 960525',
-      address: "3 Blundell's Rd, Yeovil, Devon, EX16 4DB",
+      phone: '+44 1234 567890',
+      address: '14 Willow Crescent, Greenfield, Oakshire, OC4 2FG',
       links: ['linkedin.com/in/john-doe', 'john-doe.io'],
       professionalSummary_long:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
@@ -15,8 +15,8 @@ const exampleCV = {
     education: [
       {
         id: '6a56896b-c1ac-4d3e-acde-b17f5773e2f8',
-        school: 'University of Devon',
-        location: 'Exeter',
+        school: 'University of Greenwood',
+        location: 'Greenwood',
         qualification: 'BSc in Computer Science',
         grade: '1st class',
         ongoing: true,
@@ -26,8 +26,8 @@ const exampleCV = {
       },
       {
         id: '5dd0a0c6-a5ce-468d-97e7-e25bf2087a6e',
-        school: 'Holy Oaks College',
-        location: 'Yeovil',
+        school: 'Riverside College',
+        location: 'Brookford',
         qualification: 'A levels: Maths & Physics',
         grade: 'A*',
         ongoing: false,
@@ -44,7 +44,7 @@ const exampleCV = {
         id: 'c0b59a4e-74e0-4817-a9bf-03cfea624b7d',
         title: 'Software Developer intern',
         company: 'MySpace',
-        location: 'Bristol',
+        location: 'Greenwood',
         ongoing: false,
         startDate: '2021-09',
         endDate: '2022-09',
