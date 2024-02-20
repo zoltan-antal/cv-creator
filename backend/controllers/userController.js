@@ -22,7 +22,7 @@ const getCurrentUser = async (req, res) => {
   res.json(user);
 };
 
-const createUser = async (req, res) => {
+const createUser = async (req, res, next) => {
   let { username, password } = req.body;
   username = username.toLowerCase();
 
@@ -35,8 +35,17 @@ const createUser = async (req, res) => {
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
-  const user = await userService.createUser(username, passwordHash);
-  res.json(user);
+  try {
+    const user = await userService.createUser(username, passwordHash);
+    return res.json(user);
+  } catch (error) {
+    if (error.errors.username && error.errors.username.kind === 'unique') {
+      return res.status(409).json({
+        error: `user with username '${username}' already exists`,
+      });
+    }
+    next(error);
+  }
 };
 
 const deleteUser = async (req, res) => {
