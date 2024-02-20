@@ -1,25 +1,25 @@
 import Button from '../Button';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../slices/userSlice';
-import { useImmer } from 'use-immer';
 
 const LoginForm = ({
   dialogRef,
-  formValues: { username, setUsername, password, setPassword },
-  resetInputs,
+  inputValuesState: { inputValues, setInputValues, resetInputValues },
+  errorMessagesState: { errorMessages, setErrorMessages, resetErrorMessages },
 }) => {
   const dispatch = useDispatch();
-
-  const [errorMessages, setErrorMessages] = useImmer({
-    username: '',
-    password: '',
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginUser({ username, password }));
-      resetInputs();
+      await dispatch(
+        loginUser({
+          username: inputValues.username,
+          password: inputValues.password,
+        })
+      );
+      resetInputValues();
+      resetErrorMessages();
       dialogRef.current.close();
     } catch (error) {
       if (error.response.status === 401) {
@@ -32,14 +32,18 @@ const LoginForm = ({
   };
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setInputValues((state) => {
+      state.username = e.target.value;
+    });
     setErrorMessages((state) => {
       state.username = '';
     });
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setInputValues((state) => {
+      state.password = e.target.value;
+    });
     setErrorMessages((state) => {
       state.password = '';
     });
@@ -51,7 +55,7 @@ const LoginForm = ({
         Username:
         <input
           type="text"
-          value={username}
+          value={inputValues.username}
           onChange={handleUsernameChange}
           autoComplete="username"
         />
@@ -63,7 +67,7 @@ const LoginForm = ({
         Password:
         <input
           type="password"
-          value={password}
+          value={inputValues.password}
           onChange={handlePasswordChange}
           autoComplete="current-password"
         />

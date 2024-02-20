@@ -1,24 +1,38 @@
-import { forwardRef, useState, useEffect } from 'react';
+import { forwardRef, useState, useEffect, useCallback } from 'react';
+import { useImmer } from 'use-immer';
 import Button from '../Button';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 
 const LoginDialog = forwardRef((_, ref) => {
   const [selectedTab, setSelectedTab] = useState('login');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [inputValues, setInputValues] = useImmer({
+    username: '',
+    password: '',
+    passwordRepeat: '',
+  });
+  const [errorMessages, setErrorMessages] = useImmer({
+    username: '',
+    password: '',
+    passwordRepeat: '',
+  });
 
-  const resetInputs = () => {
-    setUsername('');
-    setPassword('');
-    setPasswordRepeat('');
-  };
+  const resetInputValues = useCallback(() => {
+    setInputValues((state) => {
+      Object.keys(state).forEach((key) => (state[key] = ''));
+    });
+  }, [setInputValues]);
+  const resetErrorMessages = useCallback(() => {
+    setErrorMessages((state) => {
+      Object.keys(state).forEach((key) => (state[key] = ''));
+    });
+  }, [setErrorMessages]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        resetInputs();
+        resetInputValues();
+        resetErrorMessages();
         setSelectedTab('login');
       }
     };
@@ -26,7 +40,7 @@ const LoginDialog = forwardRef((_, ref) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [setSelectedTab]);
+  }, [resetInputValues, resetErrorMessages, setSelectedTab]);
 
   return (
     <dialog ref={ref} className="login">
@@ -37,7 +51,8 @@ const LoginDialog = forwardRef((_, ref) => {
               className={`done ${selectedTab === 'login' ? 'light' : 'dark'}`}
               name="Log in"
               onClick={() => {
-                resetInputs();
+                resetInputValues();
+                resetErrorMessages();
                 setSelectedTab('login');
               }}
             />
@@ -45,14 +60,16 @@ const LoginDialog = forwardRef((_, ref) => {
               className={`done ${selectedTab === 'signup' ? 'light' : 'dark'}`}
               name="Create account"
               onClick={() => {
-                resetInputs();
+                resetInputValues();
+                resetErrorMessages();
                 setSelectedTab('signup');
               }}
             />
           </div>
           <button
             onClick={() => {
-              resetInputs();
+              resetInputValues();
+              resetErrorMessages();
               setSelectedTab('login');
               ref.current.close();
             }}
@@ -63,23 +80,24 @@ const LoginDialog = forwardRef((_, ref) => {
         {selectedTab === 'login' && (
           <LoginForm
             dialogRef={ref}
-            formValues={{ username, setUsername, password, setPassword }}
-            resetInputs={resetInputs}
+            inputValuesState={{ inputValues, setInputValues, resetInputValues }}
+            errorMessagesState={{
+              errorMessages,
+              setErrorMessages,
+              resetErrorMessages,
+            }}
           />
         )}
         {selectedTab === 'signup' && (
           <SignUpForm
             dialogRef={ref}
             setSelectedTab={setSelectedTab}
-            formValues={{
-              username,
-              setUsername,
-              password,
-              setPassword,
-              passwordRepeat,
-              setPasswordRepeat,
+            inputValuesState={{ inputValues, setInputValues, resetInputValues }}
+            errorMessagesState={{
+              errorMessages,
+              setErrorMessages,
+              resetErrorMessages,
             }}
-            resetInputs={resetInputs}
           />
         )}
       </div>

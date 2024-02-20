@@ -1,28 +1,14 @@
 import Button from '../Button';
 import { useDispatch } from 'react-redux';
 import { createUser } from '../../slices/userSlice';
-import { useImmer } from 'use-immer';
 
 const SignUpForm = ({
   dialogRef,
+  inputValuesState: { inputValues, setInputValues, resetInputValues },
+  errorMessagesState: { errorMessages, setErrorMessages, resetErrorMessages },
   setSelectedTab,
-  formValues: {
-    username,
-    setUsername,
-    password,
-    setPassword,
-    passwordRepeat,
-    setPasswordRepeat,
-  },
-  resetInputs,
 }) => {
   const dispatch = useDispatch();
-
-  const [errorMessages, setErrorMessages] = useImmer({
-    username: '',
-    password: '',
-    passwordRepeat: '',
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,8 +16,14 @@ const SignUpForm = ({
       return;
     }
     try {
-      await dispatch(createUser({ username, password }));
-      resetInputs();
+      await dispatch(
+        createUser({
+          username: inputValues.username,
+          password: inputValues.password,
+        })
+      );
+      resetInputValues();
+      resetErrorMessages();
       setSelectedTab('login');
       dialogRef.current.close();
     } catch (error) {
@@ -44,7 +36,9 @@ const SignUpForm = ({
   };
 
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setInputValues((state) => {
+      state.username = e.target.value;
+    });
     setErrorMessages((state) => {
       state.username =
         e.target.value.length < 4 ? 'Username must be 4+ characters' : '';
@@ -52,7 +46,9 @@ const SignUpForm = ({
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    setInputValues((state) => {
+      state.password = e.target.value;
+    });
     setErrorMessages((state) => {
       state.password =
         e.target.value.length < 8 ? 'Password must be 8+ characters' : '';
@@ -60,10 +56,12 @@ const SignUpForm = ({
   };
 
   const handlePasswordRepeatChange = (e) => {
-    setPasswordRepeat(e.target.value);
+    setInputValues((state) => {
+      state.passwordRepeat = e.target.value;
+    });
     setErrorMessages((state) => {
       state.passwordRepeat =
-        e.target.value !== password ? 'Passwords do not match' : '';
+        e.target.value !== inputValues.password ? 'Passwords do not match' : '';
     });
   };
 
@@ -73,7 +71,7 @@ const SignUpForm = ({
         Username:
         <input
           type="text"
-          value={username}
+          value={inputValues.username}
           onChange={handleUsernameChange}
           autoComplete="username"
         />
@@ -85,7 +83,7 @@ const SignUpForm = ({
         Password:
         <input
           type="password"
-          value={password}
+          value={inputValues.password}
           onChange={handlePasswordChange}
           autoComplete="new-password"
         />
@@ -97,7 +95,7 @@ const SignUpForm = ({
         Confirm password:
         <input
           type="password"
-          value={passwordRepeat}
+          value={inputValues.passwordRepeat}
           onChange={handlePasswordRepeatChange}
           autoComplete="new-password"
         />
