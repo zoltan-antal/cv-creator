@@ -23,7 +23,8 @@ const getCurrentUser = async (req, res) => {
 };
 
 const createUser = async (req, res) => {
-  const { username, password } = req.body;
+  let { username, password } = req.body;
+  username = username.toLowerCase();
 
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);

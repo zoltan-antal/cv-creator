@@ -4,7 +4,8 @@ const userService = require('../services/userService');
 const config = require('../utils/config');
 
 const login = async (req, res) => {
-  const { username, password } = req.body;
+  let { username, password } = req.body;
+  username = username.toLowerCase();
 
   const user = await userService.getUserByUsername(username);
   const passwordCorrect =
