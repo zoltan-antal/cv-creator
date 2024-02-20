@@ -1,3 +1,4 @@
+import React from 'react';
 import emailIcon from '../../assets/icons/email.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import addressIcon from '../../assets/icons/map-marker.svg';
@@ -12,7 +13,7 @@ const Pages = () => {
   );
 
   const personalInfo = (
-    <div className="personal-info">
+    <div className="personal-info" key="personal-info">
       <h1 className="name">{cvData.personalDetails.fullName}</h1>
       {Object.entries(cvData.personalDetails).map(([key, value]) => {
         if (key.includes('professionalTitle') && value) {
@@ -32,7 +33,7 @@ const Pages = () => {
     </div>
   );
   const personalData = (
-    <div className="personal-data">
+    <div className="personal-data" key="personal-data">
       {Object.entries(cvData.personalDetails).map(([key, value]) => {
         if (key.includes('email') && value) {
           return (
@@ -75,7 +76,7 @@ const Pages = () => {
       {(() => {
         if (cvData.education.length > 0) {
           return (
-            <div className="education">
+            <div className="education" key="education">
               <h3>Education</h3>
               {cvData.education.map((item) => {
                 return (
@@ -167,7 +168,7 @@ const Pages = () => {
       {(() => {
         if (cvData.skills.length > 0) {
           return (
-            <div className="skills">
+            <div className="skills" key="skills">
               <h3>Skills</h3>
               {cvData.skills.map((item) => {
                 return (
@@ -212,7 +213,7 @@ const Pages = () => {
       {(() => {
         if (cvData.workExperience.length > 0) {
           return (
-            <div className="work-experience">
+            <div className="work-experience" key="work-experience">
               <h3>Work experience</h3>
               {cvData.workExperience.map((item) => {
                 return (
@@ -304,7 +305,9 @@ const Pages = () => {
     <div className="pages">
       {pages.map((page, index) => (
         <div key={index} className="page">
-          {page}
+          {page.map((section, index) =>
+            React.cloneElement(section, { key: index })
+          )}
         </div>
       ))}
     </div>
