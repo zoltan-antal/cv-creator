@@ -22,7 +22,7 @@ const exampleCV = {
         ongoing: true,
         startDate: '2019-09',
         endDate: '',
-        additionalInfo_long: ['Committee member in drama society for 2 year.'],
+        additionalInfo_long: ['Committee member in drama society for 2 years.'],
       },
       {
         id: '5dd0a0c6-a5ce-468d-97e7-e25bf2087a6e',
