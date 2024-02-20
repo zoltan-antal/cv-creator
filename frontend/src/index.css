@@ -5,6 +5,15 @@
 @import url('https://fonts.googleapis.com/css?family=Onest');
 @import url('https://fonts.googleapis.com/css?family=AR+One+Sans');
 
+:root {
+  --dark-background: rgb(36, 36, 36);
+  --light-background: rgb(53, 53, 53);
+  --light-text: rgb(220, 220, 220);
+  --dark-text: rgb(128, 128, 128);
+  --green: #00c34a;
+  --red: #ff1100;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,8 +26,4 @@
 html {
   font-size: 16px;
   height: 100%;
-}
-
-a {
-  color: black;
 }

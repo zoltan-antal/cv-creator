@@ -32,3 +32,77 @@ nav {
     }
   }
 }
+
+dialog.cv-list .dialog-content {
+  & .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 5px;
+
+    & .cv {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      width: 100%;
+      padding: 5px 20px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+
+      &.selected {
+        background-color: var(--dark-background);
+      }
+
+      &:not(.selected):hover {
+        border: 2px solid var(--light-text);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  & .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    padding: 0px 20px;
+  }
+}
+
+dialog.login .dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & form {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 5px;
+      color: "var(--light-text)";
+      font-size: 1rem;
+
+      & input {
+        background-color: white;
+        color: black;
+        border-radius: 5px;
+        border: none;
+        padding: 6px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}

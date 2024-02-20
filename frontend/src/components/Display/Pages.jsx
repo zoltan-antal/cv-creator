@@ -1,4 +1,3 @@
-import './Pages.css';
 import emailIcon from '../../assets/icons/email.svg';
 import phoneIcon from '../../assets/icons/phone.svg';
 import addressIcon from '../../assets/icons/map-marker.svg';

@@ -1,4 +1,3 @@
-import './CVListDialog.css';
 import { forwardRef } from 'react';
 import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
