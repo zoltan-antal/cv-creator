@@ -12,9 +12,9 @@ nav {
   & dialog {
     min-width: 40%;
     position: fixed;
-    top: 30%;
+    top: 10%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
 
     padding: 20px;
     color: var(--light-text);
@@ -30,94 +30,110 @@ nav {
       align-items: stretch;
       gap: 15px;
     }
-  }
-}
 
-dialog.cv-list .dialog-content {
-  & .list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 5px;
+    & button.close {
+      height: 25px
+    }
 
-    & .cv {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
+    &.cv-list {
+      & .list {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: 5px;
 
-      width: 100%;
-      padding: 5px 20px;
-      border-radius: 10px;
-      border: 2px solid transparent;
+        & .cv {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
 
-      &.selected {
-        background-color: var(--dark-background);
+          width: 100%;
+          padding: 5px 20px;
+          border-radius: 10px;
+          border: 2px solid transparent;
+
+          &.selected {
+            background-color: var(--dark-background);
+          }
+
+          &:not(.selected):hover {
+            border: 2px solid var(--light-text);
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
       }
 
-      &:not(.selected):hover {
-        border: 2px solid var(--light-text);
-      }
+      & .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
 
-      &:hover {
-        cursor: pointer;
+        width: 100%;
+        padding: 0px 20px;
       }
     }
-  }
 
-  & .buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    &.login {
+      & form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
 
-    width: 100%;
-    padding: 0px 20px;
-  }
-}
+        & label {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: stretch;
+          gap: 5px;
+          color: "var(--light-text)";
+          font-size: 1rem;
 
-dialog.login .dialog-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+          & input {
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            border: none;
+            padding: 6px;
+            font-size: 0.9rem;
 
-  & form {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+            &:focus {
+              outline: none;
+            }
 
-    & label {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: 5px;
-      color: "var(--light-text)";
-      font-size: 1rem;
+            &:has(+ div.error-message) {
+              outline: 2px solid red
+            }
+          }
 
-      & input {
-        background-color: white;
-        color: black;
-        border-radius: 5px;
-        /* border: 2px solid transparent; */
-        border: none;
-        padding: 6px;
-        font-size: 0.9rem;
-
-        &:focus {
-          outline: none;
+          & .error-message {
+            color: var(--red);
+            font-size: 0.9rem;
+            margin-top: -2px;
+          }
         }
 
-        &:has(+ div.error-message) {
-          outline: 2px solid red
+        & button {
+          margin-top: 15px;
         }
       }
 
-      & .error-message {
-        color: var(--red);
-        font-size: 0.9rem;
-        margin-top: -2px;
+      & .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        & .tabs {
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+        }
       }
     }
   }

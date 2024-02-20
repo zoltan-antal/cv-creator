@@ -45,8 +45,8 @@ const LoginDialog = forwardRef((_, ref) => {
   return (
     <dialog ref={ref} className="login">
       <div className="dialog-content">
-        <div>
-          <div>
+        <div className="buttons">
+          <div className="tabs">
             <Button
               className={`done ${selectedTab === 'login' ? 'light' : 'dark'}`}
               name="Log in"
@@ -66,16 +66,15 @@ const LoginDialog = forwardRef((_, ref) => {
               }}
             />
           </div>
-          <button
+          <Button
+            type={'close'}
             onClick={() => {
               resetInputValues();
               resetErrorMessages();
               setSelectedTab('login');
               ref.current.close();
             }}
-          >
-            X
-          </button>
+          />
         </div>
         {selectedTab === 'login' && (
           <LoginForm

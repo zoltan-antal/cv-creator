@@ -2,6 +2,7 @@ import expandIcon from '../../assets/icons/chevron-down.svg';
 import collapseIcon from '../../assets/icons/chevron-up.svg';
 import addIcon from '../../assets/icons/plus-circle.svg';
 import deleteIcon from '../../assets/icons/trash-can.svg';
+import closeIcon from '../../assets/icons/close-circle-outline.svg';
 import './Button.css';
 
 const Button = ({ type, name, className, icon, onClick }) => {
@@ -39,6 +40,10 @@ const Button = ({ type, name, className, icon, onClick }) => {
 
       case 'collapse':
         icon = <img src={collapseIcon} alt={'Collapse'} />;
+        break;
+
+      case 'close':
+        icon = <img src={closeIcon} alt={'Close'} />;
         break;
 
       case 'yes':

@@ -20,9 +20,9 @@ button {
       filter: invert(65%) sepia(47%) saturate(6053%) hue-rotate(106deg) brightness(97%) contrast(101%);
     }
 
-    &.light {
+    /* &.light {
       background-color: rgb(205, 205, 205);
-    }
+    } */
 
     &.dark {
       border-color: var(--dark-text);
@@ -34,6 +34,10 @@ button {
 
     &.green {
       border: 2px solid var(--green)
+    }
+
+    &.close img {
+      filter: invert(50%) sepia(17%) saturate(21%) hue-rotate(101deg) brightness(97%) contrast(88%);
     }
   }
 }
@@ -80,7 +84,8 @@ button {
 }
 
 & .expand,
-& .collapse {
+& .collapse,
+& .close {
   height: 90%;
   background-color: inherit;
   border: none;
