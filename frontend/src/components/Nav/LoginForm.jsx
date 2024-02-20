@@ -1,6 +1,7 @@
 import Button from '../Button';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../slices/userSlice';
+import { useImmer } from 'use-immer';
 
 const LoginForm = ({
   dialogRef,
@@ -9,6 +10,11 @@ const LoginForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [errorMessages, setErrorMessages] = useImmer({
+    username: '',
+    password: '',
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -16,8 +22,27 @@ const LoginForm = ({
       resetInputs();
       dialogRef.current.close();
     } catch (error) {
-      alert(error.response.data.error);
+      if (error.response.status === 401) {
+        setErrorMessages((state) => {
+          state.username = ' ';
+          state.password = 'Incorrect username or password';
+        });
+      }
     }
+  };
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+    setErrorMessages((state) => {
+      state.username = '';
+    });
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setErrorMessages((state) => {
+      state.password = '';
+    });
   };
 
   return (
@@ -27,18 +52,24 @@ const LoginForm = ({
         <input
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={handleUsernameChange}
           autoComplete="username"
         />
+        {errorMessages.username && (
+          <div className="error-message">{errorMessages.username}</div>
+        )}
       </label>
       <label>
         Password:
         <input
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePasswordChange}
           autoComplete="current-password"
         />
+        {errorMessages.password && (
+          <div className="error-message">{errorMessages.password}</div>
+        )}
       </label>
       <Button className="done dark" name="Submit" type="submit" />
     </form>

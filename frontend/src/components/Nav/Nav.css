@@ -85,6 +85,7 @@ dialog.login .dialog-content {
   & form {
     display: flex;
     flex-direction: column;
+    gap: 5px;
 
     & label {
       display: flex;
@@ -99,9 +100,24 @@ dialog.login .dialog-content {
         background-color: white;
         color: black;
         border-radius: 5px;
+        /* border: 2px solid transparent; */
         border: none;
         padding: 6px;
         font-size: 0.9rem;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:has(+ div.error-message) {
+          outline: 2px solid red
+        }
+      }
+
+      & .error-message {
+        color: var(--red);
+        font-size: 0.9rem;
+        margin-top: -2px;
       }
     }
   }
