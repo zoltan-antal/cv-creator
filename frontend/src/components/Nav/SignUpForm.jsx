@@ -1,10 +1,18 @@
-import Button from './Button';
+import Button from '../Button';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../slices/userSlice';
+import { createUser } from '../../slices/userSlice';
 
-const LoginForm = ({
+const SignUpForm = ({
   dialogRef,
-  formValues: { username, setUsername, password, setPassword },
+  setSelectedTab,
+  formValues: {
+    username,
+    setUsername,
+    password,
+    setPassword,
+    passwordRepeat,
+    setPasswordRepeat,
+  },
   resetInputs,
 }) => {
   const dispatch = useDispatch();
@@ -12,8 +20,9 @@ const LoginForm = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await dispatch(loginUser({ username, password }));
+      await dispatch(createUser({ username, password }));
       resetInputs();
+      setSelectedTab('login');
       dialogRef.current.close();
     } catch (error) {
       alert(error.response.data.error);
@@ -37,7 +46,16 @@ const LoginForm = ({
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          autoComplete="current-password"
+          autoComplete="new-password"
+        />
+      </label>
+      <label>
+        Confirm password:
+        <input
+          type="password"
+          value={passwordRepeat}
+          onChange={(e) => setPasswordRepeat(e.target.value)}
+          autoComplete="new-password"
         />
       </label>
       <Button className="done dark" name="Submit" type="submit" />
@@ -45,4 +63,4 @@ const LoginForm = ({
   );
 };
 
-export default LoginForm;
+export default SignUpForm;

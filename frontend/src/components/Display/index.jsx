@@ -1,4 +1,4 @@
-import '../styles/Display.css';
+import './Display.css';
 import Pages from './Pages';
 
 const Display = () => {

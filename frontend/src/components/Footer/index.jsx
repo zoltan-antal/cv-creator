@@ -1,5 +1,5 @@
-import '../styles/Footer.css';
-import githubIcon from '../assets/icons/github.svg';
+import './Footer.css';
+import githubIcon from '../../assets/icons/github.svg';
 
 const Footer = () => {
   return (

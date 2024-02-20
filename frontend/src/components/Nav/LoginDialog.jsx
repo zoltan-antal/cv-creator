@@ -1,6 +1,6 @@
-import '../styles/LoginDialog.css';
+import './LoginDialog.css';
 import { forwardRef, useState, useEffect } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import LoginForm from './LoginForm';
 import SignUpForm from './SignUpForm';
 

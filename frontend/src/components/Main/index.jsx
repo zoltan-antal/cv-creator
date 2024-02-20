@@ -1,6 +1,6 @@
-import '../styles/MainComponent.css';
-import Editor from './Editor';
-import Display from './Display';
+import './Main.css';
+import Editor from '../Editor';
+import Display from '../Display';
 
 const Main = () => {
   return (

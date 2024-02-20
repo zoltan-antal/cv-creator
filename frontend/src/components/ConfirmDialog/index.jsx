@@ -1,6 +1,6 @@
-import '../styles/ConfirmDialog.css';
+import './ConfirmDialog.css';
 import { forwardRef } from 'react';
-import Button from './Button';
+import Button from '../Button';
 
 const ConfirmDialog = forwardRef(({ message, onConfirm, onCancel }, ref) => {
   return (

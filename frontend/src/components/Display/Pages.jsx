@@ -1,8 +1,8 @@
-import '../styles/Pages.css';
-import emailIcon from '../assets/icons/email.svg';
-import phoneIcon from '../assets/icons/phone.svg';
-import addressIcon from '../assets/icons/map-marker.svg';
-import linkIcon from '../assets/icons/link.svg';
+import './Pages.css';
+import emailIcon from '../../assets/icons/email.svg';
+import phoneIcon from '../../assets/icons/phone.svg';
+import addressIcon from '../../assets/icons/map-marker.svg';
+import linkIcon from '../../assets/icons/link.svg';
 import { format, parseISO } from 'date-fns';
 import { useSelector } from 'react-redux';
 

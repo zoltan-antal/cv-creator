@@ -1,12 +1,12 @@
-import '../styles/CVListDialog.css';
+import './CVListDialog.css';
 import { forwardRef } from 'react';
-import Button from './Button';
+import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addNewCV,
   deleteCVById,
   updateSelectedCVId,
-} from '../slices/cvDataSlice';
+} from '../../slices/cvDataSlice';
 
 const CVListDialog = forwardRef((_, ref) => {
   const cvData = useSelector((state) => state.cvData);

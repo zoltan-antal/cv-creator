@@ -1,14 +1,14 @@
-import '../styles/Nav.css';
+import './Nav.css';
 import { useRef } from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import Button from './Button';
-import ConfirmDialog from './ConfirmDialog';
+import Button from '../Button';
+import ConfirmDialog from '../ConfirmDialog';
 import CVListDialog from './CVListDialog';
 import LoginDialog from './LoginDialog';
 import LogoutButton from './LogoutButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewCV, clearCV } from '../slices/cvDataSlice';
+import { addNewCV, clearCV } from '../../slices/cvDataSlice';
 
 const Nav = () => {
   const user = useSelector((state) => state.user);

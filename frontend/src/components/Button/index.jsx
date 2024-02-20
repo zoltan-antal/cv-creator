@@ -1,8 +1,8 @@
-import expandIcon from '../assets/icons/chevron-down.svg';
-import collapseIcon from '../assets/icons/chevron-up.svg';
-import addIcon from '../assets/icons/plus-circle.svg';
-import deleteIcon from '../assets/icons/trash-can.svg';
-import '../styles/Button.css';
+import expandIcon from '../../assets/icons/chevron-down.svg';
+import collapseIcon from '../../assets/icons/chevron-up.svg';
+import addIcon from '../../assets/icons/plus-circle.svg';
+import deleteIcon from '../../assets/icons/trash-can.svg';
+import './Button.css';
 
 const Button = ({ type, name, className, icon, onClick }) => {
   let classList = className ? className : '';

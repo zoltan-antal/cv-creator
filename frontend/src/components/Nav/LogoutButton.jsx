@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import Button from './Button';
-import { logoutUser } from '../slices/userSlice';
+import Button from '../Button';
+import { logoutUser } from '../../slices/userSlice';
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
