@@ -29,13 +29,15 @@ const CVListDialog = forwardRef((_, ref) => {
                   >
                     <p>{cv.name}</p>
                     <div className="manage-cv">
-                      <Button
-                        type={'remove'}
-                        onClick={async (e) => {
-                          e.stopPropagation();
-                          await dispatch(deleteCVById({ id: cv.id }));
-                        }}
-                      />
+                      {cvData.cvLists.savedCVData.length > 1 && (
+                        <Button
+                          type={'remove'}
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            await dispatch(deleteCVById({ id: cv.id }));
+                          }}
+                        />
+                      )}
                     </div>
                   </div>
                 );
