@@ -5,6 +5,7 @@ require('express-async-errors');
 const morgan = require('morgan');
 const passport = require('passport');
 const configurePassport = require('./utils/passport.js');
+const middleware = require('./utils/middleware');
 const router = require('./routes');
 
 app.use(cors());
@@ -15,5 +16,8 @@ configurePassport(passport);
 app.use(passport.initialize());
 
 app.use('/', router);
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 module.exports = app;
