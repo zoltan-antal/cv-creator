@@ -52,6 +52,10 @@ const SignUpForm = ({
     setErrorMessages((state) => {
       state.password =
         e.target.value.length < 8 ? 'Password must be 8+ characters' : '';
+      state.passwordRepeat =
+        e.target.value !== inputValues.passwordRepeat
+          ? 'Passwords do not match'
+          : '';
     });
   };
 
