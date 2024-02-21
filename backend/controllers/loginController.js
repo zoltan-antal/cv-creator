@@ -5,6 +5,11 @@ const config = require('../utils/config');
 
 const login = async (req, res) => {
   let { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({
+      error: 'missing required fields',
+    });
+  }
   username = username.toLowerCase();
 
   const user = await userService.getUserByUsername(username);

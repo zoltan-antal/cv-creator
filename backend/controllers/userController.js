@@ -24,6 +24,11 @@ const getCurrentUser = async (req, res) => {
 
 const createUser = async (req, res, next) => {
   let { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({
+      error: 'missing required fields',
+    });
+  }
   username = username.toLowerCase();
 
   if (password.length < 8) {
