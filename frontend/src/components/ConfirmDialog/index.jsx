@@ -6,7 +6,7 @@ const ConfirmDialog = forwardRef(({ message, onConfirm, onCancel }, ref) => {
   return (
     <dialog ref={ref} className="confirm">
       <div className="dialog-content">
-        <p>{message}</p>
+        <pre>{message}</pre>
         <div className="buttons">
           <Button
             className="yes dark"
