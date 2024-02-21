@@ -99,9 +99,9 @@ const deleteUser = () => {
   };
 };
 
-const updateUser = ({ username, password }) => {
+const updateUser = ({ username, currentPassword, newPassword }) => {
   return async (dispatch) => {
-    await userService.updateUser({ username, password });
+    await userService.updateUser({ username, currentPassword, newPassword });
     const userFull = await userService.getUser();
     dispatch(setUser(userFull));
   };

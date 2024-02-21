@@ -6,6 +6,7 @@ import ConfirmDialog from '../ConfirmDialog';
 import { deleteUser } from '../../slices/userSlice';
 import ChangeUsernameForm from './ChangeUsernameForm';
 import { useImmer } from 'use-immer';
+import ChangePasswordForm from './ChangePasswordForm';
 
 const UserDialog = forwardRef((_, ref) => {
   const user = useSelector((state) => state.user);
@@ -15,12 +16,14 @@ const UserDialog = forwardRef((_, ref) => {
   const [view, setView] = useState('main');
   const [inputValues, setInputValues] = useImmer({
     username: '',
-    password: '',
+    currentPassword: '',
+    newPassword: '',
     passwordRepeat: '',
   });
   const [errorMessages, setErrorMessages] = useImmer({
     username: '',
-    password: '',
+    currentPassword: '',
+    newPassword: '',
     passwordRepeat: '',
   });
 
@@ -72,6 +75,11 @@ const UserDialog = forwardRef((_, ref) => {
                       }}
                     />
                     <Button
+                      name={'Change password'}
+                      className="dark"
+                      onClick={() => setView('changePassword')}
+                    />
+                    <Button
                       name={'Delete account'}
                       className="dark red"
                       onClick={() =>
@@ -84,6 +92,23 @@ const UserDialog = forwardRef((_, ref) => {
               case 'changeUsername':
                 return (
                   <ChangeUsernameForm
+                    inputValuesState={{
+                      inputValues,
+                      setInputValues,
+                      resetInputValues,
+                    }}
+                    errorMessagesState={{
+                      errorMessages,
+                      setErrorMessages,
+                      resetErrorMessages,
+                    }}
+                    setView={setView}
+                  />
+                );
+
+              case 'changePassword':
+                return (
+                  <ChangePasswordForm
                     inputValuesState={{
                       inputValues,
                       setInputValues,
