@@ -60,18 +60,18 @@ const EditorSection = ({ children, title, path, isActive, onShow, onHide }) => {
                   })}
                   <div className="manage-section">
                     <Button
-                      type={'discard'}
-                      className="dark"
-                      onClick={() => {
-                        dispatch(discardTempCV());
-                        setMode('view');
-                      }}
-                    />
-                    <Button
                       type={'save'}
                       className="dark"
                       onClick={async () => {
                         await dispatch(saveTempCV());
+                        setMode('view');
+                      }}
+                    />
+                    <Button
+                      type={'discard'}
+                      className="dark"
+                      onClick={() => {
+                        dispatch(discardTempCV());
                         setMode('view');
                       }}
                     />
