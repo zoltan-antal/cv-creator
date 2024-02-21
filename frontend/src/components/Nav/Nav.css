@@ -35,28 +35,6 @@ nav {
       height: 25px
     }
 
-    &.user-settings {
-      & .header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      & .username-change {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 5px;
-
-        & .editable-field {
-          flex-grow: 1;
-          justify-content: space-between;
-        }
-      }
-    }
-
     &.cv-list {
       & .list {
         display: flex;
@@ -101,6 +79,64 @@ nav {
       }
     }
 
+    &.user-settings {
+      & .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      & .settings-buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+        gap: 10px
+      }
+
+      & form {
+        & .buttons {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          margin-top: 15px;
+
+          & button {
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+
+    &.login {
+      & form {
+        & button {
+          margin-top: 15px;
+        }
+      }
+
+      & .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        & .tabs {
+          display: flex;
+          flex-direction: row;
+          gap: 5px;
+
+          & :focus {
+            outline: none;
+          }
+        }
+      }
+    }
+
+    &.user-settings,
     &.login {
       & form {
         display: flex;
@@ -137,27 +173,6 @@ nav {
             color: var(--red);
             font-size: 0.9rem;
             margin-top: -2px;
-          }
-        }
-
-        & button {
-          margin-top: 15px;
-        }
-      }
-
-      & .buttons {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-
-        & .tabs {
-          display: flex;
-          flex-direction: row;
-          gap: 5px;
-
-          & :focus {
-            outline: none;
           }
         }
       }

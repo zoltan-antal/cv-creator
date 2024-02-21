@@ -1,16 +1,39 @@
-import { forwardRef, useRef, useState } from 'react';
+import { forwardRef, useCallback, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../Button';
 import ConfirmDialog from '../ConfirmDialog';
-import EditableField from '../EditableField';
-import { deleteUser, updateUser } from '../../slices/userSlice';
+// import EditableField from '../EditableField';
+import { deleteUser } from '../../slices/userSlice';
+import ChangeUsernameForm from './ChangeUsernameForm';
+import { useImmer } from 'use-immer';
 
 const UserDialog = forwardRef((_, ref) => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const deleteAccountConfirmDialogRef = useRef(null);
 
-  const [username, setUsername] = useState('');
+  const [view, setView] = useState('main');
+  const [inputValues, setInputValues] = useImmer({
+    username: '',
+    password: '',
+    passwordRepeat: '',
+  });
+  const [errorMessages, setErrorMessages] = useImmer({
+    username: '',
+    password: '',
+    passwordRepeat: '',
+  });
+
+  const resetInputValues = useCallback(() => {
+    setInputValues((state) => {
+      Object.keys(state).forEach((key) => (state[key] = ''));
+    });
+  }, [setInputValues]);
+  const resetErrorMessages = useCallback(() => {
+    setErrorMessages((state) => {
+      Object.keys(state).forEach((key) => (state[key] = ''));
+    });
+  }, [setErrorMessages]);
 
   const handleDeleteAccount = async () => {
     await dispatch(deleteUser());
@@ -26,36 +49,65 @@ const UserDialog = forwardRef((_, ref) => {
             <Button
               type={'close'}
               onClick={() => {
+                resetInputValues();
+                resetErrorMessages();
+                setView('main');
                 ref.current.close();
               }}
             />
           </div>
-          <div className="username-change">
-            <div>Username:</div>
-            <EditableField
-              initialValue={user.username}
-              handleChange={(e) => setUsername(e.target.value)}
-              handleSave={async () => {
-                if (!username || username === user.username) {
-                  return;
-                }
-                await dispatch(updateUser({ username }));
-              }}
-              handleDiscard={() => setUsername(user.username)}
-              buttonLabel={'Change'}
-            />
-          </div>
-          <Button
-            name={'Delete account'}
-            className="dark red"
-            onClick={() => deleteAccountConfirmDialogRef.current.showModal()}
-          />
+          {(() => {
+            switch (view) {
+              case 'main':
+                return (
+                  <div className="settings-buttons">
+                    <Button
+                      name={'Change username'}
+                      className="dark"
+                      onClick={() => {
+                        setInputValues((state) => {
+                          state.username = user.username;
+                        });
+                        setView('changeUsername');
+                      }}
+                    />
+                    <Button
+                      name={'Delete account'}
+                      className="dark red"
+                      onClick={() =>
+                        deleteAccountConfirmDialogRef.current.showModal()
+                      }
+                    />
+                  </div>
+                );
+
+              case 'changeUsername':
+                return (
+                  <ChangeUsernameForm
+                    inputValuesState={{
+                      inputValues,
+                      setInputValues,
+                      resetInputValues,
+                    }}
+                    errorMessagesState={{
+                      errorMessages,
+                      setErrorMessages,
+                      resetErrorMessages,
+                    }}
+                    setView={setView}
+                  />
+                );
+            }
+          })()}
         </div>
         <ConfirmDialog
           ref={deleteAccountConfirmDialogRef}
-          message="Are you sure you want to delete your account?
+          message="
+Are you sure you want to delete your account?
 
-All CVs will be permanently lost."
+All CVs will be permanently lost.
+
+"
           onConfirm={handleDeleteAccount}
         />
       </dialog>
