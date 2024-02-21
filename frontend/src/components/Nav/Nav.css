@@ -35,6 +35,15 @@ nav {
       height: 25px
     }
 
+    &.user-settings {
+      & .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+
     &.cv-list {
       & .list {
         display: flex;

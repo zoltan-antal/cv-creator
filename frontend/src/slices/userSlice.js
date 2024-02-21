@@ -88,6 +88,17 @@ const logoutUser = () => {
   };
 };
 
+const deleteUser = () => {
+  return async (dispatch) => {
+    await userService.deleteUser();
+    localStorage.removeItem('cvCreatorAuthToken');
+    userService.setToken(null);
+    cvService.setToken(null);
+    dispatch(clearUser());
+    dispatch(restoreInitialCVData());
+  };
+};
+
 const createUser = ({ username, password }) => {
   return async (dispatch) => {
     await userService.createUser({ username, password });
@@ -97,4 +108,4 @@ const createUser = ({ username, password }) => {
 
 export default userSlice.reducer;
 export const { setUser, clearUser } = userSlice.actions;
-export { retrieveLoggedUser, loginUser, logoutUser, createUser };
+export { retrieveLoggedUser, loginUser, logoutUser, createUser, deleteUser };

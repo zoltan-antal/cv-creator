@@ -21,4 +21,11 @@ async function createUser(credentials) {
   return response.data;
 }
 
-export default { getUser, createUser, setToken };
+async function deleteUser() {
+  const requestConfig = {
+    headers: { Authorization: token },
+  };
+  return await axios.delete(`${baseUrl}/me`, requestConfig);
+}
+
+export default { getUser, createUser, deleteUser, setToken };
