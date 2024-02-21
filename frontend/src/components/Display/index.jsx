@@ -45,7 +45,12 @@ const Display = () => {
     <section className="display">
       <div className="buttons">
         <Button
-          name={'Load sample CV'}
+          name={'New blank CV'}
+          className="dark"
+          onClick={async () => await dispatch(addNewCV({ type: 'blank' }))}
+        />
+        <Button
+          name={'New sample CV'}
           className="dark"
           onClick={async () => {
             dispatch(addNewCV({ type: 'example' }));
