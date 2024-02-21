@@ -83,7 +83,7 @@ const logoutUser = () => {
     localStorage.removeItem('cvCreatorAuthToken');
     userService.setToken(null);
     cvService.setToken(null);
-    dispatch(setUser(null));
+    dispatch(clearUser());
     dispatch(restoreInitialCVData());
   };
 };
