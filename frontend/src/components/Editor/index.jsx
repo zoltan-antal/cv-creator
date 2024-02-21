@@ -2,18 +2,36 @@ import './Editor.css';
 import { useState } from 'react';
 import EditorSection from './EditorSection';
 import EditorSectionList from './EditorSectionList';
-import CVName from './CVName';
+import EditableField from '../EditableField';
 import blankSchool from '../../dataStructures/blankSchool';
 import blankJob from '../../dataStructures/blankJob';
 import blankSkillCategory from '../../dataStructures/blankSkillCategory';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  discardTempCV,
+  saveTempCV,
+  updateTempCV,
+} from '../../slices/cvDataSlice';
 
 const Editor = () => {
   const [activeEditorSection, setActiveEditorSection] = useState(undefined);
   const basePath = ['content'];
+  const cvData = useSelector((state) => state.cvData);
+  const dispatch = useDispatch();
 
   return (
     <section className="editor">
-      <CVName></CVName>
+      <EditableField
+        initialValue={cvData.cvLists.savedCVData[cvData.selectedCVIndex].name}
+        handleChange={async (e) =>
+          await dispatch(
+            updateTempCV({ value: e.target.value, path: ['name'] })
+          )
+        }
+        handleSave={async () => await dispatch(saveTempCV())}
+        handleDiscard={async () => await dispatch(discardTempCV())}
+        buttonLabel={'Rename'}
+      ></EditableField>
       <EditorSection
         title={'Personal Details'}
         path={[...basePath, 'personalDetails']}

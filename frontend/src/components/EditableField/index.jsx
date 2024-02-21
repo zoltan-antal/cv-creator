@@ -1,31 +1,32 @@
+import './EditableField.css';
 import { useState } from 'react';
 import Button from '../Button';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  discardTempCV,
-  saveTempCV,
-  updateTempCV,
-} from '../../slices/cvDataSlice';
 
-const CVName = () => {
-  const cvData = useSelector((state) => state.cvData);
-  const dispatch = useDispatch();
+const EditableField = ({
+  initialValue,
+  handleChange,
+  handleSave,
+  handleDiscard,
+  buttonLabel,
+}) => {
   const [mode, setMode] = useState('view');
+  const [value, setValue] = useState('');
 
   return (
-    <div className="cv-name">
+    <div className="editable-field">
       {(() => {
         switch (mode) {
           case 'view':
             return (
               <>
-                <pre>
-                  {cvData.cvLists.savedCVData[cvData.selectedCVIndex].name}
-                </pre>
+                <pre>{initialValue}</pre>
                 <Button
-                  name={'Rename'}
+                  name={buttonLabel}
                   className="dark"
-                  onClick={() => setMode('edit')}
+                  onClick={() => {
+                    setValue(initialValue);
+                    setMode('edit');
+                  }}
                 />
               </>
             );
@@ -36,19 +37,18 @@ const CVName = () => {
                 <input
                   type="text"
                   name={'name'}
-                  value={cvData.cvLists.tempCVData[cvData.selectedCVIndex].name}
-                  onChange={(e) =>
-                    dispatch(
-                      updateTempCV({ value: e.target.value, path: ['name'] })
-                    )
-                  }
+                  value={value}
+                  onChange={async (e) => {
+                    setValue(e.target.value);
+                    await handleChange(e);
+                  }}
                 ></input>
                 <div className="manage-section">
                   <Button
                     type={'discard'}
                     className="dark"
-                    onClick={() => {
-                      dispatch(discardTempCV());
+                    onClick={async () => {
+                      await handleDiscard();
                       setMode('view');
                     }}
                   />
@@ -56,7 +56,7 @@ const CVName = () => {
                     type={'save'}
                     className="dark"
                     onClick={async () => {
-                      await dispatch(saveTempCV());
+                      await handleSave();
                       setMode('view');
                     }}
                   />
@@ -69,4 +69,4 @@ const CVName = () => {
   );
 };
 
-export default CVName;
+export default EditableField;
