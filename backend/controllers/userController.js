@@ -23,8 +23,8 @@ const getCurrentUser = async (req, res) => {
 };
 
 const updateCurrentUser = async (req, res) => {
-  let { username, password } = req.body;
-  if (!(username || password)) {
+  let { username, currentPassword, newPassword } = req.body;
+  if (!(username || (currentPassword && newPassword))) {
     return res.status(400).json({
       error: 'missing required fields',
     });
@@ -33,15 +33,26 @@ const updateCurrentUser = async (req, res) => {
     username = username.toLowerCase();
   }
 
-  if (password) {
-    if (password.length < 8) {
+  if (newPassword) {
+    const user = await userService.getUserByUsername(req.user.username);
+    const passwordCorrect = await bcrypt.compare(
+      currentPassword,
+      user.passwordHash
+    );
+    if (!passwordCorrect) {
+      return res.status(401).json({
+        error: 'incorrect current password',
+      });
+    }
+
+    if (newPassword.length < 8) {
       return res.status(400).json({
         error: 'password must be at least 8 characters long',
       });
     }
 
     const saltRounds = 10;
-    var passwordHash = await bcrypt.hash(password, saltRounds);
+    var passwordHash = await bcrypt.hash(newPassword, saltRounds);
   }
 
   const updatedUser = await userService.updateUserById(req.user.id, {
