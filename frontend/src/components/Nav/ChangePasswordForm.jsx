@@ -14,6 +14,9 @@ const ChangePasswordForm = ({
     if (!Object.values(errorMessages).every((value) => value === '')) {
       return;
     }
+    if (!(inputValues.currentPassword && inputValues.newPassword)) {
+      return;
+    }
     try {
       await dispatch(
         updateUser({

@@ -11,6 +11,9 @@ const LoginForm = ({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!(inputValues.username && inputValues.password)) {
+      return;
+    }
     try {
       await dispatch(
         loginUser({

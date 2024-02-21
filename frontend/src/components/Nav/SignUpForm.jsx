@@ -15,6 +15,9 @@ const SignUpForm = ({
     if (!Object.values(errorMessages).every((value) => value === '')) {
       return;
     }
+    if (!(inputValues.username && inputValues.password)) {
+      return;
+    }
     try {
       await dispatch(
         createUser({
