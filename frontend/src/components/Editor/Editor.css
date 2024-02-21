@@ -211,3 +211,12 @@
     gap: 12px;
   }
 }
+
+.cv-name {
+  font-size: 1.7rem;
+  font-weight: bold;
+
+  & input {
+    font-size: 1.4rem;
+  }
+}

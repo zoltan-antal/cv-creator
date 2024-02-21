@@ -42,6 +42,19 @@ nav {
         justify-content: space-between;
         align-items: center;
       }
+
+      & .username-change {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 5px;
+
+        & .editable-field {
+          flex-grow: 1;
+          justify-content: space-between;
+        }
+      }
     }
 
     &.cv-list {

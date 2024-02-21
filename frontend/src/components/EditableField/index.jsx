@@ -8,12 +8,15 @@ const EditableField = ({
   handleSave,
   handleDiscard,
   buttonLabel,
+  className,
 }) => {
   const [mode, setMode] = useState('view');
   const [value, setValue] = useState('');
 
   return (
-    <div className="editable-field">
+    <div
+      className={className ? `editable-field ${className}` : 'editable-field'}
+    >
       {(() => {
         switch (mode) {
           case 'view':

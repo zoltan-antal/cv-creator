@@ -9,8 +9,6 @@
   color: var(--light-text);
   padding: 0 0 0 10px;
   border-radius: 10px;
-  font-size: 1.7rem;
-  font-weight: bold;
 
   &:has(input) {
     padding: 0;
@@ -26,7 +24,7 @@
 
   & input {
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     margin: -5px 0;
     padding: 8px;
     border: none;

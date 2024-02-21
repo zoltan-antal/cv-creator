@@ -99,6 +99,14 @@ const deleteUser = () => {
   };
 };
 
+const updateUser = ({ username, password }) => {
+  return async (dispatch) => {
+    await userService.updateUser({ username, password });
+    const userFull = await userService.getUser();
+    dispatch(setUser(userFull));
+  };
+};
+
 const createUser = ({ username, password }) => {
   return async (dispatch) => {
     await userService.createUser({ username, password });
@@ -108,4 +116,11 @@ const createUser = ({ username, password }) => {
 
 export default userSlice.reducer;
 export const { setUser, clearUser } = userSlice.actions;
-export { retrieveLoggedUser, loginUser, logoutUser, createUser, deleteUser };
+export {
+  retrieveLoggedUser,
+  loginUser,
+  logoutUser,
+  createUser,
+  deleteUser,
+  updateUser,
+};

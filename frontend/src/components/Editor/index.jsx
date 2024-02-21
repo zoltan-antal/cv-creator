@@ -31,6 +31,7 @@ const Editor = () => {
         handleSave={async () => await dispatch(saveTempCV())}
         handleDiscard={async () => await dispatch(discardTempCV())}
         buttonLabel={'Rename'}
+        className={'cv-name'}
       ></EditableField>
       <EditorSection
         title={'Personal Details'}
