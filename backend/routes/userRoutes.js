@@ -8,6 +8,11 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   userController.getCurrentUser
 );
+router.patch(
+  '/me',
+  passport.authenticate('jwt', { session: false }),
+  userController.updateCurrentUser
+);
 router.get('/:id', userController.getUserById);
 router.post('/', userController.createUser);
 router.delete(

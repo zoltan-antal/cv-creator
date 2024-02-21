@@ -24,6 +24,14 @@ const createUser = async (username, passwordHash) => {
   return await user.save();
 };
 
+const updateUserById = async (id, fields) => {
+  return await User.findByIdAndUpdate(id, fields, {
+    new: true,
+    runValidators: true,
+    context: 'query',
+  });
+};
+
 const deleteUserById = async (id) => {
   await CV.deleteMany({ user: id });
   return await User.findByIdAndDelete(id);
@@ -46,6 +54,7 @@ module.exports = {
   getUserById,
   getUserByUsername,
   createUser,
+  updateUserById,
   deleteUserById,
   addCV,
   removeCV,

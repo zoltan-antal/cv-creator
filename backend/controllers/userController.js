@@ -22,6 +22,35 @@ const getCurrentUser = async (req, res) => {
   res.json(user);
 };
 
+const updateCurrentUser = async (req, res) => {
+  let { username, password } = req.body;
+  if (!(username || password)) {
+    return res.status(400).json({
+      error: 'missing required fields',
+    });
+  }
+  if (username) {
+    username = username.toLowerCase();
+  }
+
+  if (password) {
+    if (password.length < 8) {
+      return res.status(400).json({
+        error: 'password must be at least 8 characters long',
+      });
+    }
+
+    const saltRounds = 10;
+    var passwordHash = await bcrypt.hash(password, saltRounds);
+  }
+
+  const updatedUser = await userService.updateUserById(req.user.id, {
+    username,
+    passwordHash,
+  });
+  res.json(updatedUser);
+};
+
 const createUser = async (req, res, next) => {
   let { username, password } = req.body;
   if (!username || !password) {
@@ -40,17 +69,8 @@ const createUser = async (req, res, next) => {
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(password, saltRounds);
 
-  try {
-    const user = await userService.createUser(username, passwordHash);
-    return res.json(user);
-  } catch (error) {
-    if (error.errors.username && error.errors.username.kind === 'unique') {
-      return res.status(409).json({
-        error: `user with username '${username}' already exists`,
-      });
-    }
-    next(error);
-  }
+  const user = await userService.createUser(username, passwordHash);
+  return res.json(user);
 };
 
 const deleteUser = async (req, res) => {
@@ -63,6 +83,7 @@ module.exports = {
   getAllUsers,
   getUserById,
   getCurrentUser,
+  updateCurrentUser,
   createUser,
   deleteUser,
 };
