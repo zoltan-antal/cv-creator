@@ -133,6 +133,10 @@ nav {
           display: flex;
           flex-direction: row;
           gap: 5px;
+
+          & :focus {
+            outline: none;
+          }
         }
       }
     }
