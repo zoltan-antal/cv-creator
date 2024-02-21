@@ -40,6 +40,7 @@ const LoginForm = ({
     });
     setErrorMessages((state) => {
       state.username = '';
+      state.password = '';
     });
   };
 
@@ -48,6 +49,7 @@ const LoginForm = ({
       state.password = e.target.value;
     });
     setErrorMessages((state) => {
+      state.username = '';
       state.password = '';
     });
   };
