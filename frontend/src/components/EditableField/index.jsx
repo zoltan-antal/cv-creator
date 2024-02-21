@@ -59,6 +59,9 @@ const EditableField = ({
                     type={'save'}
                     className="dark"
                     onClick={async () => {
+                      if (!value) {
+                        return;
+                      }
                       await handleSave();
                       setMode('view');
                     }}
