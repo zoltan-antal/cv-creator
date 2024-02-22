@@ -1,7 +1,5 @@
 # CV Creator
 
-## Access the app
-
 Live version of the app is available at: https://cv-creator.zoltan-antal.dev
 
 ## Description
