@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const helmet = require('helmet');
 require('express-async-errors');
 const morgan = require('morgan');
 const passport = require('passport');
@@ -18,6 +19,7 @@ switch (app.get('env')) {
     app.use(cors({ origin: config.FRONTEND_URL }));
     break;
 }
+app.use(helmet());
 app.use(express.json());
 app.use(morgan('tiny'));
 
