@@ -21,7 +21,7 @@ The app also supports user accounts, allowing users to access and work on their 
 
 A live version of the project is available at: https://cv-creator.zoltan-antal.dev.
 
-## Technologies Used
+## Technologies used
 
 ### Frontend
 
