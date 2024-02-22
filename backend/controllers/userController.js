@@ -85,7 +85,21 @@ const createUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res) => {
-  const id = req.user.id;
+  const { password } = req.body;
+  if (!password) {
+    return res.status(400).json({
+      error: 'missing required fields',
+    });
+  }
+  const user = await userService.getUserByUsername(req.user.username);
+  const passwordCorrect = await bcrypt.compare(password, user.passwordHash);
+  if (!passwordCorrect) {
+    return res.status(401).json({
+      error: 'incorrect current password',
+    });
+  }
+
+  const id = user.id;
   await userService.deleteUserById(id);
   res.status(204).end();
 };
