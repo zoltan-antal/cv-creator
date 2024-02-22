@@ -23,16 +23,19 @@ The app also supports user accounts, allowing users to access and work on their 
 
 ### Frontend
 
-- React with JavaScript
+- JavaScript, HTML, CSS
+- React with Vite
 - Redux (state management)
 - Axios (server communication)
+- GitHub Pages (hosting)
 
 ### Backend
 
-- Node.js
-- Express.js
+- JavaScript via Node.js
+- Express.js (web server)
 - MongoDB with Mongoose (database)
 - Passport.js, JWT, bcrypt (user management)
+- Fly.io (hosting)
 
 ## Future plans
 
