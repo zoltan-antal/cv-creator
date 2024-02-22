@@ -1,17 +1,13 @@
-import { forwardRef, useCallback, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from '../Button';
-import ConfirmDialog from '../ConfirmDialog';
-// import EditableField from '../EditableField';
-import { deleteUser } from '../../slices/userSlice';
-import ChangeUsernameForm from './ChangeUsernameForm';
+import { forwardRef, useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useImmer } from 'use-immer';
+import Button from '../Button';
+import ChangeUsernameForm from './ChangeUsernameForm';
 import ChangePasswordForm from './ChangePasswordForm';
+import DeleteUserForm from './DeleteUserForm';
 
 const UserDialog = forwardRef((_, ref) => {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const deleteAccountConfirmDialogRef = useRef(null);
 
   const [view, setView] = useState('main');
   const [inputValues, setInputValues] = useImmer({
@@ -37,11 +33,6 @@ const UserDialog = forwardRef((_, ref) => {
       Object.keys(state).forEach((key) => (state[key] = ''));
     });
   }, [setErrorMessages]);
-
-  const handleDeleteAccount = async () => {
-    await dispatch(deleteUser());
-    ref.current.close();
-  };
 
   return (
     user && (
@@ -82,9 +73,7 @@ const UserDialog = forwardRef((_, ref) => {
                     <Button
                       name={'Delete account'}
                       className="dark red"
-                      onClick={() =>
-                        deleteAccountConfirmDialogRef.current.showModal()
-                      }
+                      onClick={() => setView('deleteUser')}
                     />
                   </div>
                 );
@@ -122,19 +111,26 @@ const UserDialog = forwardRef((_, ref) => {
                     setView={setView}
                   />
                 );
+
+              case 'deleteUser':
+                return (
+                  <DeleteUserForm
+                    inputValuesState={{
+                      inputValues,
+                      setInputValues,
+                      resetInputValues,
+                    }}
+                    errorMessagesState={{
+                      errorMessages,
+                      setErrorMessages,
+                      resetErrorMessages,
+                    }}
+                    setView={setView}
+                  />
+                );
             }
           })()}
         </div>
-        <ConfirmDialog
-          ref={deleteAccountConfirmDialogRef}
-          message="
-Are you sure you want to delete your account?
-
-All CVs will be permanently lost.
-
-"
-          onConfirm={handleDeleteAccount}
-        />
       </dialog>
     )
   );

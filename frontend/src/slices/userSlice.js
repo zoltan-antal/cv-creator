@@ -88,9 +88,9 @@ const logoutUser = () => {
   };
 };
 
-const deleteUser = () => {
+const deleteUser = ({ password }) => {
   return async (dispatch) => {
-    await userService.deleteUser();
+    await userService.deleteUser(password);
     localStorage.removeItem('cvCreatorAuthToken');
     userService.setToken(null);
     cvService.setToken(null);

@@ -21,11 +21,11 @@ async function createUser(credentials) {
   return response.data;
 }
 
-async function deleteUser() {
+async function deleteUser(password) {
   const requestConfig = {
     headers: { Authorization: token },
   };
-  return await axios.delete(`${baseUrl}/me`, requestConfig);
+  return await axios.post(`${baseUrl}/me/delete`, { password }, requestConfig);
 }
 
 async function updateUser(credentials) {
