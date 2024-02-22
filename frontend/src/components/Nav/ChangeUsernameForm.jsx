@@ -56,7 +56,7 @@ const ChangeUsernameForm = ({
         <Button className="done dark green" name="Submit" type="submit" />
         <Button
           className="discard dark"
-          name="Discard"
+          name="Cancel"
           type="button"
           onClick={() => {
             resetInputValues();
