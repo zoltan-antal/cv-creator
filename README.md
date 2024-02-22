@@ -1,5 +1,9 @@
 # CV Creator
 
+## Access the app
+
+Live version of the app is available at: https://cv-creator.zoltan-antal.dev
+
 ## Description
 
 CV Creator is a web app that allows users to easily create and manage their CVs (resumes). It provides an intuitive editor where users can input their personal details, education, work experience, and other relevant information. The app generates the CV in real-time, displaying it alongside the editor for immediate feedback.
@@ -16,10 +20,6 @@ The app also supports user accounts, allowing users to access and work on their 
 - Sample CV generation
 - Export CV as PDF
 - User accounts with account management
-
-## Access the app
-
-A live version of the project is available at: https://cv-creator.zoltan-antal.dev.
 
 ## Technologies used
 
