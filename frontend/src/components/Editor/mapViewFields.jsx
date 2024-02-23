@@ -41,17 +41,13 @@ const mapViewFields = ({ data }) => {
 
       const nonEmptyValues = value.filter((element) => element !== '');
 
-      if (isLong) {
-        content = (
-          <div className="list">
-            {nonEmptyValues.map((item, index) => {
-              return <pre key={index}>{item}</pre>;
-            })}
-          </div>
-        );
-      } else {
-        content = <pre>{nonEmptyValues.join('\n')}</pre>;
-      }
+      content = (
+        <div className={`list ${isLong ? 'normal' : 'simple'}`}>
+          {nonEmptyValues.map((item, index) => {
+            return <pre key={index}>{item}</pre>;
+          })}
+        </div>
+      );
     }
     if (typeof value === 'string') {
       content = <pre>{value}</pre>;

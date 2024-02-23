@@ -244,6 +244,7 @@
           list-style-type: none;
 
           & pre {
+            text-align: left;
             display: list-item;
             position: relative;
             padding-left: calc(var(--page-width) / 48);

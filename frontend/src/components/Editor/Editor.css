@@ -149,7 +149,6 @@
   justify-content: space-between;
   align-items: flex-start;
   gap: 10%;
-
   font-weight: bold;
   padding-bottom: 2px;
   border-bottom: 1px solid var(--dark-text);
@@ -186,17 +185,27 @@
 
     list-style-type: none;
 
-    & pre {
-      list-style-position: inside;
-      display: list-item;
-      position: relative;
-      padding-left: 15px;
+    &.normal {
+      & pre {
+        list-style-position: inside;
+        display: list-item;
+        position: relative;
+        padding-left: 15px;
 
-      &::before {
-        content: "\2022";
-        position: absolute;
-        left: 0;
+        &::before {
+          content: "\2022";
+          position: absolute;
+          left: 0;
+        }
       }
+    }
+
+    &.simple {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 5px;
     }
   }
 }
