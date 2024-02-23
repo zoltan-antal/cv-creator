@@ -257,8 +257,8 @@ const Pages = () => {
                 return (
                   <div className="skill-category" key={item.id}>
                     {(() => {
-                      if (item.title) {
-                        return <h6 className="title">{item.title}</h6>;
+                      if (item.category) {
+                        return <h6 className="title">{item.category}</h6>;
                       }
                     })()}
                     {(() => {
