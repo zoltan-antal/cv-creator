@@ -55,6 +55,11 @@ const EditorList = ({ title, type, path, data }) => {
                           })
                         )
                       }
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                          e.preventDefault();
+                        }
+                      }}
                     ></textarea>
                   );
               }
