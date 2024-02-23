@@ -236,6 +236,11 @@ const addNewCV = ({ type }) => {
         newCV = _.cloneDeep(exampleCV);
         newCV.id = crypto.randomUUID();
         break;
+
+      case 'duplicate':
+        newCV = _.cloneDeep(cvData.cvLists.savedCVData[cvData.selectedCVIndex]);
+        newCV.id = crypto.randomUUID();
+        break;
     }
     const cvName = newCV.name;
     for (

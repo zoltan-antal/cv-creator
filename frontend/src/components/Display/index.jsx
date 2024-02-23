@@ -57,6 +57,11 @@ const Display = () => {
           }}
         />
         <Button
+          name={'Duplicate CV'}
+          className="dark"
+          onClick={async () => await dispatch(addNewCV({ type: 'duplicate' }))}
+        />
+        <Button
           name={'Clear CV'}
           className="dark red"
           onClick={() => clearConfirmDialogRef.current.showModal()}
