@@ -58,12 +58,12 @@ const exampleCV = {
     skills: [
       {
         id: 'f1a75677-bc5d-41b3-8f00-d3355e3f649b',
-        title: 'Programming',
+        category: 'Programming',
         skills: ['C#', 'C++', 'SQL', 'Git'],
       },
       {
         id: 'f60977c8-a041-4f70-b2cc-d58c1f744878',
-        title: 'Languages',
+        category: 'Languages',
         skills: ['Spanish', 'French'],
       },
     ],
