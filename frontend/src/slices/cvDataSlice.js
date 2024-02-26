@@ -83,7 +83,7 @@ const cvDataSlice = createSlice({
       state.cvLists.tempCVData.push(_.cloneDeep(cv));
       state.cvLists.savedCVData.push(_.cloneDeep(cv));
       state.selectedCVId = cv.id;
-      state.selectedCVIndex++;
+      state.selectedCVIndex = state.cvLists.savedCVData.length - 1;
     },
 
     deleteCV(state, action) {
