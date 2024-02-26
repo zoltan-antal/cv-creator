@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useRef, useState } from 'react';
 import Button from '../Button';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -6,10 +6,14 @@ import {
   deleteCVById,
   updateSelectedCVId,
 } from '../../slices/cvDataSlice';
+import ConfirmDialog from '../ConfirmDialog';
 
 const CVListDialog = forwardRef((_, ref) => {
   const cvData = useSelector((state) => state.cvData);
   const dispatch = useDispatch();
+
+  const deleteConfirmDialogRef = useRef(null);
+  const [cvToDeleteId, setCvToDeleteId] = useState(null);
 
   return (
     <dialog ref={ref} className="cv-list">
@@ -34,7 +38,8 @@ const CVListDialog = forwardRef((_, ref) => {
                           type={'remove'}
                           onClick={async (e) => {
                             e.stopPropagation();
-                            await dispatch(deleteCVById({ id: cv.id }));
+                            setCvToDeleteId(cv.id);
+                            deleteConfirmDialogRef.current.showModal();
                           }}
                         />
                       )}
@@ -56,6 +61,20 @@ const CVListDialog = forwardRef((_, ref) => {
           />
         </div>
       </div>
+      <ConfirmDialog
+        ref={deleteConfirmDialogRef}
+        message={
+          cvToDeleteId &&
+          `Are you sure you want to delete this CV?
+
+        ${cvData.cvLists.savedCVData.find((cv) => cv.id === cvToDeleteId).name}`
+        }
+        onConfirm={async () => {
+          const id = cvToDeleteId;
+          setCvToDeleteId(null);
+          await dispatch(deleteCVById({ id }));
+        }}
+      />
     </dialog>
   );
 });
