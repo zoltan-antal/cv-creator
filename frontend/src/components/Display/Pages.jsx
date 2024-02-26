@@ -13,7 +13,7 @@ const Pages = () => {
   );
 
   const personalInfo = (
-    <div className="section personal-info" key="personal-info">
+    <div className="section personal-info">
       <h1 className="name">{cvData.personalDetails.fullName}</h1>
       {Object.entries(cvData.personalDetails).map(([key, value]) => {
         if (key.includes('professionalTitle') && value) {
@@ -33,7 +33,7 @@ const Pages = () => {
     </div>
   );
   const personalData = (
-    <div className="section personal-data" key="personal-data">
+    <div className="section personal-data">
       {Object.entries(cvData.personalDetails).map(([key, value]) => {
         if (key.includes('email') && value) {
           return (
@@ -76,7 +76,7 @@ const Pages = () => {
       {(() => {
         if (cvData.education.length > 0) {
           return (
-            <div className="section education" key="education">
+            <div className="section education">
               <h3>Education</h3>
               {cvData.education.map((item) => {
                 return (
@@ -168,7 +168,7 @@ const Pages = () => {
       {(() => {
         if (cvData.workExperience.length > 0) {
           return (
-            <div className="section work-experience" key="work-experience">
+            <div className="section work-experience">
               <h3>Work experience</h3>
               {cvData.workExperience.map((item) => {
                 return (
@@ -251,7 +251,7 @@ const Pages = () => {
       {(() => {
         if (cvData.skills.length > 0) {
           return (
-            <div className="section skills" key="skills">
+            <div className="section skills">
               <h3>Skills</h3>
               {cvData.skills.map((item) => {
                 return (
