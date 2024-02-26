@@ -118,23 +118,20 @@
         }
       }
 
-      & .personal-info {
-        grid-area: personal-info;
-
+      & .section {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
+      }
+
+      & .personal-info {
+        grid-area: personal-info;
         gap: calc(var(--page-width) / 224);
       }
 
       & .personal-data {
         grid-area: personal-data;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
         gap: calc(var(--page-width) / 96);
 
         & .entry {
@@ -164,9 +161,6 @@
           grid-column: span 2;
         }
 
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
         align-items: stretch;
         gap: calc(var(--page-width) / 60);
         margin-bottom: calc(var(--page-width) / 96);
@@ -228,11 +222,6 @@
 
       & .skills {
         grid-area: skills;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
         gap: calc(var(--page-width) / 60);
 
         & .skills {

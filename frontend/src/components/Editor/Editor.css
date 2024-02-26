@@ -57,34 +57,22 @@
   & button.add {
     align-self: center;
   }
-}
 
-.editor-section-list .content>button.add {
-  height: 30px;
-}
-
-.editor-section-list .editor-section {
-  border: 2px solid var(--light-text);
-  font-size: 0.9rem;
-}
-
-.editor-list {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-  gap: 5px;
-
-  & .list-item {
+  & .content {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 12px;
 
-    & input {
-      flex-grow: 1;
+    &>button.add {
+      height: 30px;
     }
+  }
+
+  & .editor-section {
+    border: 2px solid var(--light-text);
+    font-size: 0.9rem;
   }
 }
 
@@ -111,13 +99,16 @@
   }
 }
 
-.editor-field {
+.editor-field,
+.editor-list {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
   gap: 5px;
+}
 
+.editor-field {
   &:has(input[type='checkbox']) {
     flex-direction: row;
     justify-content: flex-start;
@@ -140,6 +131,20 @@
 
   & input[type="month"]::-webkit-datetime-edit {
     color: var(--light-text);
+  }
+}
+
+.editor-list {
+  & .list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+
+    & input {
+      flex-grow: 1;
+    }
   }
 }
 
@@ -207,17 +212,6 @@
       align-items: flex-end;
       gap: 5px;
     }
-  }
-}
-
-.editor-section,
-.editor-section-list {
-  & .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    gap: 12px;
   }
 }
 
