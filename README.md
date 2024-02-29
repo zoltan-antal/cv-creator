@@ -1,5 +1,7 @@
 # CV Creator
 
+A full-stack CV editor app.
+
 Live version of the app is available at: https://cv-creator.zoltan-antal.dev
 
 ## Description
