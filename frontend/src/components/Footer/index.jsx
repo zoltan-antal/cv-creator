@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <pre>Built by </pre>
-      <a className="user" href="https://github.com/zoltan-antal">
+      <a className="user" href="https://zoltan-antal.dev">
         <pre>Zoltan Antal</pre>
       </a>
       <pre> </pre>
