@@ -121,16 +121,8 @@
     accent-color: white;
   }
 
-  & input[type="month"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    color: var(--light-text);
-    background-color: var(--light-text);
-    border-radius: 5px;
-    padding: 3px;
-  }
-
-  & input[type="month"]::-webkit-datetime-edit {
-    color: var(--light-text);
+  & input.month {
+    width: 100%;
   }
 }
 

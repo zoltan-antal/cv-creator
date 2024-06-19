@@ -24,3 +24,28 @@ html {
   font-size: 15px;
   height: 100%;
 }
+
+& .react-datepicker {
+  background-color: var(--light-background);
+  border-color: var(--light-text);
+  color: var(--light-text);
+
+  & .react-datepicker__header {
+    background-color: var(--light-text);
+    color: var(--light-background);
+  }
+
+  & .react-datepicker__navigation-icon {
+    filter: invert(95%);
+  }
+
+  & .react-datepicker__month-text {
+    &.react-datepicker__month-text--selected {
+      background-color: var(--light-text);
+    }
+
+    &:hover {
+      background-color: var(--dark-text);
+    }
+  }
+}

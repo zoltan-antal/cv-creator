@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateTempCV } from '../../slices/cvDataSlice';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { format } from 'date-fns';
 
 const EditorField = ({ title, name, type, value, path }) => {
   const dispatch = useDispatch();
@@ -14,7 +17,7 @@ const EditorField = ({ title, name, type, value, path }) => {
   });
 
   return (
-    <label className="editor-field">
+    <label className="editor-field" onClick={(e) => e.preventDefault()}>
       {title}
       {(() => {
         switch (type) {
@@ -55,14 +58,17 @@ const EditorField = ({ title, name, type, value, path }) => {
 
           case 'month':
             return (
-              <input
-                type={type}
-                name={name}
-                value={value}
-                onChange={(e) =>
-                  dispatch(updateTempCV({ value: e.target.value, path }))
+              <DatePicker
+                className="month"
+                selected={value}
+                dateFormat="MMMM yyyy"
+                showMonthYearPicker
+                onChange={(date) =>
+                  dispatch(
+                    updateTempCV({ value: format(date, 'yyyy-MM'), path })
+                  )
                 }
-              ></input>
+              />
             );
         }
       })()}
