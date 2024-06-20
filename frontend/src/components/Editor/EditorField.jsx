@@ -47,6 +47,7 @@ const EditorField = ({ title, name, type, value, path }) => {
           case 'checkbox':
             return (
               <input
+                key={Math.random()}
                 type={type}
                 name={name}
                 checked={value}
